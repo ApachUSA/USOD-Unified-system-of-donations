@@ -1,47 +1,52 @@
 ﻿using Donor_Library.Entity;
 using Donor_Library.ViewModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using USOD.DonorAPI.Repositories.Interfaces;
+using USOD.DonorAPI.Services.Interfaces;
 
 namespace USOD.DonorAPI.Controllers
 {
-    [Route("api/[controller]")]
+	[Route("DonorApi/[controller]")]
 	[ApiController]
 	public class DonorController : ControllerBase
 	{
-		private readonly IBaseRepository<Donor> _donorRepository;
-		private readonly IConfiguration _config;
+		private readonly IDonorService _donorService;
+		private readonly IAuthenticationService _authenticationService;
+		private readonly ILogger<Donor> _logger;
 
-		public DonorController(IBaseRepository<Donor> donorRepository, IConfiguration config)
+		public DonorController(IDonorService donorService, IAuthenticationService authenticationService, ILogger<Donor> logger)
 		{
-			_donorRepository = donorRepository;
-			_config = config;
+			_donorService = donorService;
+			_authenticationService = authenticationService;
+			_logger = logger;
 		}
 
 		[HttpPost("Login")]
 		public async Task<IActionResult> Login([FromBody] Donor_LoginVM donor_Login)
 		{
-			var donor = await _donorRepository.Get().FirstOrDefaultAsync( x=> x.Login == donor_Login.Login && x.Password == donor_Login.Password);
+			var donor = await _donorService.GetByLoginAsync(donor_Login);
+
 			if (donor == null) return NotFound();
 
-			string token = CreateToken(donor);
-
-			return Ok(token);
+			return Ok(_authenticationService.AuthenticateAsync(donor));
 		}
 
-		[HttpGet("Get")]
+
+		[HttpGet]
 		public async Task<IActionResult> Get()
 		{
-			var donor = await _donorRepository.Get().FirstOrDefaultAsync();
+			var donor = await _donorService.GetAsync();
 
-			if (donor == null)return NotFound();
-			
+			if (!donor.Any()) return NotFound();
+
+			return Ok(donor);
+		}
+
+		[HttpGet("{id}")]
+		public async Task<IActionResult> Get(int id)
+		{
+			var donor = await _donorService.GetByIDAsync(id);
+
+			if (donor == null) return NotFound();
 
 			return Ok(donor);
 		}
@@ -51,47 +56,47 @@ namespace USOD.DonorAPI.Controllers
 		{
 			try
 			{
-				
-				await _donorRepository.Create(donor);
+				await _donorService.RegisterAsync(donor);
 				return Ok(donor);
-
 			}
 			catch (Exception ex)
 			{
-
-				 return Problem(ex.Message);
+				_logger.LogError("Exception: {ex}", ex.Message);
+				 return BadRequest(ex.Message);
 			}
-			
-			
 		}
 
-
-		private string CreateToken(Donor donor)
+		[HttpPut]
+		public async Task<IActionResult> Put([FromBody] Donor donor)
 		{
-
-			List<Claim> claims = new()
+			try
 			{
-				new Claim(ClaimTypes.Name, donor.Surname + donor.Name), 
-				new Claim(ClaimTypes.Role, donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),
-			};
+				await _donorService.UpdateAsync(donor);
+				return Ok(donor);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Exception: {ex}", ex.Message);
+				return BadRequest(ex.Message);
+			}
+		}
 
-			var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> Delete(int id)
+		{
+			var donor = await _donorService.GetByIDAsync(id);
+			if (donor == null) return NotFound();
 
-			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
-
-			var token = new JwtSecurityToken(
-				issuer: "https://localhost:7232",
-				claims: claims,
-				expires: DateTime.UtcNow.AddDays(1),
-				signingCredentials: creds
-				);
-
-			var jwt = new JwtSecurityTokenHandler().WriteToken(token);
-
-			return jwt;
-
-
-
+			try
+			{
+				await _donorService.DeleteAsync(donor);
+				return Ok();
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Exception: {ex}", ex.Message);
+				return BadRequest(ex.Message);
+			}
 		}
 	}
 }
