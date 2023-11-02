@@ -1,7 +1,10 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/Donor/Login",
+      //Donor.Api
+
+      //DonorController
+      "DownstreamPathTemplate": "/DonorApi/Donor/Login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -9,11 +12,11 @@
           "Port": 7232
         }
       ],
-      "UpstreamPathTemplate": "/api/Donor/Login",
+      "UpstreamPathTemplate": "/DonorApi/Donor/Login",
       "UpstreamHttpMethod": [ "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/Donor/Get",
+      "DownstreamPathTemplate": "/DonorApi/Donor",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -21,8 +24,55 @@
           "Port": 7232
         }
       ],
-      "UpstreamPathTemplate": "/api/Donor/Get",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamPathTemplate": "/DonorApi/Donor",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/Donor/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7232
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/Donor/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      //DonorController
+      "DownstreamPathTemplate": "/DonorApi/DonorRole",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7232
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorRole",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put"],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      //DonorController
+      "DownstreamPathTemplate": "/DonorApi/DonorRole/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7232
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorRole/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
       }
