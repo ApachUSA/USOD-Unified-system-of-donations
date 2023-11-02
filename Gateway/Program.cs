@@ -27,6 +27,7 @@ builder.Host.UseSerilog((context, configuration) =>
 	})
 	  .MinimumLevel.Information()
 	  .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+	  .MinimumLevel.Override("Ocelot", LogEventLevel.Warning)
 	  .MinimumLevel.Override("System", LogEventLevel.Warning)
 );
 
