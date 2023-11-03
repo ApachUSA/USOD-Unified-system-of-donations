@@ -10,6 +10,8 @@ namespace USOD.DonorAPI.Services.Interfaces
 
 		Task<Donor?> GetByIDAsync(int donor_role_id);
 
+		Task<bool> CheckUsername(string username);
+
 		Task<Donor?> GetByLoginAsync(Donor_LoginVM donor_Login);
 
 		Task<Donor> RegisterAsync(Donor donor);

@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{69AF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microservices", "Microservices", "{699211EC-FC39-4813-8465-ECA2F6C66F1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.ApiGateway", "Gateway\USOD.ApiGateway.csproj", "{69C2B933-9D03-41E5-B766-C30F56DAC086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.ApiGateway", "Gateway\USOD.ApiGateway.csproj", "{69C2B933-9D03-41E5-B766-C30F56DAC086}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.DonorAPI", "Microservices\USOD.DonorAPI\USOD.DonorAPI.csproj", "{2CF063B0-BB51-46DC-BF27-4096DD3C27B6}"
 EndProject

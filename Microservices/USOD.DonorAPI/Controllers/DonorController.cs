@@ -54,6 +54,8 @@ namespace USOD.DonorAPI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Donor donor)
 		{
+			if( await _donorService.CheckUsername(donor.Username)) 
+				return Conflict(new ProblemDetails() { Detail = "The username is already in use." });
 			try
 			{
 				await _donorService.RegisterAsync(donor);

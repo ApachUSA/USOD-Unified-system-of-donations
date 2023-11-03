@@ -16,6 +16,11 @@ namespace USOD.DonorAPI.Services.Implementations
 			_donorRepository = donorRepository;
 		}
 
+		public async Task<bool> CheckUsername(string username)
+		{
+			return await _donorRepository.Get().AnyAsync(x => x.Username == username);
+		}
+
 		public async Task<bool> DeleteAsync(Donor donor)
 		{
 			await _donorRepository.Delete(donor);
