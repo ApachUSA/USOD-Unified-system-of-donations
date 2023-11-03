@@ -17,9 +17,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{D902D0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Donor_Library", "Domain\Models\Donor.Library\Donor_Library.csproj", "{BD5F4D40-987E-4FC0-8D0B-00BBA5AEC2AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.FundAPI", "USOD.FundAPI\USOD.FundAPI.csproj", "{C82C1BC8-05C0-4747-9578-61732C8F1E08}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.FundAPI", "Microservices\USOD.FundAPI\USOD.FundAPI.csproj", "{C82C1BC8-05C0-4747-9578-61732C8F1E08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fund_Library", "Fund_Library\Fund_Library.csproj", "{65F3C723-3EF6-4CD7-ADC2-098CD0B20BC1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fund_Library", "Domain\Models\Fund_Library\Fund_Library.csproj", "{65F3C723-3EF6-4CD7-ADC2-098CD0B20BC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

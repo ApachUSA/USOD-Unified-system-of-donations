@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Fund_Library\Fund_Library.csproj" />
+    <ProjectReference Include="..\..\Domain\Models\Fund_Library\Fund_Library.csproj" />
   </ItemGroup>
 
 </Project>
