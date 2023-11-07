@@ -46,7 +46,7 @@
       }
     },
     {
-      //DonorController
+      //DonorRoleController
       "DownstreamPathTemplate": "/DonorApi/DonorRole",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -56,13 +56,12 @@
         }
       ],
       "UpstreamPathTemplate": "/DonorApi/DonorRole",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put"],
+      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
       }
     },
     {
-      //DonorController
       "DownstreamPathTemplate": "/DonorApi/DonorRole/{id}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
@@ -76,6 +75,163 @@
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
       }
+    },
+    {
+      //Fund.Api
+
+      //FundController
+      "DownstreamPathTemplate": "/FundApi/Fund",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/Fund",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/Fund/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/Fund/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/Fund",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/Fund",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/Fund",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/Fund",
+      "UpstreamHttpMethod": [ "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin",
+        "MemberRole": "Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/Fund/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/Fund/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+      }
+    },
+    //FundImageController
+    {
+      "DownstreamPathTemplate": "/FundApi/FundImage",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundImage",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "OR": [
+          {
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundImage/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "OR": [
+          {
+            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundImage/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundImage/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
     }
   ],
   "GlobalConfiguration": {
