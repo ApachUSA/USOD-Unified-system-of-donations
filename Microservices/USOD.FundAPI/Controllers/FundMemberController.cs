@@ -38,6 +38,18 @@ namespace USOD.FundAPI.Controllers
 			return Ok(fundMember);
 		}
 
+		[HttpGet("GetByDonor/{donor_id}")]
+		public async Task<IActionResult> GetByDonor(int donor_id)
+		{
+			var fundMember = await _fundMemberService.GetByDonorAsync(donor_id);
+
+			if (!fundMember.Any()) return NotFound();
+
+			if (!fundMember.Any(x => x.Member_Role_ID == 1)) return Ok("Owner");
+			else return Ok("Member");
+
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Fund_Member fundMember)
 		{
