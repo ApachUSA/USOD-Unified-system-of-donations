@@ -16,18 +16,24 @@ namespace USOD.DonorAPI.Services.Implementations
 			_config = config;
 		}
 
-		public string AuthenticateAsync(Donor donor)
+		public async Task<string> AuthenticateAsync(Donor donor)
 		{
-			return CreateToken(donor);
+			return  await CreateToken(donor);
 		}
 
-		private string CreateToken(Donor donor)
+		private async Task<string> CreateToken(Donor donor)
 		{
+			var client = new HttpClient();
+			var response = await client.GetAsync($"https://localhost:7087/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
+
 			List<Claim> claims = new()
 			{
 				new Claim(ClaimTypes.Name, donor.Username),
-				new Claim(ClaimTypes.Role, donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),
+				new Claim(ClaimTypes.Role, donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),		
 			};
+
+			if (response.StatusCode == System.Net.HttpStatusCode.OK)
+				claims.Add(new Claim("MemberRole", await response.Content.ReadAsStringAsync()));
 
 			var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 

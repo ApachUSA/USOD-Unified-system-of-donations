@@ -27,7 +27,9 @@ namespace USOD.DonorAPI.Controllers
 
 			if (donor == null) return NotFound();
 
-			return Ok(_authenticationService.AuthenticateAsync(donor));
+			
+
+			return Ok(await _authenticationService.AuthenticateAsync(donor));
 		}
 
 

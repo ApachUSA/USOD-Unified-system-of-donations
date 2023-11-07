@@ -5,6 +5,6 @@ namespace USOD.DonorAPI.Services.Interfaces
 {
 	public interface IAuthenticationService
 	{
-		string AuthenticateAsync(Donor donor);
+		Task<string> AuthenticateAsync(Donor donor);
 	}
 }
