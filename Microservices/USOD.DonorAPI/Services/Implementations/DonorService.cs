@@ -39,7 +39,7 @@ namespace USOD.DonorAPI.Services.Implementations
 
 		public async Task<Donor?> GetByLoginAsync(Donor_LoginVM donor_Login)
 		{
-			return await _donorRepository.Get().FirstOrDefaultAsync(x => x.Login == donor_Login.Login && x.Password == donor_Login.Password);
+			return await _donorRepository.Get().Include(x => x.Donor_Role).FirstOrDefaultAsync(x => x.Login == donor_Login.Login && x.Password == donor_Login.Password);
 		}
 
 		public async Task<Donor> RegisterAsync(Donor donor)
