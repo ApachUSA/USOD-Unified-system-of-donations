@@ -33,7 +33,11 @@ namespace USOD.FundAPI.Services.Implementations
 
 		public async Task<Fund?> GetByIdAsync(int fund_id)
 		{
-			return await _fundRepository.Get().FirstOrDefaultAsync(x => x.Fund_ID == fund_id);
+			return await _fundRepository.Get()
+				.Include(x => x.Fund_Images)
+				.Include(x => x.Fund_Medias)
+				.Include(x => x.Fund_Members)
+				.FirstOrDefaultAsync(x => x.Fund_ID == fund_id);
 		}
 
 		public async Task<Fund> UpdateAsync(Fund fund)
