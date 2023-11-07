@@ -18,7 +18,7 @@ namespace USOD.FundAPI.Controllers
 			_logger = logger;
 		}
 
-		[HttpGet("{id}")]
+		[HttpGet("{fund_Id}")]
 		public async Task<IActionResult> Get(int fund_Id)
 		{
 			var fundImage = await _fundImageService.GetAsync(fund_Id);
