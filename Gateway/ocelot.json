@@ -118,7 +118,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+        "Role": "Admin"
       }
     },
     {
@@ -136,8 +136,14 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin",
-        "MemberRole": "Owner"
+        "OR": [
+          {
+            "Role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
       }
     },
     {
@@ -155,7 +161,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+        "Role": "Admin"
       }
     },
     //FundImageController
@@ -176,7 +182,7 @@
       "RouteClaimsRequirement": {
         "OR": [
           {
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+            "Role": "Admin"
           },
           {
             "MemberRole": "Owner"
@@ -201,7 +207,7 @@
       "RouteClaimsRequirement": {
         "OR": [
           {
-            "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "Admin"
+            "Role": "Admin"
           },
           {
             "MemberRole": "Owner"
@@ -222,7 +228,7 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
-      "DownstreamPathTemplate": "/FundApi/FundImage/{}",
+      "DownstreamPathTemplate": "/FundApi/FundImage/GetById/{}",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
@@ -232,6 +238,293 @@
       ],
       "UpstreamPathTemplate": "/FundApi/FundImage/GetById/{}",
       "UpstreamHttpMethod": [ "Get" ]
+    },
+    //FundMediaController
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMedia",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMedia",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "OR": [
+          {
+            "Role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMedia/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMedia/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "OR": [
+          {
+            "Role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMedia/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMedia/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMedia/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMedia/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //FundMemberController
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMember",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMember",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "OR": [
+          {
+            "Role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMember/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMember/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "OR": [
+          {
+            "Role": "Admin"
+          },
+          {
+            "MemberRole": "Owner"
+          }
+        ]
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMember/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMember/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMember/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMember/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/FundMember/GetByDonor/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/FundMember/GetByDonor/{}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      //MediaTypeController
+      "DownstreamPathTemplate": "/FundApi/MediaType",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MediaType",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/MediaType/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MediaType/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/MediaType",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MediaType",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/MediaType/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MediaType/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //MemberRoleController
+      "DownstreamPathTemplate": "/FundApi/MemberRole",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MemberRole",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/MemberRole/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MemberRole/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/MemberRole",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MemberRole",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/MemberRole/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7087
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/MemberRole/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
     }
   ],
   "GlobalConfiguration": {

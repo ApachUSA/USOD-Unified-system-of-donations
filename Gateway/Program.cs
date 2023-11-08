@@ -58,6 +58,9 @@ await app.UseOcelot();
 //	app.UseSwaggerUI();
 //}
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 //app.UseHttpsRedirection();
 
 app.Run();
