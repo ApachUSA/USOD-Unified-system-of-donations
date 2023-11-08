@@ -30,6 +30,7 @@ namespace USOD.DonorAPI.Services.Implementations
 			{
 				new Claim(ClaimTypes.Name, donor.Username),
 				new Claim(ClaimTypes.Role, donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),		
+				new Claim("Role", donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),		
 			};
 
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
