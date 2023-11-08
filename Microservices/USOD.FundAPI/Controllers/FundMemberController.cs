@@ -45,7 +45,7 @@ namespace USOD.FundAPI.Controllers
 
 			if (!fundMember.Any()) return NotFound();
 
-			if (!fundMember.Any(x => x.Member_Role_ID == 1)) return Ok("Owner");
+			if (fundMember.Any(x => x.Member_Role_ID == 1)) return Ok("Owner");
 			else return Ok("Member");
 
 		}
