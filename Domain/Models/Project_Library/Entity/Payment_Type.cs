@@ -14,6 +14,6 @@ namespace Project_Library.Entity
 
 		public required string Payment_Type_Image { get; set; }
 
-		public List<Project_Payment> Project_Payments { get; set; }
+		public List<Project_Payment>? Project_Payments { get; set; }
 	}
 }
