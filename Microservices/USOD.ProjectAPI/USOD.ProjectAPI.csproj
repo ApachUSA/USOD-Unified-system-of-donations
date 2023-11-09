@@ -17,12 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Services\Implementations\" />
-    <Folder Include="Services\Interfaces\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Domain\Models\Project_Library\Project_Library.csproj" />
   </ItemGroup>
 
