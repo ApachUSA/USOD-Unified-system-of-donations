@@ -21,7 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.FundAPI", "Microservic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fund_Library", "Domain\Models\Fund_Library\Fund_Library.csproj", "{65F3C723-3EF6-4CD7-ADC2-098CD0B20BC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.ProjectAPI", "Microservices\USOD.ProjectAPI\USOD.ProjectAPI.csproj", "{667E6494-A175-4D9B-AD63-2032967E34EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.ProjectAPI", "Microservices\USOD.ProjectAPI\USOD.ProjectAPI.csproj", "{667E6494-A175-4D9B-AD63-2032967E34EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Project_Library", "Domain\Models\Project_Library\Project_Library.csproj", "{44297B13-974D-4DB9-BB47-CC50C9C9A56F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{667E6494-A175-4D9B-AD63-2032967E34EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{667E6494-A175-4D9B-AD63-2032967E34EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{667E6494-A175-4D9B-AD63-2032967E34EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44297B13-974D-4DB9-BB47-CC50C9C9A56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44297B13-974D-4DB9-BB47-CC50C9C9A56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44297B13-974D-4DB9-BB47-CC50C9C9A56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44297B13-974D-4DB9-BB47-CC50C9C9A56F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{C82C1BC8-05C0-4747-9578-61732C8F1E08} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
 		{65F3C723-3EF6-4CD7-ADC2-098CD0B20BC1} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
 		{667E6494-A175-4D9B-AD63-2032967E34EF} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
+		{44297B13-974D-4DB9-BB47-CC50C9C9A56F} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CA0E614-D90F-4C97-AFCE-7E49F895A96E}
