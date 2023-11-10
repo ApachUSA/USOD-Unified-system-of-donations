@@ -12,7 +12,7 @@ namespace Project_Library.Entity
 
 		public string? Project_Report_Text { get; set; }
 
-		public required string Project_Report_File_URL { get; set; }
+		public string? Project_Report_File_URL { get; set; }
 
 		public int Project_ID { get; set; }
 

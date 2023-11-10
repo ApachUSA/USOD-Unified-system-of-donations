@@ -92,6 +92,10 @@ namespace USOD.ProjectAPI.Repositories
 				builder.HasOne(x => x.Payment_Type)
 					.WithMany(x => x.Project_Payments)
 					.HasForeignKey(x => x.Payment_Type_ID);
+
+				builder.HasOne(x => x.Project)
+					.WithMany(x => x.Project_Payments)
+					.HasForeignKey(x => x.Project_ID);
 			});
 
 			modelBuilder.Entity<Project_Report>(builder =>

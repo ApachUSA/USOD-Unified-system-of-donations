@@ -15,5 +15,9 @@ namespace Project_Library.Entity
 		public int Payment_Type_ID { get; set;}
 
 		public Payment_Type? Payment_Type { get; set;}
+
+		public int Project_ID { get; set; }
+
+		public Project? Project { get; set; }
 	}
 }

@@ -29,7 +29,5 @@ namespace Project_Library.Entity
 		public List<Project_Payment>? Project_Payments { get; set; }
 
 		public List<Project_Card>? Project_Cards { get; set; }
-
-
 	}
 }
