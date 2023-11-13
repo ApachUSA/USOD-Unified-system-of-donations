@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using USOD.ProjectAPI.Repositories;
+using USOD.ProjectAPI.Services.Implementations;
+using USOD.ProjectAPI.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,17 @@ builder.Services.AddDbContext<Project_DB_Context>(options =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<ICardImageService, CardImageService>();
+builder.Services.AddScoped<ICardVideoService, CardVideoService>();
+builder.Services.AddScoped<IItemTagService, ItemTagService>();
+builder.Services.AddScoped<IPaymentTypeService, PaymentTypeService>();
+builder.Services.AddScoped<IProjectCardService, ProjectCardService>();
+builder.Services.AddScoped<IProjectPaymentService, ProjectPaymentService>();
+builder.Services.AddScoped<IProjectReportImageService, ProjectReportImageService>();
+builder.Services.AddScoped<IProjectReportService, ProjectReportService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
+builder.Services.AddScoped<IProjectStatusService, ProjectStatusService>();
 
 var app = builder.Build();
 
