@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 using USOD.ProjectAPI.Repositories;
+using USOD.ProjectAPI.Repositories.Interfaces;
 using USOD.ProjectAPI.Services.Implementations;
 using USOD.ProjectAPI.Services.Interfaces;
 
@@ -17,6 +18,7 @@ builder.Services.AddDbContext<Project_DB_Context>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICardImageService, CardImageService>();
 builder.Services.AddScoped<ICardVideoService, CardVideoService>();
 builder.Services.AddScoped<IItemTagService, ItemTagService>();
