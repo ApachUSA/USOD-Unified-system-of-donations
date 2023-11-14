@@ -27,6 +27,7 @@ builder.Services.AddScoped<IProjectCardService, ProjectCardService>();
 builder.Services.AddScoped<IProjectPaymentService, ProjectPaymentService>();
 builder.Services.AddScoped<IProjectReportImageService, ProjectReportImageService>();
 builder.Services.AddScoped<IProjectReportService, ProjectReportService>();
+builder.Services.AddScoped<IProjectFundService, ProjectFundService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IProjectStatusService, ProjectStatusService>();
 
