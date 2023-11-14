@@ -19,6 +19,7 @@ namespace USOD.ProjectAPI.Repositories
 		public DbSet<Project_Payment> Project_Payments { get; set; }
 		public DbSet<Project_Report> Project_Reports { get; set; }
 		public DbSet<Project_Report_Image> Project_Report_Images { get; set; }
+		public DbSet<Project_Fund> Project_Funds { get; set; }
 		public DbSet<Project_Status> Project_Statuses { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -98,14 +99,21 @@ namespace USOD.ProjectAPI.Repositories
 					.HasForeignKey(x => x.Project_ID);
 			});
 
+			modelBuilder.Entity<Project_Fund>(builder =>
+			{
+				builder.ToTable("Project_Funds").HasKey(x => x.Project_Fund_ID);
+				builder.Property(x => x.Project_Fund_ID).ValueGeneratedOnAdd();
+
+				builder.HasOne(x => x.Project)
+					.WithMany(x => x.Project_Funds)
+					.HasForeignKey(x => x.Project_ID);
+			});
+
 			modelBuilder.Entity<Project_Report>(builder =>
 			{
 				builder.ToTable("Project_Reports").HasKey(x => x.Project_Report_ID);
 				builder.Property(x => x.Project_Report_ID).ValueGeneratedOnAdd();
 
-				builder.HasOne(x => x.Project)
-					.WithOne(x => x.Project_Report)
-					.HasForeignKey<Project>(x => x.Project_Report_ID);
 			});
 
 			modelBuilder.Entity<Project_Report_Image>(builder =>

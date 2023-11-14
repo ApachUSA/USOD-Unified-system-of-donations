@@ -22,12 +22,14 @@ namespace Project_Library.Entity
 
 		public Project_Status? Project_Status { get; set; }
 
-		public int Project_Report_ID { get; set; }
-
 		public Project_Report? Project_Report { get; set; }
+
+		public int Fund_ID { get; set; }
 
 		public List<Project_Payment>? Project_Payments { get; set; }
 
 		public List<Project_Card>? Project_Cards { get; set; }
+
+		public List<Project_Fund>? Project_Funds { get; set; }
 	}
 }
