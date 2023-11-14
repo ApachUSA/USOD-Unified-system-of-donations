@@ -8,30 +8,26 @@ namespace USOD.ProjectAPI.Services.Implementations
 	public class ProjectCardService : IProjectCardService
 	{
 		private readonly IBaseRepository<Project_Card> _projectCardRepository;
-		private readonly ICardImageService _cardImageService;
-		private readonly ICardVideoService _cardVideoService;
 
-		public ProjectCardService(IBaseRepository<Project_Card> projectCardRepository, ICardImageService cardImageService, ICardVideoService cardVideoService)
+		public ProjectCardService(IBaseRepository<Project_Card> projectCardRepository)
 		{
 			_projectCardRepository = projectCardRepository;
-			_cardImageService = cardImageService;
-			_cardVideoService = cardVideoService;
 		}
 
 		public async Task<Project_Card> CreateAsync(Project_Card card)
 		{
 			await _projectCardRepository.Create(card);
-			if (card.Card_Images != null)
-			{
-				card.Card_Images.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
-				await _cardImageService.CreateAsync(card.Card_Images);
-			}
+			//if (card.Card_Images != null)
+			//{
+			//	card.Card_Images.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
+			//	await _cardImageService.CreateAsync(card.Card_Images);
+			//}
 
-			if (card.Card_Videos != null)
-			{
-				card.Card_Videos.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
-				await _cardVideoService.CreateAsync(card.Card_Videos);
-			}
+			//if (card.Card_Videos != null)
+			//{
+			//	card.Card_Videos.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
+			//	await _cardVideoService.CreateAsync(card.Card_Videos);
+			//}
 
 			return card;
 		}
@@ -39,20 +35,20 @@ namespace USOD.ProjectAPI.Services.Implementations
 		public async Task<List<Project_Card>> CreateAsync(List<Project_Card> cards)
 		{
 			await _projectCardRepository.Create(cards);
-			foreach (var card in cards)
-			{
-				if (card.Card_Images != null)
-				{
-					card.Card_Images.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
-					await _cardImageService.CreateAsync(card.Card_Images);
-				}
+			//foreach (var card in cards)
+			//{
+			//	if (card.Card_Images != null)
+			//	{
+			//		card.Card_Images.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
+			//		await _cardImageService.CreateAsync(card.Card_Images);
+			//	}
 
-				if (card.Card_Videos != null)
-				{
-					card.Card_Videos.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
-					await _cardVideoService.CreateAsync(card.Card_Videos);
-				}
-			}
+			//	if (card.Card_Videos != null)
+			//	{
+			//		card.Card_Videos.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
+			//		await _cardVideoService.CreateAsync(card.Card_Videos);
+			//	}
+			//}
 			return cards;
 		}
 
