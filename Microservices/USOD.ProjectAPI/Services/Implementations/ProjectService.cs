@@ -11,13 +11,15 @@ namespace USOD.ProjectAPI.Services.Implementations
 		private readonly IProjectPaymentService _projectPaymentService;
 		private readonly IProjectReportService _projectReportService;
 		private readonly IProjectCardService _projectCardService;
+		private readonly IProjectFundService _projectFundService;
 
-		public ProjectService(IBaseRepository<Project> projectRepository, IProjectPaymentService projectPaymentService, IProjectReportService projectReportService, IProjectCardService projectCardService)
+		public ProjectService(IBaseRepository<Project> projectRepository, IProjectPaymentService projectPaymentService, IProjectReportService projectReportService, IProjectCardService projectCardService, IProjectFundService projectFundService)
 		{
 			_projectRepository = projectRepository;
 			_projectPaymentService = projectPaymentService;
 			_projectReportService = projectReportService;
 			_projectCardService = projectCardService;
+			_projectFundService = projectFundService;
 		}
 
 		public async Task<Project> CreateAsync(Project project)
@@ -27,6 +29,12 @@ namespace USOD.ProjectAPI.Services.Implementations
 			{
 				project.Project_Payments.ForEach(x => x.Project_ID = project.Project_ID);
 				await _projectPaymentService.CreateAsync(project.Project_Payments);
+			}
+
+			if (project.Project_Funds != null)
+			{
+				project.Project_Funds.ForEach(x => x.Project_ID = project.Project_ID);
+				await _projectFundService.CreateAsync(project.Project_Funds);
 			}
 
 			await _projectReportService.CreateAsync(new Project_Report() { Project_ID = project.Project_ID });
@@ -46,9 +54,19 @@ namespace USOD.ProjectAPI.Services.Implementations
 			return true;
 		}
 
+		public async Task<List<Project>> Get()
+		{
+			return await _projectRepository.Get().ToListAsync();
+		}
+
 		public async Task<Project?> GetByIdAsync(int project_id)
 		{
-			return await _projectRepository.Get().FirstOrDefaultAsync(x => x.Project_ID == project_id);
+			return await _projectRepository.Get()
+				.Include(x => x.Project_Cards)
+				.Include(x => x.Project_Status)
+				.Include(x => x.Project_Payments)
+				.Include(x => x.Project_Report)
+				.FirstOrDefaultAsync(x => x.Project_ID == project_id);
 		}
 
 		public async Task<List<Project>> GetByIdAsync(int[] project_ids)
