@@ -4,6 +4,8 @@ namespace USOD.ProjectAPI.Services.Interfaces
 {
 	public interface IProjectService
 	{
+		Task<List<Project>> Get();
+
 		Task<Project?> GetByIdAsync(int project_id);
 
 		Task<List<Project>> GetByIdAsync(int[] project_ids);
