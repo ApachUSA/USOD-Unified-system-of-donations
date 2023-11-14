@@ -39,7 +39,9 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 		public async Task<Project_Payment?> GetByIdAsync(int payment_id)
 		{
-			return await _projectPaymentRepository.Get().FirstOrDefaultAsync(x => x.Project_Payment_ID == payment_id);
+			return await _projectPaymentRepository.Get()
+				.Include(x => x.Payment_Type)
+				.FirstOrDefaultAsync(x => x.Project_Payment_ID == payment_id);
 		}
 
 		public async Task<Project_Payment> UpdateAsync(Project_Payment payment)

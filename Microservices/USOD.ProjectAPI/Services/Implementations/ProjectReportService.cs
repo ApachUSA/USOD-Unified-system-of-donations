@@ -28,12 +28,16 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 		public async Task<Project_Report?> GetAsync(int project_id)
 		{
-			return await _projectReportRepository.Get().FirstOrDefaultAsync(x => x.Project_ID == project_id);
+			return await _projectReportRepository.Get()
+				.Include(x => x.Images)
+				.FirstOrDefaultAsync(x => x.Project_ID == project_id);
 		}
 
 		public async Task<Project_Report?> GetByIdAsync(int report_id)
 		{
-			return await _projectReportRepository.Get().FirstOrDefaultAsync(x => x.Project_Report_ID == report_id);
+			return await _projectReportRepository.Get()
+				.Include(x => x.Images)
+				.FirstOrDefaultAsync(x => x.Project_Report_ID == report_id);
 		}
 
 		public async Task<Project_Report> UpdateAsync(Project_Report report)

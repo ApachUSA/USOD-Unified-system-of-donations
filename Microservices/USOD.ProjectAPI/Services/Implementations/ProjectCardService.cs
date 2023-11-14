@@ -21,7 +21,7 @@ namespace USOD.ProjectAPI.Services.Implementations
 		public async Task<Project_Card> CreateAsync(Project_Card card)
 		{
 			await _projectCardRepository.Create(card);
-			if(card.Card_Images != null)
+			if (card.Card_Images != null)
 			{
 				card.Card_Images.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
 				await _cardImageService.CreateAsync(card.Card_Images);
@@ -29,10 +29,10 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 			if (card.Card_Videos != null)
 			{
-				card.Card_Videos.ForEach(x => x.Project_Card_ID=card.Project_Card_ID);
+				card.Card_Videos.ForEach(x => x.Project_Card_ID = card.Project_Card_ID);
 				await _cardVideoService.CreateAsync(card.Card_Videos);
 			}
-				
+
 			return card;
 		}
 
@@ -64,12 +64,21 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 		public async Task<List<Project_Card>> GetAsync(int project_id)
 		{
-			return await _projectCardRepository.Get().Where(x => x.Project_ID == project_id).ToListAsync();
+			return await _projectCardRepository.Get()
+				.Where(x => x.Project_ID == project_id)
+				.Include(x => x.Card_Images)
+				.Include(x => x.Card_Videos)
+				.Include(x => x.Item_Tag)
+				.ToListAsync();
 		}
 
 		public async Task<Project_Card?> GetByIdAsync(int card_id)
 		{
-			return await _projectCardRepository.Get().FirstOrDefaultAsync(x => x.Project_Card_ID == card_id);
+			return await _projectCardRepository.Get()
+				.Include(x => x.Card_Images)
+				.Include(x => x.Card_Videos)
+				.Include(x => x.Item_Tag)
+				.FirstOrDefaultAsync(x => x.Project_Card_ID == card_id);
 		}
 
 		public async Task<Project_Card> UpdateAsync(Project_Card card)
