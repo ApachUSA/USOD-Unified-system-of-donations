@@ -8,7 +8,7 @@ namespace USOD.ProjectAPI.Services.Interfaces
 
 		Task<Project_Fund?> GetByIdAsync(int projectFund_id);
 
-		Task<List<Project>> GetByFundIdAsync(int fund_id);
+		Task<List<Project_Fund>> GetByFundIdAsync(int fund_id);
 
 		Task<List<Project_Fund>> GetByProjectIdAsync(int project_id);
 

@@ -8,12 +8,10 @@ namespace USOD.ProjectAPI.Services.Implementations
 	public class ProjectFundService : IProjectFundService
 	{
 		private readonly IBaseRepository<Project_Fund> _projectFundRepository;
-		private readonly IProjectService _projectService;
 
-		public ProjectFundService(IBaseRepository<Project_Fund> projectFundRepository, IProjectService projectService)
+		public ProjectFundService(IBaseRepository<Project_Fund> projectFundRepository)
 		{
 			_projectFundRepository = projectFundRepository;
-			_projectService = projectService;
 		}
 
 		public async Task<Project_Fund> CreateAsync(Project_Fund projectFund)
@@ -39,10 +37,9 @@ namespace USOD.ProjectAPI.Services.Implementations
 			return await _projectFundRepository.Get().ToListAsync();
 		}
 
-		public async Task<List<Project>> GetByFundIdAsync(int fund_id)
+		public async Task<List<Project_Fund>> GetByFundIdAsync(int fund_id)
 		{
-			var project_ids = await _projectFundRepository.Get().Where(x => x.Fund_ID == fund_id).Select(x => x.Project_ID).ToArrayAsync();
-			return await _projectService.GetByIdAsync(project_ids);
+			return await _projectFundRepository.Get().Where(x => x.Fund_ID == fund_id).ToListAsync();
 		}
 
 		public async Task<Project_Fund?> GetByIdAsync(int projectFund_id)
