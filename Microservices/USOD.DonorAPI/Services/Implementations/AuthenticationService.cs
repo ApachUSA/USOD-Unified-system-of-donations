@@ -1,6 +1,8 @@
-﻿using Donor_Library.Entity;
+﻿using Azure;
+using Donor_Library.Entity;
 using Donor_Library.ViewModel;
 using Microsoft.IdentityModel.Tokens;
+using RabbitMQ.Client;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using USOD.DonorAPI.Services.Interfaces;
@@ -10,31 +12,49 @@ namespace USOD.DonorAPI.Services.Implementations
 	public class AuthenticationService : IAuthenticationService
 	{
 		private readonly IConfiguration _config;
+		private readonly ILogger<AuthenticationService> _logger;
 
-		public AuthenticationService(IConfiguration config)
+		public AuthenticationService(IConfiguration config, ILogger<AuthenticationService> logger)
 		{
 			_config = config;
+			_logger = logger;
 		}
 
 		public async Task<string> AuthenticateAsync(Donor donor)
 		{
-			return  await CreateToken(donor);
+			return await CreateToken(donor);
 		}
 
 		private async Task<string> CreateToken(Donor donor)
 		{
 			var client = new HttpClient();
-			var response = await client.GetAsync($"https://localhost:7087/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
+			string role = "Donor";
+
+			if (donor.Donor_Role?.Donor_Role_Name == "Admin")
+			{
+				role = "Admin";
+			}
+			else
+			{
+				try
+				{
+					var response = await client.GetAsync($"https://localhost:7087/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
+
+					if (response.StatusCode == System.Net.HttpStatusCode.OK)
+						role = await response.Content.ReadAsStringAsync();
+				}
+				catch (Exception ex)
+				{
+					_logger.LogError("Exception: {ex}", ex.Message);
+				}
+			}
 
 			List<Claim> claims = new()
 			{
-				new Claim(ClaimTypes.Name, donor.Username),
-				new Claim(ClaimTypes.Role, donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),		
-				new Claim("Role", donor.Donor_Role == null? "User" :  donor.Donor_Role.Donor_Role_Name),		
+				new Claim(ClaimTypes.Name, donor.Login),
+				new Claim(ClaimTypes.Role, role),
+				new Claim("Role", role)
 			};
-
-			if (response.StatusCode == System.Net.HttpStatusCode.OK)
-				claims.Add(new Claim("MemberRole", await response.Content.ReadAsStringAsync()));
 
 			var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
