@@ -67,8 +67,6 @@ namespace USOD.ApiGateway
 
 		private static bool ValidateIfStringIsRole(string role)
 		{
-			// The http://schemas.microsoft.com/ws/2008/06/identity/claims/role string is nesscary because Microsoft returns this as role claims in a JWT
-			// And when directly adding this to the ocelot.json it will crash ocelot
 			return role.Equals("http://schemas.microsoft.com/ws/2008/06/identity/claims/role") || role.Equals("Role") ||
 				   role.Equals("role");
 		}
