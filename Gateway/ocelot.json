@@ -136,14 +136,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -180,14 +173,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -205,14 +191,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -255,14 +234,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -280,14 +252,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -330,14 +295,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -355,14 +313,7 @@
         "AuthenticationProviderKey": "Bearer"
       },
       "RouteClaimsRequirement": {
-        "OR": [
-          {
-            "Role": "Admin"
-          },
-          {
-            "MemberRole": "Owner"
-          }
-        ]
+        "Role": "Admin,Owner"
       }
     },
     {
@@ -518,6 +469,842 @@
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MemberRole/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //ProjectAPI
+
+      //CardImageController
+      "DownstreamPathTemplate": "/ProjectApi/CardImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardImage/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardImage/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardImage/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardImage",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardImage",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardImage/PostArray",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardImage/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardImage/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      //CardVideoController
+      "DownstreamPathTemplate": "/ProjectApi/CardVideo/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardVideo/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardVideo/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardVideo/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardVideo",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardVideo",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardVideo/PostArray",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardVideo/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/CardVideo/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/CardVideo/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      //ItemTagController
+      "DownstreamPathTemplate": "/ProjectApi/ItemTag",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ItemTag",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ItemTag/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ItemTag/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ItemTag",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ItemTag",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ItemTag/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ItemTag/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //PaymentTypeController
+      "DownstreamPathTemplate": "/ProjectApi/PaymentType",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/PaymentType",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/PaymentType/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/PaymentType/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/PaymentType",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/PaymentType",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/PaymentType/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/PaymentType/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //ProjectCardController
+      "DownstreamPathTemplate": "/ProjectApi/ProjectCard/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectCard/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectCard/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectCard/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectCard",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectCard",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectCard/PostArray",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectCard/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectCard/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectCard/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      //ProjectController
+      "DownstreamPathTemplate": "/ProjectApi/Project",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/Project",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/Project/GetByIds",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/Project/GetByIds",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/Project/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/Project/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/Project",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/Project",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/Project/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/Project/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //ProjectFundController
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund/GetByFundId/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund/GetByFundId/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund/GetByProjectId/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund/GetByProjectId/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund/PostArray",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectFund/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectFund/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      //ProjectPaymentController
+      "DownstreamPathTemplate": "/ProjectApi/ProjectPayment/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectPayment/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectPayment",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectPayment",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectPayment/PostArray",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectPayment/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      //ProjectReportController
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReport/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReport/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReport/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReport/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReport",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReport",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReport",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReport",
+      "UpstreamHttpMethod": [ "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReport/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReport/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //ProjectReportImageController
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReportImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReportImage/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReportImage",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReportImage/PostArray",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectReportImage/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/{}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin,Owner"
+      }
+    },
+    {
+      //ProjectStatusController
+      "DownstreamPathTemplate": "/ProjectApi/ProjectStatus",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectStatus",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectStatus/GetById/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectStatus/GetById/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectStatus",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectStatus",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/ProjectApi/ProjectStatus/{}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7261
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/ProjectStatus/{}",
       "UpstreamHttpMethod": [ "Delete" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
