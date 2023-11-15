@@ -7,12 +7,12 @@ namespace USOD.ProjectAPI.Controllers
 {
 	[Route("ProjectApi/[controller]")]
 	[ApiController]
-	public class ReportImageController : ControllerBase
+	public class ProjectReportImageController : ControllerBase
 	{
 		private readonly IProjectReportImageService _reportImageService;
-		private readonly ILogger<ReportImageController> _logger;
+		private readonly ILogger<ProjectReportImageController> _logger;
 
-		public ReportImageController(IProjectReportImageService reportImageService, ILogger<ReportImageController> logger)
+		public ProjectReportImageController(IProjectReportImageService reportImageService, ILogger<ProjectReportImageController> logger)
 		{
 			_reportImageService = reportImageService;
 			_logger = logger;
