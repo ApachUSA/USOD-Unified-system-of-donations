@@ -6,8 +6,8 @@ using Serilog.Events;
 using Serilog.Formatting.Compact;
 using Serilog.Sinks.RabbitMQ.Sinks.RabbitMQ;
 using Microsoft.IdentityModel.Tokens;
-using Ocelot.Values;
 using System.Text;
+using USOD.ApiGateway;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,7 +49,10 @@ builder.Services.AddAuthentication(opt => {
 
 var app = builder.Build();
 
-await app.UseOcelot();
+await app.UseOcelot(new OcelotPipelineConfiguration
+{
+	AuthorizationMiddleware = OcelotAuthorizationMiddleware.Authorize
+});
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
