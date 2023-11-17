@@ -10,12 +10,14 @@ namespace USOD.ProjectAPI.Controllers
 	public class ProjectController : ControllerBase
 	{
 		private readonly IProjectService _projectService;
+		private readonly IMessageProducer _messageProducer;
 		private readonly ILogger<ProjectController> _logger;
 
-		public ProjectController(IProjectService projectService, ILogger<ProjectController> logger)
+		public ProjectController(IProjectService projectService, ILogger<ProjectController> logger, IMessageProducer messageProducer)
 		{
 			_projectService = projectService;
 			_logger = logger;
+			_messageProducer = messageProducer;
 		}
 
 		[HttpGet]
@@ -54,6 +56,9 @@ namespace USOD.ProjectAPI.Controllers
 			try
 			{
 				await _projectService.CreateAsync(project);
+
+				_messageProducer.SendMessage($"Fund with id[{project.Fund_ID}] publish new project with name {project.Project_Name}");
+
 				return Ok(project);
 			}
 			catch (Exception ex)

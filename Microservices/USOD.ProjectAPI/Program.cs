@@ -31,6 +31,8 @@ builder.Services.AddScoped<IProjectFundService, ProjectFundService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IProjectStatusService, ProjectStatusService>();
 
+builder.Services.AddScoped<IMessageProducer, RabbitMQProducer>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
