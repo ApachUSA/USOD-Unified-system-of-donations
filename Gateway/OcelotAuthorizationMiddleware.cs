@@ -44,6 +44,7 @@ namespace USOD.ApiGateway
 			//This will get the required authorization claims of the route
 			Dictionary<string, string> requiredAuthorizationClaims = downStreamRoute.RouteClaimsRequirement;
 
+			if (!requiredAuthorizationClaims.Any()) return true;
 			//Getting the required claims for the route
 			foreach (KeyValuePair<string, string> requiredAuthorizationClaim in requiredAuthorizationClaims)
 			{
