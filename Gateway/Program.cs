@@ -49,6 +49,8 @@ builder.Services.AddAuthentication(opt => {
 
 var app = builder.Build();
 
+app.UseWebSockets();
+
 await app.UseOcelot(new OcelotPipelineConfiguration
 {
 	AuthorizationMiddleware = OcelotAuthorizationMiddleware.Authorize
