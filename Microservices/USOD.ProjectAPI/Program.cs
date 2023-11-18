@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
+using Serilog.Sinks.RabbitMQ.Sinks.RabbitMQ;
 using System.Text.Json.Serialization;
 using USOD.ProjectAPI.Repositories;
 using USOD.ProjectAPI.Repositories.Interfaces;
@@ -11,6 +15,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers().AddJsonOptions(x =>
 				x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+builder.Host.UseSerilog((context, configuration) =>
+	configuration.WriteTo.RabbitMQ((clientConfiguration, sinkConfiguration) =>
+	{
+		clientConfiguration.From(builder.Configuration.GetSection("RabbitMQ").Get<RabbitMQClientConfiguration>());
+		sinkConfiguration.TextFormatter = new CompactJsonFormatter();
+	})
+	  .MinimumLevel.Information()
+	  .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
+	  .MinimumLevel.Override("System", LogEventLevel.Warning)
+);
 
 builder.Services.AddDbContext<Project_DB_Context>(options =>
 						options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
