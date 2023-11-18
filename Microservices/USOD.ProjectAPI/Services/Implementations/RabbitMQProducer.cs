@@ -10,7 +10,7 @@ namespace USOD.ProjectAPI.Services.Implementations
 		{
 			var factory = new ConnectionFactory()
 			{
-				HostName = "localhost",
+				HostName = "RabbitMQ",
 				Port = 5672,
 				UserName = "admin",
 				Password = "admin"
