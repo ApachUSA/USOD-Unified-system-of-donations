@@ -7,10 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["USOD.FundAPI/USOD.FundAPI.csproj", "USOD.FundAPI/"]
-RUN dotnet restore "USOD.FundAPI/USOD.FundAPI.csproj"
+COPY ["Microservices/USOD.FundAPI/USOD.FundAPI.csproj", "Microservices/USOD.FundAPI/"]
+COPY ["Domain/Models/Fund_Library/Fund_Library.csproj", "Domain/Models/Fund_Library/"]
+RUN dotnet restore "Microservices/USOD.FundAPI/USOD.FundAPI.csproj"
 COPY . .
-WORKDIR "/src/USOD.FundAPI"
+WORKDIR "/src/Microservices/USOD.FundAPI"
 RUN dotnet build "USOD.FundAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish

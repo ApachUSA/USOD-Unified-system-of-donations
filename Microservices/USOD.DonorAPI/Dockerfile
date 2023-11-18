@@ -7,10 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["USOD.DonorAPI/USOD.DonorAPI.csproj", "USOD.DonorAPI/"]
-RUN dotnet restore "USOD.DonorAPI/USOD.DonorAPI.csproj"
+COPY ["Microservices/USOD.DonorAPI/USOD.DonorAPI.csproj", "Microservices/USOD.DonorAPI/"]
+COPY ["Domain/Models/Donor.Library/Donor_Library.csproj", "Domain/Models/Donor.Library/"]
+RUN dotnet restore "Microservices/USOD.DonorAPI/USOD.DonorAPI.csproj"
 COPY . .
-WORKDIR "/src/USOD.DonorAPI"
+WORKDIR "/src/Microservices/USOD.DonorAPI"
 RUN dotnet build "USOD.DonorAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish

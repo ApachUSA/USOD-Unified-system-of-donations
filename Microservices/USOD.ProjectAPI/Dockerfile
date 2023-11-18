@@ -7,10 +7,11 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
-COPY ["USOD.ProjectAPI/USOD.ProjectAPI.csproj", "USOD.ProjectAPI/"]
-RUN dotnet restore "USOD.ProjectAPI/USOD.ProjectAPI.csproj"
+COPY ["Microservices/USOD.ProjectAPI/USOD.ProjectAPI.csproj", "Microservices/USOD.ProjectAPI/"]
+COPY ["Domain/Models/Project_Library/Project_Library.csproj", "Domain/Models/Project_Library/"]
+RUN dotnet restore "Microservices/USOD.ProjectAPI/USOD.ProjectAPI.csproj"
 COPY . .
-WORKDIR "/src/USOD.ProjectAPI"
+WORKDIR "/src/Microservices/USOD.ProjectAPI"
 RUN dotnet build "USOD.ProjectAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
