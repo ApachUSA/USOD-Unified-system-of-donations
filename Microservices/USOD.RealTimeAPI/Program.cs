@@ -35,7 +35,7 @@ builder.Services.AddControllers().AddJsonOptions(x =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//builder.Services.AddHostedService<RabbitMqConsumer>();
+builder.Services.AddHostedService<RabbitMqConsumer>();
 
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IProjectCommentService, ProjectCommentService>();
@@ -52,7 +52,7 @@ if (app.Environment.IsDevelopment())
 	app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.MapHub<CommentHub>("comment-hub");
 app.MapHub<SubscriptionHub>("subscription-hub");
