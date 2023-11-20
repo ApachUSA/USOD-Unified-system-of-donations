@@ -8,8 +8,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7232
+          "Host": "172.19.0.5",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/DonorApi/Donor/Login",
@@ -20,12 +20,24 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7232
+          "Host": "172.19.0.5",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/DonorApi/Donor",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/Donor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/Donor",
+      "UpstreamHttpMethod": [ "Put" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
       }
@@ -35,12 +47,27 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7232
+          "Host": "172.19.0.5",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/DonorApi/Donor/{id}",
-      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/Donor/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/Donor/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
       }
@@ -51,14 +78,29 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7232
+          "Host": "172.19.0.5",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/DonorApi/DonorRole",
-      "UpstreamHttpMethod": [ "Get", "Post", "Put" ],
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorRole",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorRole",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
       }
     },
     {
@@ -66,14 +108,29 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7232
+          "Host": "172.19.0.5",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/DonorApi/DonorRole/{id}",
-      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorRole/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorRole/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
       }
     },
     {
@@ -84,8 +141,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/Fund",
@@ -96,8 +153,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/Fund/{id}",
@@ -108,8 +165,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/Fund",
@@ -126,8 +183,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/Fund",
@@ -144,8 +201,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/Fund/{id}",
@@ -163,8 +220,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundImage",
@@ -181,8 +238,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundImage/{}",
@@ -199,8 +256,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundImage/{}",
@@ -211,8 +268,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundImage/GetById/{}",
@@ -224,8 +281,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMedia",
@@ -242,8 +299,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMedia/{}",
@@ -260,8 +317,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMedia/{}",
@@ -272,8 +329,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMedia/GetById/{}",
@@ -285,8 +342,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMember",
@@ -303,8 +360,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMember/{}",
@@ -321,8 +378,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMember/{}",
@@ -333,8 +390,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMember/GetById/{}",
@@ -345,8 +402,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/FundMember/GetByDonor/{}",
@@ -361,8 +418,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MediaType",
@@ -373,8 +430,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MediaType/{}",
@@ -385,8 +442,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MediaType",
@@ -403,8 +460,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MediaType/{}",
@@ -422,8 +479,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MemberRole",
@@ -434,8 +491,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MemberRole/{}",
@@ -446,8 +503,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MemberRole",
@@ -464,8 +521,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7087
+          "Host": "172.19.0.6",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/FundApi/MemberRole/{}",
@@ -485,8 +542,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardImage/{}",
@@ -497,8 +554,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardImage/GetById/{}",
@@ -509,8 +566,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardImage",
@@ -527,8 +584,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardImage/PostArray",
@@ -545,8 +602,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardImage/{}",
@@ -564,8 +621,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardVideo/{}",
@@ -576,8 +633,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardVideo/GetById/{}",
@@ -588,8 +645,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardVideo",
@@ -607,8 +664,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardVideo/PostArray",
@@ -625,8 +682,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/CardVideo/{}",
@@ -644,8 +701,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ItemTag",
@@ -656,8 +713,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ItemTag/GetById/{}",
@@ -668,8 +725,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ItemTag",
@@ -686,8 +743,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ItemTag/{}",
@@ -705,8 +762,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/PaymentType",
@@ -717,8 +774,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/PaymentType/GetById/{}",
@@ -729,8 +786,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/PaymentType",
@@ -747,8 +804,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/PaymentType/{}",
@@ -766,8 +823,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectCard/{}",
@@ -778,8 +835,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectCard/GetById/{}",
@@ -790,8 +847,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectCard",
@@ -808,8 +865,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectCard/PostArray",
@@ -826,8 +883,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectCard/{}",
@@ -845,8 +902,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/Project",
@@ -857,8 +914,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/Project/GetByIds",
@@ -869,8 +926,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/Project/GetById/{}",
@@ -881,8 +938,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/Project",
@@ -899,8 +956,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/Project/{}",
@@ -918,8 +975,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund",
@@ -930,8 +987,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund/GetById/{}",
@@ -942,8 +999,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund/GetByFundId/{}",
@@ -954,8 +1011,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund/GetByProjectId/{}",
@@ -966,8 +1023,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund",
@@ -984,8 +1041,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund/PostArray",
@@ -1002,8 +1059,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectFund/{}",
@@ -1021,8 +1078,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/{}",
@@ -1033,8 +1090,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/GetById/{}",
@@ -1045,8 +1102,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectPayment",
@@ -1063,8 +1120,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/PostArray",
@@ -1081,8 +1138,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectPayment/{}",
@@ -1100,8 +1157,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReport/{}",
@@ -1112,8 +1169,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReport/GetById/{}",
@@ -1124,8 +1181,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReport",
@@ -1142,8 +1199,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReport",
@@ -1160,8 +1217,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReport/{}",
@@ -1179,8 +1236,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/{}",
@@ -1191,8 +1248,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/GetById/{}",
@@ -1203,8 +1260,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage",
@@ -1221,8 +1278,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/PostArray",
@@ -1239,8 +1296,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectReportImage/{}",
@@ -1258,8 +1315,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectStatus",
@@ -1270,8 +1327,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectStatus/GetById/{}",
@@ -1282,8 +1339,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectStatus",
@@ -1300,8 +1357,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7261
+          "Host": "172.19.0.7",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/ProjectApi/ProjectStatus/{}",
@@ -1321,8 +1378,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/ProjectComment/{}",
@@ -1333,8 +1390,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/ProjectComment/GetById/{}",
@@ -1345,8 +1402,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/ProjectComment",
@@ -1360,8 +1417,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/ProjectComment/{}",
@@ -1380,8 +1437,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ]
     },
@@ -1392,8 +1449,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ]
     },
@@ -1403,8 +1460,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/Subscription/{}",
@@ -1415,8 +1472,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/Subscription/GetById/{}",
@@ -1427,8 +1484,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/Subscription",
@@ -1442,8 +1499,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/Subscription/{}",
@@ -1459,8 +1516,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ]
     },
@@ -1471,8 +1528,8 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 7222
+          "Host": "172.19.0.8",
+          "Port": 80
         }
       ]
     }
