@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project_Library", "Domain\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.RealTimeAPI", "Microservices\USOD.RealTimeAPI\USOD.RealTimeAPI.csproj", "{0C549E66-3A5E-4D7C-9466-F84DA74E2AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTime_Library", "Domain\Models\RealTime_Library\RealTime_Library.csproj", "{79DD91DF-42AD-4970-9EED-1154968D504F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime_Library", "Domain\Models\RealTime_Library\RealTime_Library.csproj", "{79DD91DF-42AD-4970-9EED-1154968D504F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.WebASP", "Microservices\USOD.WebASP\USOD.WebASP.csproj", "{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{79DD91DF-42AD-4970-9EED-1154968D504F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79DD91DF-42AD-4970-9EED-1154968D504F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79DD91DF-42AD-4970-9EED-1154968D504F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{44297B13-974D-4DB9-BB47-CC50C9C9A56F} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
 		{0C549E66-3A5E-4D7C-9466-F84DA74E2AEC} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
 		{79DD91DF-42AD-4970-9EED-1154968D504F} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
+		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CA0E614-D90F-4C97-AFCE-7E49F895A96E}
