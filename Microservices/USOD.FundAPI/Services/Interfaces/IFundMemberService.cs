@@ -8,7 +8,7 @@ namespace USOD.FundAPI.Services.Interfaces
 
 		Task<Fund_Member?> GetByIdAsync(int fundMember_id);
 
-		Task<List<Fund_Member>> GetByDonorAsync(int donor_id);
+		Task<Fund_Member?> GetByDonorAsync(int donor_id);
 
 		Task<Fund_Member> CreateAsync(Fund_Member fundMember);
 

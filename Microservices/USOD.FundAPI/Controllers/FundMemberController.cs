@@ -43,10 +43,10 @@ namespace USOD.FundAPI.Controllers
 		{
 			var fundMember = await _fundMemberService.GetByDonorAsync(donor_id);
 
-			if (!fundMember.Any()) return NotFound();
+			if (fundMember == null) return NotFound();
 
-			if (fundMember.Any(x => x.Member_Role_ID == 1)) return Ok("Owner");
-			else return Ok("Member");
+			if (fundMember.Member_Role?.Member_Role_Name == "Owner") return Ok($"{fundMember.Fund_ID},Owner");
+			else return Ok($"{fundMember.Fund_ID},Member");
 
 		}
 

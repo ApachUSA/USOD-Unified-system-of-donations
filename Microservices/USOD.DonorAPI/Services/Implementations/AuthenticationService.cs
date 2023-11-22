@@ -29,6 +29,7 @@ namespace USOD.DonorAPI.Services.Implementations
 		{
 			var client = new HttpClient();
 			string role = "Donor";
+			string fundId = "";
 
 			if (donor.Donor_Role?.Donor_Role_Name == "Admin")
 			{
@@ -38,10 +39,15 @@ namespace USOD.DonorAPI.Services.Implementations
 			{
 				try
 				{
-					var response = await client.GetAsync($"http://172.19.0.6:80/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
+					//var response = await client.GetAsync($"http://172.19.0.6:80/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
+					var response = await client.GetAsync($"http://localhost:5103/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
 
 					if (response.StatusCode == System.Net.HttpStatusCode.OK)
-						role = await response.Content.ReadAsStringAsync();
+					{
+						var responseString = await response.Content.ReadAsStringAsync();
+						role = responseString.Split(',')[1];
+						fundId = responseString.Split(',')[0];
+					}
 				}
 				catch (Exception ex)
 				{
@@ -51,10 +57,13 @@ namespace USOD.DonorAPI.Services.Implementations
 
 			List<Claim> claims = new()
 			{
-				new Claim(ClaimTypes.Name, donor.Login),
+				new Claim(ClaimTypes.Name, donor.Username),
 				new Claim(ClaimTypes.Role, role),
-				new Claim("Role", role)
+				new Claim("Role", role),
+				new Claim("Id", donor.Donor_ID.ToString()),
 			};
+
+			if(role == "Owner" || role == "Member") claims.Add(new Claim("FundID", fundId));
 
 			var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 

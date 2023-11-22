@@ -31,9 +31,9 @@ namespace USOD.FundAPI.Services.Implementations
 			return await _fundMemberRepository.Get().Where(x => x.Fund_ID == fund_id).ToListAsync();
 		}
 
-		public async Task<List<Fund_Member>> GetByDonorAsync(int donor_id)
+		public async Task<Fund_Member?> GetByDonorAsync(int donor_id)
 		{
-			return await _fundMemberRepository.Get().Where(x => x.Donor_ID == donor_id).ToListAsync();
+			return await _fundMemberRepository.Get().Include(x => x.Member_Role).FirstOrDefaultAsync(x => x.Donor_ID == donor_id);
 		}
 
 		public async Task<Fund_Member?> GetByIdAsync(int fundMember_id)
