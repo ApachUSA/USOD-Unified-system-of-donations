@@ -27,11 +27,8 @@ namespace USOD.DonorAPI.Controllers
 
 			if (donor == null) return NotFound();
 
-			
-
 			return Ok(await _authenticationService.AuthenticateAsync(donor));
 		}
-
 
 		[HttpGet]
 		public async Task<IActionResult> Get()
@@ -43,10 +40,32 @@ namespace USOD.DonorAPI.Controllers
 			return Ok(donor);
 		}
 
-		[HttpGet("{id}")]
-		public async Task<IActionResult> Get(int id)
+		[HttpGet("GetProfileById/{id}")]
+		public async Task<IActionResult> GetProfileById(int id)
+		{
+			var donor = await _donorService.GetProfileByIDAsync(id);
+
+			if (donor == null) return NotFound();
+
+			return Ok(donor);
+		}
+
+
+		[HttpGet("GetById/{id}")]
+		public async Task<IActionResult> GetById(int id)
 		{
 			var donor = await _donorService.GetByIDAsync(id);
+
+			if (donor == null) return NotFound();
+
+			return Ok(donor);
+		}
+
+
+		[HttpGet("GetByIds")]
+		public async Task<IActionResult> GetByIds([FromQuery] int[] ids)
+		{
+			var donor = await _donorService.GetByIDAsync(ids);
 
 			if (donor == null) return NotFound();
 
@@ -88,7 +107,7 @@ namespace USOD.DonorAPI.Controllers
 		[HttpDelete("{id}")]
 		public async Task<IActionResult> Delete(int id)
 		{
-			var donor = await _donorService.GetByIDAsync(id);
+			var donor = await _donorService.GetProfileByIDAsync(id);
 			if (donor == null) return NotFound();
 
 			try

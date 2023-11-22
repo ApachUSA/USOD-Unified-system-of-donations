@@ -8,7 +8,11 @@ namespace USOD.DonorAPI.Services.Interfaces
 	{
 		Task<List<Donor>> GetAsync();
 
-		Task<Donor?> GetByIDAsync(int donor_role_id);
+		Task<Donor?> GetProfileByIDAsync(int donor_role_id);
+
+		Task<DonorVM?> GetByIDAsync(int donor_role_id);
+
+		Task<List<DonorVM>?> GetByIDAsync(int[] donor_role_ids);
 
 		Task<bool> CheckUsername(string username);
 

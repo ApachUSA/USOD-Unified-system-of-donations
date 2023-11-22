@@ -23,11 +23,11 @@ namespace USOD.WebASP.Services.Implementations
 			_logger = logger;
 		}
 
-		public async Task<BaseResponse<Donor>> GetById(int id)
+		public async Task<BaseResponse<Donor>> GetProfile(int id)
 		{
 			try
 			{
-				var response = await _httpClient.GetAsync($"{ApiControllerName}/{id}");
+				var response = await _httpClient.GetAsync($"{ApiControllerName}/GetProfileById/{id}");
 				return await ApiResponse.ProcessApiResponse<Donor>(response);
 			}
 			catch (Exception ex)
@@ -46,6 +46,32 @@ namespace USOD.WebASP.Services.Implementations
 			catch (Exception ex)
 			{
 				return BaseResponse<List<Donor>>.Error(ex.Message);
+			}
+		}
+
+		public async Task<BaseResponse<DonorVM>> GetInfo(int id)
+		{
+			try
+			{
+				var response = await _httpClient.GetAsync($"{ApiControllerName}/GetById/{id}");
+				return await ApiResponse.ProcessApiResponse<DonorVM>(response);
+			}
+			catch (Exception ex)
+			{
+				return BaseResponse<DonorVM>.Error(ex.Message);
+			}
+		}
+
+		public async Task<BaseResponse<List<DonorVM>>> GetInfo(int[] ids)
+		{
+			try
+			{
+				var response = await _httpClient.GetAsync($"{ApiControllerName}/GetByIds?{string.Join("&", ids.Select(id => $"ids={id}"))}");
+				return await ApiResponse.ProcessApiResponse<List<DonorVM>>(response);
+			}
+			catch (Exception ex)
+			{
+				return BaseResponse<List<DonorVM>>.Error(ex.Message);
 			}
 		}
 
@@ -110,6 +136,6 @@ namespace USOD.WebASP.Services.Implementations
 			}
 		}
 
-		
+
 	}
 }

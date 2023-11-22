@@ -11,7 +11,11 @@ namespace USOD.WebASP.Services.Interfaces
 
 		Task<BaseResponse<List<Donor>>> GetList();
 
-		Task<BaseResponse<Donor>> GetById(int id);
+		Task<BaseResponse<Donor>> GetProfile(int id);
+
+		Task<BaseResponse<DonorVM>> GetInfo(int id);
+
+		Task<BaseResponse<List<DonorVM>>> GetInfo(int[] ids);
 
 		Task<BaseResponse<Donor>> Register(Donor donor);
 
