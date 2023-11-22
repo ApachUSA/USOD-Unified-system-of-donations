@@ -18,6 +18,7 @@
     <ProjectReference Include="..\..\Domain\Models\Fund_Library\Fund_Library.csproj" />
     <ProjectReference Include="..\..\Domain\Models\Project_Library\Project_Library.csproj" />
     <ProjectReference Include="..\..\Domain\Models\RealTime_Library\RealTime_Library.csproj" />
+    <ProjectReference Include="..\..\Domain\Models\WebASP_Library\WebASP_Library.csproj" />
   </ItemGroup>
 
 </Project>

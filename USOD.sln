@@ -31,6 +31,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime_Library", "Domain\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.WebASP", "Microservices\USOD.WebASP\USOD.WebASP.csproj", "{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebASP_Library", "Domain\Models\WebASP_Library\WebASP_Library.csproj", "{36BBD55B-6B5C-408F-A52E-253D5EA7B824}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36BBD55B-6B5C-408F-A52E-253D5EA7B824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36BBD55B-6B5C-408F-A52E-253D5EA7B824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36BBD55B-6B5C-408F-A52E-253D5EA7B824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36BBD55B-6B5C-408F-A52E-253D5EA7B824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +99,7 @@ Global
 		{0C549E66-3A5E-4D7C-9466-F84DA74E2AEC} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
 		{79DD91DF-42AD-4970-9EED-1154968D504F} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
 		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
+		{36BBD55B-6B5C-408F-A52E-253D5EA7B824} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CA0E614-D90F-4C97-AFCE-7E49F895A96E}
