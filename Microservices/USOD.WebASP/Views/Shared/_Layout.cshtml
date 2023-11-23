@@ -6,6 +6,8 @@
 	<title>@ViewData["Title"] - USOD.WebASP</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+	<link rel="stylesheet"
+		  href="https://fonts.googleapis.com/css?family=Montserrat">
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/USOD.WebASP.styles.css" asp-append-version="true" />
 </head>
@@ -34,22 +36,114 @@
 
 	<div class="d-flex flex-row" style="margin-top: 40px">
 
-		<div class="card">
+		<div class="card menuCard d-flex flex-column justify-content-between" id="menuCard">
+			<div>
+				<div class="menu_btn" style="margin: 20px 10px 50px 10px; width: 50px" id="toggleMenu">
+					<div class="menu_btn_icon">
+						<i class="bi bi-list auto"></i>
+					</div>
+				</div>
+				<div class="menu_btn">
+					<div class="menu_btn_icon">
+						<i class="bi bi-bank auto"></i>
+					</div>
+					<div class="menu_btn_text">
+						<span>Funds</span>
+					</div>
+				</div>
 
-			<div class="menu_btn">
-				<div class="menu_btn_icon">
-					<i class="bi bi-bank autowidth"></i>
+				<div class="menu_btn">
+					<div class="menu_btn_icon">
+						<i class="bi bi-clipboard-data auto"></i>
+					</div>
+					<div class="menu_btn_text">
+						<span>Projects</span>
+					</div>
+				</div>
+
+				<div class="menu_btn">
+					<div class="menu_btn_icon">
+						<i class="bi bi-bookmark-heart auto"></i>
+					</div>
+					<div class="menu_btn_text">
+						<span>Subscriptions</span>
+					</div>
 				</div>
 			</div>
 
+			<div class="">
+				@if (!User.Identity.IsAuthenticated)
+				{
+					<div class="menu_btn">
+						<div class="menu_btn_icon" style="margin: 10px 15px 10px 5px">
+							<a asp-action="Login" asp-controller="Donor"><i class="bi bi-box-arrow-in-right auto"></i></a>
+						</div>
+						<div class="menu_btn_text">
+							<span>LogIn</span>
+						</div>
+					</div>
+				}
+				else
+				{
+					<div class="menu_btn">
+						<div class="menu_btn_icon">
+							<i class="bi bi-person auto"></i>
+						</div>
+						<div class="menu_btn_text">
+							<span>Profile</span>
+						</div>
+					</div>
+					<a asp-action="LogOut" asp-controller="Donor">
+						<div class="menu_btn">
+							<div class="menu_btn_icon" style="margin: 10px 5px 10px 15px">
+								<i class="bi bi-box-arrow-in-left auto"></i>
+							</div>
+							<div class="menu_btn_text">
+								<span>Exit</span>
+							</div>
+						</div>
+					</a>
+				}
+			</div>
 		</div>
 
-		<div class="container">
-			<main role="main" class="pb-3">
-				@RenderBody()
-			</main>
+		<div class="container d-flex flex-column align-content-center">
+
+			<div class="d-flex flex-row justify-content-center">
+
+				<div class="search_card d-flex flex-row justify-content-center">
+
+					<div class="search_logo">
+						<img src="https://cdn-icons-png.flaticon.com/512/9097/9097164.png" width="30" height="30" />
+					</div>
+
+					<div class="search_text d-flex flex-column justify-content-center">
+						<span>unified system of donations</span>
+					</div>
+
+					<div class="search_input">
+						<input class="search-input " />
+					</div>
+
+					<div class="search_btn">
+						<a class="main_link" style="height: 30px; width:auto; margin: 0"><i class="bi bi-search-heart-fill"></i></a>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="">
+				<main role="main" class="pb-3">
+					@RenderBody()
+				</main>
+			</div>
 		</div>
+
+
 	</div>
+
+
 
 
 
@@ -65,27 +159,53 @@
 </body>
 </html>
 
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		var menuCard = document.getElementById("menuCard");
+		var toggleMenu = document.getElementById("toggleMenu");
+
+		toggleMenu.addEventListener("click", function () {
+			menuCard.classList.toggle("menuCard_open");
+			var icon = toggleMenu.querySelector("i");
+
+			if (menuCard.classList.contains("menuCard_open")) {
+				icon.classList.remove("bi-list");
+				icon.classList.add("bi-x");
+			} else {
+				icon.classList.remove("bi-x");
+				icon.classList.add("bi-list");
+			}
+		});
+	});
+</script>
+
 <style>
-	.card {
+
+
+
+	.menuCard {
+		width: 70px;
 		height: 80vh;
-		width: 80px;
-		background: #393939;
 		border-radius: 0px 10px 10px 0px;
-		transition: box-shadow 0.4s ease-in-out;
 	}
 
-		.card:hover {
-			box-shadow: 0px 0px 20px 0px #7FF66C;
-		}
+	.menuCard_open {
+		width: 170px;
+	}
+
+
 
 	.menu_btn {
-		width: 50px;
+		width: auto;
+		display: flex;
+		flex-direction: row;
 		height: 50px;
 		border-radius: 5px;
-		margin: 20px  10px;
+		margin: 10px 10px;
 	}
 
 		.menu_btn:hover {
+			cursor: pointer;
 			background-color: #292929;
 		}
 
@@ -97,13 +217,69 @@
 		height: 30px;
 	}
 
-		.menu_btn_icon .autowidth {
+		.menu_btn_icon .auto {
 			display: inline-block;
 			width: 100%;
 			height: 100%;
 		}
 
-			.menu_btn_icon i::before {
-				vertical-align: 1em !important;
-			}
+	i::before {
+		vertical-align: 1em !important;
+	}
+
+	.menu_btn_text {
+		display: flex;
+		overflow: hidden;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		font-size: 14px;
+		color: white;
+	}
+
+	.search_card {
+		width: auto;
+		height: 40px;
+		border-radius: 10px;
+		margin-bottom: 80px;
+		background-color: #292929;
+		box-shadow: 0px 0px 20px 0px #202020;
+		padding: 5px;
+	}
+
+	.search_logo {
+		margin: 0 5px 0 0;
+	}
+
+	.search_text {
+		color: #7FF66C;
+		font-size: 14px;
+		font-family: Univermag;
+		margin: 5px;
+	}
+
+	.search_input {
+		height: 30px;
+		width: 500px;
+		margin: 0 5px;
+	}
+
+	.search-input {
+		border-radius: 5px;
+		background-color: transparent;
+		border: 1.5px solid #393939;
+		color: white;
+		width: 100%;
+		transition: border 0.2s ease-in-out;
+	}
+
+		.search-input:focus-visible {
+			border: 1.5px solid #7FF66C;
+			outline: none;
+		}
+
+	.search_btn {
+		margin: 5px;
+	}
+
 </style>

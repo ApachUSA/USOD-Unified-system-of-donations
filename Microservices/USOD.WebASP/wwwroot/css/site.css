@@ -1,23 +1,108 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
     background-color: #292929;
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
+
+a {
+    text-decoration: none !important;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    color: #FFF !important;
+}
+
+    a[b-zbj9ra31n0] {
+        color: #fff;
+    }
+
+@font-face {
+    font-family: "Univermag";
+    src: url(/Univermag-Regular.otf);
+}
+
+.card {
+    background: #393939;
+    border-radius: 10px;
+    transition: width 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+}
+
+    .card:hover {
+        box-shadow: 0px 0px 20px 0px #7FF66C;
+    }
+
+.input {
+    border-radius: 10px;
+    background-color: #404040;
+    color: white;
+    width: 100%;
+    border-color: transparent;
+    transition: border 0.2s ease-in-out;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+}
+
+    .input:focus-visible {
+        border: 1.5px solid #7FF66C;
+        outline: none;
+    }
+
+
+.main_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #404040;
+    border-radius: 10px;
+    color: white;
+    padding: 5px;
+    min-height: 40px;
+    width: 100%;
+    margin: 10px;
+    font-family: Montserrat;
+    font-weight: 700;
+    border: none;
+}
+
+    .main_btn:hover {
+        color: black !important;
+        background-color: #7FF66C;
+        cursor: pointer;
+    }
+
+.main_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Montserrat;
+    font-size: 14px;
+    background: transparent;
+    width: 100%;
+    margin: 10px;
+    font-weight: 700;
+}
+
+    .main_link:hover {
+        color: #7FF66C !important;
+        cursor: pointer;
+    }
