@@ -1,2 +1,14 @@
 ﻿<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+	function Validate(formName) {
+
+		$(document).ready(function () {
+			// Specify the form to validate using the provided formName
+			if ($("#" + formName).valid()) {
+
+				$("#" + formName).submit();
+			}
+		});
+	}
+</script>
