@@ -1,0 +1,164 @@
+﻿@model Donor
+
+<div class="card" style="width: 600px; height: auto; margin:20px; padding: 40px 40px ;">
+
+	<div class="d-flex justify-content-around flex-wrap flex-grow-1" style="margin-bottom: 10px">
+
+		<div style="width: 160px; height: 160px; overflow: hidden; border-radius: 50%; margin: 20px 20px 10px 0;">
+
+			<img style="width: 100%; height: 100%; object-fit: cover;" src="https://cdn-icons-png.flaticon.com/512/6614/6614285.png" id="Donor_Avatar" />
+
+		</div>
+
+		<div style="flex-grow: 1; margin: 20px 0 10px 20px;">
+
+			<div class="form-group" style="height: 100%">
+
+				<textarea asp-for="Logo" placeholder="URL to the profile photo (optional)" onchange="ChangeImage(this.value)" class="input" style="height: 100%; max-height: 160px;"></textarea>
+
+				<span asp-validation-for="Logo" class="text-danger"></span>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="card" style="width: 600px; height: auto; margin:20px; padding: 40px 40px ;">
+
+	<div class="d-flex justify-content-around flex-wrap flex-grow-1 align-items-center" style="margin-bottom: 10px">
+
+		<div style="width: 120px; height: 120px;  margin: 20px 20px 10px 0;">
+
+			<i style="font-size: 120px; color: white" class="bi bi-person-fill"></i>
+
+		</div>
+
+		<div class="d-flex flex-column flex-grow-1">
+
+			<div style="margin: 20px 0 10px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Surname" placeholder="Surname" class="input" />
+
+					<span asp-validation-for="Surname" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+			<div style="margin: 10px 0 10px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Name" placeholder="Name" class="input" />
+
+					<span asp-validation-for="Name" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+			<div style="margin: 10px 0 10px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Patronymic" placeholder="Patronymic (optional)" class="input" />
+
+					<span asp-validation-for="Patronymic" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="card" style="width: 600px; height: auto; margin:20px; padding: 40px 40px ;">
+
+	<div class="d-flex justify-content-around flex-wrap flex-grow-1 align-items-center" style="margin-bottom: 10px">
+
+		<div style="width: 120px; height: 120px;  margin: 20px 20px 10px 0;">
+
+			<i style="font-size: 120px; color: white" class="bi bi-person-badge"></i>
+
+		</div>
+
+		<div class="d-flex flex-column flex-grow-1">
+
+			<div style="margin: 40px 0 20px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Username" placeholder="Username" class="input" />
+
+					<span asp-validation-for="Username" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+			<div style="margin: 20px 0 30px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Email" placeholder="Email (optional)" class="input" />
+
+					<span asp-validation-for="Email" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="card" style="width: 600px; height: auto; margin:20px; padding: 40px 40px ;">
+
+	<div class="d-flex justify-content-around flex-wrap flex-grow-1 align-items-center" style="margin-bottom: 10px">
+
+		<div style="width: 120px; height: 120px;  margin: 20px 20px 10px 0;">
+
+			<i style="font-size: 120px; color: white" class="bi bi-shield-lock-fill"></i>
+
+		</div>
+
+		<div class="d-flex flex-column flex-grow-1">
+
+			<div style="margin: 40px 0 20px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Login" placeholder="Login" class="input" />
+
+					<span asp-validation-for="Login" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+			<div style="margin: 20px 0 30px 20px;">
+
+				<div class="form-group">
+
+					<input asp-for="Password" placeholder="Password" class="input" />
+
+					<span asp-validation-for="Password" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
