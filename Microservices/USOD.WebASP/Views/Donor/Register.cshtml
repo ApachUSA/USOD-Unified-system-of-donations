@@ -1,5 +1,36 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Donor
+
+<div class="d-flex flex-column">
+
+	<div class="d-flex flex-row align-items-center">
+
+		<img style="margin:0 20px" src="https://cdn-icons-png.flaticon.com/512/9097/9097164.png" height="80" width="80" />
+
+		<span style="margin: 0 20px; font-family: Univermag; font-size: 40px; color: #7FF66C ">unified system of donations</span>
+
+		<span class="ms-auto" style="margin: 0 20px; font-size: 24px; color: #fff">| sign up</span>
+
+	</div>
+
+	<form asp-action="Register" asp-controller="Donor" id="Register">
+
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+		<div class="d-flex flex-grow-1 flex-wrap justify-content-around align-items-center">
+
+			<partial name="_ProfileCardPartial" model="Model" />
+
+			<a class="main_link" style="max-width: 360px; width: 100%;" asp-action="Login" asp-controller="Donor"><span>Cancel</span> </a>
+
+			<a onclick="Validate('Register')" class="main_btn" style="max-width: 360px;    width: 100%;"><span>Save</span> </a>
+
+		</div>
+
+	</form>
+
+</div>
+
 @{
+	await Html.RenderPartialAsync("_ValidationScriptsPartial");
 }
+<script src="/js/ChangeAvatar.js"></script>
