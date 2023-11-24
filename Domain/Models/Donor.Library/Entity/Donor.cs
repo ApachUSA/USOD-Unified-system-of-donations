@@ -16,7 +16,7 @@ namespace Donor_Library.Entity
 
         public string? Patronymic { get; set; }
 
-        public required string Email { get; set; }
+        public string? Email { get; set; }
 
         public required string Username { get; set; }
 
@@ -29,5 +29,7 @@ namespace Donor_Library.Entity
         public int Donor_Role_ID { get; set; }
 
         public Donor_Role? Donor_Role { get; set; }
+
+        public List<Donor_Media>? Donor_Medias { get; set; }
     }
 }

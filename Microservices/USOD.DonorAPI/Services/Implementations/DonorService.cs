@@ -10,13 +10,15 @@ namespace USOD.DonorAPI.Services.Implementations
 {
 	public class DonorService : IDonorService
 	{
+		private readonly IDonorMediaService _mediaService;
 		private readonly IBaseRepository<Donor> _donorRepository;
 		private readonly IMapper _mapper;
 
-		public DonorService(IBaseRepository<Donor> donorRepository, IMapper mapper)
+		public DonorService(IBaseRepository<Donor> donorRepository, IMapper mapper, IDonorMediaService mediaService)
 		{
 			_donorRepository = donorRepository;
 			_mapper = mapper;
+			_mediaService = mediaService;
 		}
 
 		public async Task<bool> CheckUsername(string username)
@@ -37,7 +39,7 @@ namespace USOD.DonorAPI.Services.Implementations
 
 		public async Task<Donor?> GetProfileByIDAsync(int donor_id)
 		{
-			return await _donorRepository.Get().Include(x => x.Donor_Role).FirstOrDefaultAsync(x => x.Donor_ID == donor_id);
+			return await _donorRepository.Get().Include(x => x.Donor_Role).Include(x => x.Donor_Medias).ThenInclude(x => x.Media_Type).FirstOrDefaultAsync(x => x.Donor_ID == donor_id);
 		}
 
 		public async Task<Donor?> GetByLoginAsync(Donor_LoginVM donor_Login)
@@ -65,6 +67,16 @@ namespace USOD.DonorAPI.Services.Implementations
 		{
 			if (await _donorRepository.Get().FirstOrDefaultAsync(x => x.Username == donor.Username) != null) throw new Exception ("User already exist");
 			await _donorRepository.Create(donor);
+
+			List<Donor_Media> medias = new()
+			{
+				new Donor_Media { Donor_ID = donor.Donor_ID, Donor_Media_Type_ID = 1},
+				new Donor_Media { Donor_ID = donor.Donor_ID, Donor_Media_Type_ID = 2},
+				new Donor_Media { Donor_ID = donor.Donor_ID, Donor_Media_Type_ID = 3}
+			};
+
+			await _mediaService.CreateAsync(medias);
+
 			return donor;
 		}
 

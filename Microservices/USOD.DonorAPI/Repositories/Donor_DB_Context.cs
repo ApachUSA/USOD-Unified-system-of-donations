@@ -4,7 +4,7 @@ using System;
 
 namespace USOD.DonorAPI.Repositories
 {
-    public class Donor_DB_Context: DbContext
+	public class Donor_DB_Context : DbContext
 	{
 		public Donor_DB_Context(DbContextOptions<Donor_DB_Context> options) : base(options)
 		{
@@ -13,6 +13,8 @@ namespace USOD.DonorAPI.Repositories
 
 		public DbSet<Donor_Role> Donor_Roles { get; set; }
 		public DbSet<Donor> Donors { get; set; }
+		public DbSet<Donor_Media_Type> Donor_Media_Types { get; set; }
+		public DbSet<Donor_Media> Donor_Medias { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -35,6 +37,29 @@ namespace USOD.DonorAPI.Repositories
 					.HasForeignKey(x => x.Donor_Role_ID);
 
 			});
+
+			modelBuilder.Entity<Donor_Media_Type>(builder =>
+			{
+				builder.ToTable("Donor_Media_Types").HasKey(x => x.Donor_Media_Type_ID);
+				builder.Property(x => x.Donor_Media_Type_ID).ValueGeneratedOnAdd();
+
+			});
+
+			modelBuilder.Entity<Donor_Media>(builder =>
+			{
+				builder.ToTable("Donor_Media").HasKey(x => x.Donor_Media_ID);
+				builder.Property(x => x.Donor_Media_ID).ValueGeneratedOnAdd();
+
+				builder.HasOne(x => x.Media_Type)
+					.WithMany(x => x.Donor_Medias)
+					.HasForeignKey(x => x.Donor_Media_Type_ID);
+
+				builder.HasOne(x => x.Donor)
+					.WithMany(x => x.Donor_Medias)
+					.HasForeignKey(x => x.Donor_ID);
+
+			});
+
 		}
 	}
 }

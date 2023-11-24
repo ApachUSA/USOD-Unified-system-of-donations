@@ -134,6 +134,140 @@
       }
     },
     {
+      //DonorMediaTypeController
+      "DownstreamPathTemplate": "/DonorApi/DonorMediaType",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMediaType",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMediaType",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMediaType",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMediaType/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMediaType/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMediaType/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMediaType/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
+      //DonorMediaController
+      "DownstreamPathTemplate": "/DonorApi/DonorMedia",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMedia",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMedia",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMedia",
+      "UpstreamHttpMethod": [ "Post", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMedia/PostArray",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMedia/PostArray",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMedia/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMedia/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/DonorMedia/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/DonorMedia/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Admin"
+      }
+    },
+    {
       //Fund.Api
 
       //FundController
