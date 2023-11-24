@@ -10,6 +10,7 @@
 		  href="https://fonts.googleapis.com/css?family=Montserrat">
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/USOD.WebASP.styles.css" asp-append-version="true" />
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 	@*     <header>
@@ -85,6 +86,7 @@
 				}
 				else
 				{
+					<a asp-action="Profile" asp-controller="Donor">
 					<div class="menu_btn">
 						<div class="menu_btn_icon">
 							<i class="bi bi-person auto"></i>
@@ -93,6 +95,7 @@
 							<span>Profile</span>
 						</div>
 					</div>
+					</a>
 					<a asp-action="LogOut" asp-controller="Donor">
 						<div class="menu_btn">
 							<div class="menu_btn_icon" style="margin: 10px 5px 10px 15px">
@@ -107,39 +110,11 @@
 			</div>
 		</div>
 
-		<div class="container d-flex flex-column align-content-center">
-
-			<div class="d-flex flex-row justify-content-center">
-
-				<div class="search_card d-flex flex-row justify-content-center">
-
-					<div class="search_logo">
-						<img src="https://cdn-icons-png.flaticon.com/512/9097/9097164.png" width="30" height="30" />
-					</div>
-
-					<div class="search_text d-flex flex-column justify-content-center">
-						<span>unified system of donations</span>
-					</div>
-
-					<div class="search_input">
-						<input class="search-input " />
-					</div>
-
-					<div class="search_btn">
-						<a class="main_link" style="height: 30px; width:auto; margin: 0"><i class="bi bi-search-heart-fill"></i></a>
-					</div>
-
-				</div>
-
-			</div>
-
-			<div class="">
-				<main role="main" class="pb-3">
-					@RenderBody()
-				</main>
-			</div>
+		<div class="container">
+			<main role="main" class="pb-3">
+				@RenderBody()
+			</main>
 		</div>
-
 
 	</div>
 
@@ -152,7 +127,6 @@
 	&copy; 2023 - USOD.WebASP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 	</div>
 	</footer> *@
-	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	@await RenderSectionAsync("Scripts", required: false)
@@ -279,7 +253,7 @@
 		}
 
 	.search_btn {
-		margin: 5px;
+		margin: 10px;
 	}
 
 </style>
