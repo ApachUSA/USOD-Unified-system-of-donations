@@ -39,6 +39,10 @@ a {
         color: #fff;
     }
 
+i::before {
+    vertical-align: 1em !important;
+}
+
 @font-face {
     font-family: "Univermag";
     src: url(/Univermag-Regular.otf);
