@@ -3,11 +3,11 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>@ViewData["Title"] - USOD.WebASP</title>
+	<title>@ViewData["Title"] USOD</title>
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-	<link rel="stylesheet"
-		  href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+	<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/9097/9097164.png">
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/USOD.WebASP.styles.css" asp-append-version="true" />
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -44,14 +44,17 @@
 						<i class="bi bi-list auto"></i>
 					</div>
 				</div>
-				<div class="menu_btn">
-					<div class="menu_btn_icon">
-						<i class="bi bi-bank auto"></i>
+
+				<a asp-action="FundIndex" asp-controller="Fund">
+					<div class="menu_btn">
+						<div class="menu_btn_icon">
+							<i class="bi bi-bank auto"></i>
+						</div>
+						<div class="menu_btn_text">
+							<span>Funds</span>
+						</div>
 					</div>
-					<div class="menu_btn_text">
-						<span>Funds</span>
-					</div>
-				</div>
+				</a>
 
 				<div class="menu_btn">
 					<div class="menu_btn_icon">
@@ -87,14 +90,14 @@
 				else
 				{
 					<a asp-action="Profile" asp-controller="Donor">
-					<div class="menu_btn">
-						<div class="menu_btn_icon">
-							<i class="bi bi-person auto"></i>
+						<div class="menu_btn">
+							<div class="menu_btn_icon">
+								<i class="bi bi-person auto"></i>
+							</div>
+							<div class="menu_btn_text">
+								<span>Profile</span>
+							</div>
 						</div>
-						<div class="menu_btn_text">
-							<span>Profile</span>
-						</div>
-					</div>
 					</a>
 					<a asp-action="LogOut" asp-controller="Donor">
 						<div class="menu_btn">
@@ -154,9 +157,6 @@
 </script>
 
 <style>
-
-
-
 	.menuCard {
 		width: 70px;
 		height: 80vh;
@@ -197,10 +197,6 @@
 			height: 100%;
 		}
 
-	i::before {
-		vertical-align: 1em !important;
-	}
-
 	.menu_btn_text {
 		display: flex;
 		overflow: hidden;
@@ -210,50 +206,4 @@
 		font-size: 14px;
 		color: white;
 	}
-
-	.search_card {
-		width: auto;
-		height: 40px;
-		border-radius: 10px;
-		margin-bottom: 80px;
-		background-color: #292929;
-		box-shadow: 0px 0px 20px 0px #202020;
-		padding: 5px;
-	}
-
-	.search_logo {
-		margin: 0 5px 0 0;
-	}
-
-	.search_text {
-		color: #7FF66C;
-		font-size: 14px;
-		font-family: Univermag;
-		margin: 5px;
-	}
-
-	.search_input {
-		height: 30px;
-		width: 500px;
-		margin: 0 5px;
-	}
-
-	.search-input {
-		border-radius: 5px;
-		background-color: transparent;
-		border: 1.5px solid #393939;
-		color: white;
-		width: 100%;
-		transition: border 0.2s ease-in-out;
-	}
-
-		.search-input:focus-visible {
-			border: 1.5px solid #7FF66C;
-			outline: none;
-		}
-
-	.search_btn {
-		margin: 10px;
-	}
-
 </style>
