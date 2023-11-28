@@ -43,7 +43,13 @@ namespace USOD.WebASP.Controllers
 			var response = await _fundService.GetFundByID(fund_id);
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
 			{
-				return View(response.Data);
+				var donors = await _donorService.GetInfo(response.Data.Fund_Members.Select(x => x.Donor_ID).ToArray());
+
+				return View(new FundVM
+				{
+					Fund = response.Data,
+					Fund_Members = donors.StatusCode == System.Net.HttpStatusCode.OK ? donors.Data : null
+				});
 			}
 			throw new Exception(response.Description);
 		}
