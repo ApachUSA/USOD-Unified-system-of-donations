@@ -11,11 +11,14 @@ builder.Services.AddHttpClient("Donor", client => {
 	client.BaseAddress = new Uri("http://localhost:5133/DonorApi/");
 });
 builder.Services.AddHttpClient("Fund", client => {
-	client.BaseAddress = new Uri("http://localhost:5133/FundApi/");
+	client.BaseAddress = new Uri("http://localhost:5103/FundApi/");
 });
 
 
 builder.Services.AddScoped<IDonorService, DonorService>();
+builder.Services.AddScoped<IFundService, FundService>();
+builder.Services.AddScoped<IFundImageService, FundImageService>();
+builder.Services.AddScoped<IFundMemberService, FundMemberService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>
