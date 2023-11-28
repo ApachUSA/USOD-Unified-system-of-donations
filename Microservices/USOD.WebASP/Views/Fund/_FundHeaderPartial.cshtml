@@ -1,0 +1,197 @@
+﻿@model FundVM
+
+<div class="dark_card fund_header d-flex flex-column">
+
+	<div class="head_poster">
+
+		<img src="@Model.Fund.Fund_Poster" />
+
+	</div>
+
+	<div class="head_under d-flex ">
+
+		<div class="logo_container">
+
+			<div class="under_logo">
+
+				<img src="@Model.Fund.Fund_Logo" />
+
+			</div>
+
+		</div>
+
+		<div class="under_info w-100 d-flex flex-column justify-content-between">
+
+			<div class="under_info_name d-flex justify-content-between align-items-center">
+
+				<span class="fund_name">@Model.Fund.Fund_Name</span>
+
+				<i class="fund_sub bi bi-heart"></i>
+
+			</div>
+
+			<div class="under_info_stat d-flex flex-column">
+
+				<span style="margin-bottom: 10px">Followed by 1110 users</span>
+
+				<span>Active projects: 6 | Ended projects: 4</span>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="head_button_group d-flex justify-content-between align-items-center flex-wrap flex-grow-1">
+
+		<ul class="head_nav nav nav-pills" id="pills-tab">
+
+			<li class="nav-item">
+
+				<a class="nav_link active" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" role="tab" aria-controls="pills-project">Projects</a>
+
+			</li>
+
+			<li class="nav-item">
+
+				<a class="nav_link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" role="tab" aria-controls="pills-about">About</a>
+
+			</li>
+
+			<li class="nav-item">
+
+				<a class="nav_link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" role="tab" aria-controls="pills-contact"><i class="bi bi-gear-fill"></i></a>
+
+			</li>
+
+		</ul>
+
+		<div class="d-flex justify-content-end">
+
+			@foreach (var media in Model.Fund.Fund_Medias)
+			{
+				<a href="@media.Fund_Media_URL" target="_blank">
+
+					<div class="info_logo">
+
+						<img src="@media.Media_Type?.Media_Type_Image" />
+
+					</div>
+
+				</a>
+			}
+
+		</div>
+
+	</div>
+
+</div>
+
+<style>
+	.fund_header {
+		width: 100%;
+		height: 520px;
+		margin-bottom: 40px;
+	}
+
+	.head_poster {
+		width: 100%;
+		height: 200px;
+		overflow: hidden;
+	}
+
+		.head_poster img {
+			width: 100%;
+			height: 200px;
+			object-fit: cover;
+		}
+
+	.head_under {
+		margin: 40px;
+		height: 180px;
+	}
+
+	.logo_container {
+		width: 180px;
+		height: 180px;
+		margin-right: 20px;
+	}
+
+	.under_logo {
+		width: 180px;
+		height: 180px;
+		border-radius: 100000px;
+		overflow: hidden;
+	}
+
+		.under_logo img {
+			width: 180px;
+			height: 180px;
+			object-fit: cover;
+		}
+
+	.under_info {
+	}
+
+	.under_info_name {
+	}
+
+		.under_info_name i::before {
+			vertical-align: -0.125em !important;
+		}
+
+	.fund_name {
+		color: #7FF66C;
+		font-family: Univermag;
+		font-size: 40px;
+	}
+
+	.fund_sub {
+		color: white;
+		font-size: 40px;
+	}
+
+	.under_info_stat span {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+
+	.head_button_group {
+		margin: 10px 40px 10px 240px;
+	}
+
+	.nav_link {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 20px;
+		margin-right: 120px;
+	}
+
+		.nav_link:hover {
+			font-weight: 700;
+			color: #7FF66C !important;
+		}
+
+		.nav_link.active {
+			font-weight: 700;
+			color: #7FF66C !important;
+		}
+
+	.head_nav {
+	}
+
+	.info_logo {
+		width: 30px;
+		height: 30px;
+		margin-left: 10px;
+		border-radius: 10000px;
+		overflow: hidden;
+	}
+
+		.info_logo > img {
+			width: 30px;
+			height: 30px;
+			object-fit: cover;
+		}
+</style>

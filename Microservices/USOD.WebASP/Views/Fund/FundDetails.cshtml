@@ -1,0 +1,33 @@
+﻿
+<div class="d-flex flex-column">
+
+	<partial name="_FundHeaderPartial" />
+
+	<div class="tab-content" id="pills-tabContent" style="color: white">
+
+		<div class="tab-pane fade show active" id="pills-project" role="tabpanel" aria-labelledby="pills-project-tab" tabindex="0">
+		</div>
+
+		<div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab" tabindex="0">
+
+			<partial name="_FundAboutPartial" />
+
+		</div>
+
+	</div>
+
+</div>
+
+<script>
+	$(document).ready(function () {
+		$('[data-bs-toggle="popover"]').popover();
+	});
+</script>
+
+<style>
+
+	
+	/**/
+
+	
+</style>
