@@ -10,6 +10,8 @@ namespace USOD.FundAPI.Services.Interfaces
 
 		Task<Fund_Media> CreateAsync(Fund_Media fundMedia);
 
+		Task<List<Fund_Media>> CreateAsync(List<Fund_Media> fundMedia);
+
 		Task<Fund_Media> UpdateAsync(Fund_Media fundMedia);
 
 		Task<bool> DeleteAsync(Fund_Media fundMedia);

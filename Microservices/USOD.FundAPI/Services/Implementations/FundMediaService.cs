@@ -21,6 +21,12 @@ namespace USOD.FundAPI.Services.Implementations
 
 		}
 
+		public async Task<List<Fund_Media>> CreateAsync(List<Fund_Media> fundMedia)
+		{
+			await _fundMediaRepository.Create(fundMedia);
+			return fundMedia;
+		}
+
 		public async Task<bool> DeleteAsync(Fund_Media fundMedia)
 		{
 			await _fundMediaRepository.Delete(fundMedia);
