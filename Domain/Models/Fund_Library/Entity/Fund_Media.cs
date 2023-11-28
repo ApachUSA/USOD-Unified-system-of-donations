@@ -11,7 +11,7 @@ namespace Fund_Library.Entity
 	{
 		public int Fund_Media_ID { get; set; }
 
-		public required string Fund_Media_URL { get; set; }
+		public string? Fund_Media_URL { get; set; }
 
 		public int Media_Type_ID { get; set; }
 

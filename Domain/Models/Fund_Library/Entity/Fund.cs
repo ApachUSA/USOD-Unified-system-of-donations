@@ -20,7 +20,7 @@ namespace Fund_Library.Entity
 
 		public List<Fund_Media>? Fund_Medias { get; set; }
 
-		public List<Fund_Image>? Fund_Images { get; set; }
+		public List<Fund_Image>? Fund_Images { get; set; }	
 
 		public List<Fund_Member>? Fund_Members { get; set; }
 
