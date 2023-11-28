@@ -42,31 +42,32 @@
 
 	@if (Model.Fund.Fund_Members.Any())
 	{
-
 		<div class="fund_info d-flex align-items-center">
 
 			<div class="info_text">
+
 				<span>Owner:</span>
+
 			</div>
 
 			@foreach (var item in Model.Fund.Fund_Members?.Where(x => x.Member_Role?.Member_Role_Name == "Owner"))
 			{
 				var donor = Model.Fund_Members?.FirstOrDefault(x => x.Donor_ID == item.Donor_ID);
 
-				<a tabindex="0" role="button" data-bs-trigger="focus" data-bs-toggle="popover" data-bs-html="true" data-bs-content='@{
+				<a tabindex="0" role="button" data-bs-toggle="popover"  data-bs-trigger="focus" data-bs-html="true" data-bs-content='@{
 					await Html.RenderPartialAsync("../Donor/_DonorInfoPartial", donor);
 				}'>
+
 					<div class="info_avatar">
+
 						<img src="@donor.Logo" />
+
 					</div>
+
 				</a>
 			}
 
-
-
 		</div>
-
-
 
 		<div class="fund_info d-flex align-items-center">
 
@@ -78,9 +79,17 @@
 			{
 				var donor = Model.Fund_Members?.FirstOrDefault(x => x.Donor_ID == item.Donor_ID);
 
-				<div class="info_avatar">
-					<img src="@donor.Logo" />
-				</div>
+				<a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content='@{
+					await Html.RenderPartialAsync("../Donor/_DonorInfoPartial", donor);
+				}'>
+
+					<div class="info_avatar">
+
+						<img src="@donor.Logo" />
+
+					</div>
+
+				</a>
 			}
 
 		</div>
@@ -89,21 +98,26 @@
 	<div class="fund_info d-flex align-items-center">
 
 		<div class="info_text">
+
 			<span>Media:</span>
+
 		</div>
+
 		@foreach (var media in Model.Fund.Fund_Medias)
 		{
 			<a href="@media.Fund_Media_URL" target="_blank">
+
 				<div class="info_avatar">
+
 					<img src="@media.Media_Type.Media_Type_Image" />
+
 				</div>
+
 			</a>
 		}
 	</div>
 
-
-	<a class="main_btn" style="width: 100%; margin: 0"><span style="font-size: 14px">View details</span> </a>
-
+	<a class="main_btn" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID" style="width: 100%; margin: 0"><span style="font-size: 14px">View details</span> </a>
 
 </div>
 

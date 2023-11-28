@@ -39,27 +39,15 @@ a {
         color: #fff;
     }
 
-i::before {
+/*i::before {
     vertical-align: 1em !important;
-}
+}*/
 
 @font-face {
     font-family: "Univermag";
     src: url(/Univermag-Regular.otf);
 }
-.popover {
-    background: transparent;
-}
-.popover-body {
-    padding: 0;
-    color: white;
-    border-radius: 10px;
-    background-color: #666;
-}
 
-.bs-popover-auto[data-popper-placement^=right] > .popover-arrow::after, .bs-popover-end > .popover-arrow::after {
-    border-right-color: #666;
-}
 
 
 .card {
@@ -71,6 +59,13 @@ i::before {
     .card:hover {
         box-shadow: 0px 0px 20px 0px #7FF66C;
     }
+
+.dark_card {
+    border-radius: 20px;
+    background: #292929;
+    box-shadow: 0px 0px 20px 0px #202020;
+    overflow:hidden;
+}
 
 .input {
     border-radius: 10px;
@@ -132,3 +127,74 @@ i::before {
         color: #7FF66C !important;
         cursor: pointer;
     }
+
+/*donor info card*/
+
+.donor_info_card {
+    height: 80px;
+    width: fit-content;
+    border-radius: 10px;
+    background: #404040;
+    box-shadow: 0px 0px 20px 0px #202020;
+}
+
+.donor_info_logo {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+    border-radius: 10000000000px;
+    overflow: hidden;
+}
+
+    .donor_info_logo img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+    }
+
+.donor_info {
+    margin: 10px;
+}
+
+.donor_info_name {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+}
+
+
+.donor_info_username {
+    font-size: 10px;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.donor_media_logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    overflow: hidden;
+}
+
+    .donor_media_logo > img {
+        width: 16px;
+        height: 16px;
+        object-fit: cover;
+        vertical-align: top;
+    }
+
+.popover {
+    background: transparent;
+}
+
+.popover-body {
+    padding: 0;
+    color: white;
+    border-radius: 10px;
+    background-color: #404040;
+    box-shadow: 0px 0px 20px 0px #202020;
+}
+
+.bs-popover-auto[data-popper-placement^=right] > .popover-arrow::after, .bs-popover-end > .popover-arrow::after {
+    border-right-color: #404040;
+}
