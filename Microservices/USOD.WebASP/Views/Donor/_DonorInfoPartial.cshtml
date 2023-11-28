@@ -10,61 +10,20 @@
 
 	<div class="donor_info d-flex flex-column ">
 
-		<span style="font-size: 14px; font-weight: 700; color: white">@Model.Surname @Model.Name</span>
+		<span class="donor_info_name">@Model.Surname @Model.Name</span>
 
-		<span style="font-size: 10px;  margin-bottom: 5px; color: white">@@@Model.Username</span>
+		<span class="donor_info_username">@@@Model.Username</span>
 
 		<div class="d-flex align-items-center">
-			<div class="info_logo">
-				<img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" />
-			</div>
-			<div class="info_logo">
-				<img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" />
-			</div>
+			@foreach (var media in Model.Media)
+			{
+				<a href="@media.Media_Url" target="_blank">
+					<div class="donor_media_logo">
+						<img src="@media.Media_Type?.Donor_Media_Type_Image" />
+					</div>
+				</a>
+			}
 		</div>
 	</div>
 
 </div>
-
-<style>
-	.donor_info_card{
-		height: 80px;
-		width: fit-content;
-		border-radius: 10px;
-		background: #666;
-	}
-
-	.donor_info_logo{
-		width: 60px;
-		height: 60px;
-		margin: 10px;
-		border-radius: 10000000000px;
-		overflow: hidden;
-	}
-
-	.donor_info_logo img{
-			width: 60px;
-			height: 60px;
-		object-fit: cover;
-	}
-
-	.donor_info{
-		margin: 10px;
-
-	}
-
-	.info_logo {
-		width: 20px;
-		height: 20px;
-		margin-right: 5px;
-		
-		overflow: hidden;
-	}
-
-		.info_logo > img {
-			width: 16px;
-			height: 16px;
-			object-fit: cover;
-			vertical-align: top;
-		}
-</style>
