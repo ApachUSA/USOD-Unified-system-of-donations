@@ -15,7 +15,8 @@ namespace USOD.DonorAPI.Services.Mapping
 				.ForMember(opt => opt.Patronymic, opt => opt.MapFrom(src => src.Patronymic))
 				.ForMember(opt => opt.Email, opt => opt.MapFrom(src => src.Email))
 				.ForMember(opt => opt.Username, opt => opt.MapFrom(src => src.Username))
-				.ForMember(opt => opt.Logo, opt => opt.MapFrom(src => src.Logo));
+				.ForMember(opt => opt.Logo, opt => opt.MapFrom(src => src.Logo))
+				.ForMember(opt => opt.Media, opt => opt.MapFrom(src => src.Donor_Medias));
 
 		}
 	}

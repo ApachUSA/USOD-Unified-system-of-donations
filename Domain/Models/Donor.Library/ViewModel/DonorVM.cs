@@ -22,5 +22,7 @@ namespace Donor_Library.ViewModel
 		public required string Username { get; set; }
 
 		public string? Logo { get; set; }
+
+		public List<Donor_Media>? Media { get; set; }
 	}
 }
