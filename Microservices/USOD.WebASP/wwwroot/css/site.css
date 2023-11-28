@@ -47,6 +47,20 @@ i::before {
     font-family: "Univermag";
     src: url(/Univermag-Regular.otf);
 }
+.popover {
+    background: transparent;
+}
+.popover-body {
+    padding: 0;
+    color: white;
+    border-radius: 10px;
+    background-color: #666;
+}
+
+.bs-popover-auto[data-popper-placement^=right] > .popover-arrow::after, .bs-popover-end > .popover-arrow::after {
+    border-right-color: #666;
+}
+
 
 .card {
     background: #393939;

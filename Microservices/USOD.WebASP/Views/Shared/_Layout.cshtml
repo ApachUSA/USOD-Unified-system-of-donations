@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/USOD.WebASP.styles.css" asp-append-version="true" />
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@@2.11.8/dist/umd/popper.min.js"></script>
 </head>
 <body>
 	@*     <header>
@@ -112,7 +113,34 @@
 				}
 			</div>
 		</div>
+		<div id="partialViewContent" style="display: none;">
+			<!-- Your partial view content goes here -->
+			<div class="donor_info_card d-flex">
 
+				<div class="donor_info_logo">
+
+					<img src="https://img1.hochu.ua/uploads/37/3a/64/373a64b8-00fb-446c-b16d-7c5de0998106_360x300_fit.jpg" />
+
+				</div>
+
+				<div class="donor_info d-flex flex-column ">
+
+					<span style="font-size: 14px; font-weight: 700; color: white">Damnyckyi Artem</span>
+
+					<span style="font-size: 10px;  margin-bottom: 5px; color: white">@@damnickyi</span>
+
+					<div class="d-flex align-items-center">
+						<div class="info_logo">
+							<img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" />
+						</div>
+						<div class="info_logo">
+							<img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" />
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
 		<div class="container">
 			<main role="main" class="pb-3">
 				@RenderBody()
