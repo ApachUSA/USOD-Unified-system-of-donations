@@ -38,7 +38,7 @@ namespace USOD.WebASP.Services.Implementations
 			try
 			{
 				var response = await _httpClient.DeleteAsync($"{ApiControllerName}/{fundImage_id}");
-				return await ApiResponse.ProcessApiResponse<bool>(response);
+				return BaseResponse<bool>.Success(true);
 			}
 			catch (Exception ex)
 			{
