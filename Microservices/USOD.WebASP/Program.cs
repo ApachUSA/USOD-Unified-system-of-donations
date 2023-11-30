@@ -14,12 +14,17 @@ builder.Services.AddHttpClient("Fund", client => {
 	client.BaseAddress = new Uri("http://localhost:5103/FundApi/");
 });
 
+builder.Services.AddHttpClient("Project", client => {
+	client.BaseAddress = new Uri("http://localhost:5103/ProjectApi/");
+});
+
 
 builder.Services.AddScoped<IDonorService, DonorService>();
 builder.Services.AddScoped<IFundService, FundService>();
 builder.Services.AddScoped<IFundImageService, FundImageService>();
 builder.Services.AddScoped<IFundMemberService, FundMemberService>();
 builder.Services.AddScoped<IFundMemberRoleService, FundMemberRoleService>();
+builder.Services.AddScoped<IProjectService, ProjectService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>
