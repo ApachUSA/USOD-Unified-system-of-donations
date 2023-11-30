@@ -1,5 +1,6 @@
 ﻿using Fund_Library.Entity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using USOD.WebASP.Services.Interfaces;
 using WebASP_Library.ViewModel;
 
@@ -38,13 +39,14 @@ namespace USOD.WebASP.Controllers
 			throw new Exception(response.Description);
 		}
 
-		public async Task<IActionResult> FundDetails(int fund_id)
+		[HttpGet]
+		public async Task<IActionResult> FundDetails(int fund_id, bool edit = false)
 		{
 			var response = await _fundService.GetFundByID(fund_id);
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
-			{
+			{				
+				ViewData["Edit"] = edit;
 				var donors = await _donorService.GetInfo(response.Data.Fund_Members.Select(x => x.Donor_ID).ToArray());
-
 				return View(new FundVM
 				{
 					Fund = response.Data,
@@ -71,7 +73,7 @@ namespace USOD.WebASP.Controllers
 			var response = await _fundService.UpdateFund(fund);
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
 			{
-				return RedirectToAction("FundEdit", new { fund_id = fund.Fund_ID });
+				return RedirectToAction("FundDetails", new { fund_id = fund.Fund_ID });
 			}
 			throw new Exception(response.Description);
 		}
