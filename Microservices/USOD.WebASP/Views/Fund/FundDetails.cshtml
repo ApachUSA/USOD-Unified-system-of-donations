@@ -1,16 +1,98 @@
-﻿
-<div class="d-flex flex-column">
+﻿De@model FundVM
 
-	<partial name="_FundHeaderPartial" />
+<form asp-action="FundEdit" asp-controller="Fund">
+	<div class="d-flex flex-column align-items-center">
+		@{
+			var edit = ViewBag.Edit;
+		}
 
-	<div class="tab-content" id="pills-tabContent" style="color: white">
+		<select class="form-control selectpicker" data-live-search="true">
+			<option>Mustard</option>
+			<option>Ketchup</option>
+			<option>Barbecue</option>
+			<option>Barbecue</option>
 
-		<div class="tab-pane fade show active" id="pills-project" role="tabpanel" aria-labelledby="pills-project-tab" tabindex="0">
+		</select>
+
+
+		<partial name="_FundHeaderPartial" />
+
+		<div class="tab-content" id="pills-tabContent" style="color: white; width: 100%">
+
+			@if (!edit)
+			{
+				<div class="tab-pane fade   show active" id="pills-project" role="tabpanel" aria-labelledby="pills-project-tab" tabindex="0">
+				</div>
+
+				<div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab" tabindex="0">
+
+					<partial name="_FundAboutPartial" />
+
+				</div>
+			}
+			else
+			{
+				<div class="tab-pane fade" id="pills-project" role="tabpanel" aria-labelledby="pills-project-tab" tabindex="0">
+				</div>
+
+				<div class="tab-pane fade  show active" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab" tabindex="0">
+
+					<partial name="_FundAboutPartial" />
+
+				</div>
+			}
+
+
 		</div>
 
-		<div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab" tabindex="0">
+		@if (edit)
+		{
+			<button class="main_btn" type="submit" style=" width: 100%; margin: 20px 0; max-width: 50%"><span>Save</span> </button>
+		}
 
-			<partial name="_FundAboutPartial" />
+
+
+	</div>
+</form>
+<div class="modal fade " id="ChangePosterModal" tabindex="-1" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered">
+
+		<div class="modal-content d-flex flex-column justify-content-between align-items-center">
+
+			<input placeholder="Put image url" class="input" id="PosterModalInput" />
+
+			<a class="main_btn" onclick="ChangePoster_Logo('Poster')" style=" width: 100%;" data-bs-dismiss="modal"><span>Save</span> </a>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal fade " id="ChangeLogoModal" tabindex="-1" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered">
+
+		<div class="modal-content d-flex flex-column justify-content-between align-items-center">
+
+			<input placeholder="Put image url" class="input" id="LogoModalInput" />
+
+			<a class="main_btn" onclick="ChangePoster_Logo('Logo')" style=" width: 100%;" data-bs-dismiss="modal"><span>Save</span> </a>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal fade " id="AddFundImage" tabindex="-1" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered">
+
+		<div class="modal-content">
+
+			<partial name="_FundImageCreatePartial" model="new Fund_Image() {Fund_ID = Model.Fund.Fund_ID, Image = string.Empty}" />
 
 		</div>
 
@@ -21,13 +103,155 @@
 <script>
 	$(document).ready(function () {
 		$('[data-bs-toggle="popover"]').popover();
+		$('.selectpicker').selectpicker();
 	});
 </script>
 
+<script>
+	// $(function () {
+	// 	$('.selectpicker').selectpicker();
+	// });
+</script>
+
+<script>
+	function ChangePoster_Logo(type) {
+
+		if (type == "Poster") {
+
+			var url = document.getElementById('PosterModalInput').value;
+
+			var inputElement = document.getElementById('FundPoster');
+
+			var imageElement = document.getElementById('FundPosterImg');
+
+			inputElement.setAttribute('value', url);
+
+			imageElement.src = url;
+		}
+		else {
+
+			var url = document.getElementById('LogoModalInput').value;
+
+			var inputElement = document.getElementById('FundLogo');
+
+			var imageElement = document.getElementById('FundLogoImg');
+
+			inputElement.setAttribute('value', url);
+
+			imageElement.src = url;
+
+		}
+
+	}
+</script>
+
 <style>
+	.bootstrap-select.form-control{
+		background-color: transparent;
+	}
+	.bootstrap-select > .btn{
+		border-radius: 10px;
+		background: #404040;
+		color: white;
+		border: 1px solid transparent;
+	}
 
-	
-	/**/
+	.bootstrap-select > .btn:focus{
+			box-shadow: none;
+	}
 
-	
+		.bootstrap-select > .btn:hover {
+			border: 1px solid green;
+		}
+
+	.bootstrap-select > .dropdown-toggle:after{
+		content: "\F128";
+		display: inline-block;
+		font-family: bootstrap-icons !important;
+		font-style: normal;
+		font-weight: normal !important;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1;
+		vertical-align: -0.125em;
+		-webkit-font-smoothing: antialiased;
+		border: none;
+	}
+
+	.modal-content {
+		padding: 40px 40px;
+		border-radius: 10px;
+		background: #393939;
+		box-shadow: 0px 0px 20px 0px #202020;
+	}
+
+	.bootstrap-select .dropdown-toggle:focus{
+		outline: 0;
+	}
+
+	.bootstrap-select .dropdown-toggle:focus{
+		outline: 0 !important;
+		outline-offset: 0;
+	}
+
+	.bootstrap-select > .dropdown-menu {
+		color: black !important;
+		background-color: #404040 !important;
+		border: none;
+		border-radius: 10px;
+	}
+
+	.bootstrap-select > .dropdown-menu > .inner > .dropdown-menu{
+			background-color: #404040 ;
+			padding: 10px;
+	}
+
+		.bootstrap-select > .dropdown-menu > .inner > .dropdown-menu > li {
+				border-radius: 10px;
+				margin: 10px 0;
+		}
+
+				.bootstrap-select > .dropdown-menu > .inner > .dropdown-menu > li > a {
+					border-radius: 10px;
+					height: 40px;
+					display: flex;
+					align-items: center;
+				}
+
+				.bootstrap-select > .dropdown-menu > .inner > .dropdown-menu > li > a.active {
+						background-color: #383838;
+				}
+
+			.bootstrap-select > .dropdown-menu > .inner > .dropdown-menu > li > a:hover {
+					background-color: #393939;
+			}
+
+		.bootstrap-select > .dropdown-menu > .bs-searchbox > .form-control{
+			border-radius: 10px;
+			background-color: #393939;
+			color: white;
+			width: 100%;
+			border-color: transparent;
+			transition: border 0.2s ease-in-out;
+			height: 40px;
+			/* margin: 10px;*/
+			padding: 10px;
+		}
+
+		.bootstrap-select > .dropdown-menu > .bs-searchbox > .form-control:focus-visible{
+				border: 1.5px solid #7FF66C;
+				outline: none;
+		}
+
+			.bootstrap-select > .dropdown-menu > .bs-searchbox > .form-control:focus {
+				border: 1.5px solid #7FF66C;
+				outline: none;
+				box-shadow: none !important;
+			}
+
+	.bootstrap-select .no-results {
+		background-color: #404040;
+		color: white;
+	}
+
 </style>
