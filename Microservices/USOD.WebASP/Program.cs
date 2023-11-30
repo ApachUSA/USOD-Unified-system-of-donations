@@ -19,6 +19,7 @@ builder.Services.AddScoped<IDonorService, DonorService>();
 builder.Services.AddScoped<IFundService, FundService>();
 builder.Services.AddScoped<IFundImageService, FundImageService>();
 builder.Services.AddScoped<IFundMemberService, FundMemberService>();
+builder.Services.AddScoped<IFundMemberRoleService, FundMemberRoleService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>
