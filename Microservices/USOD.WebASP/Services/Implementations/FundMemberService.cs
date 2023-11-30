@@ -38,26 +38,12 @@ namespace USOD.WebASP.Services.Implementations
 			try
 			{
 				var response = await _httpClient.DeleteAsync($"{ApiControllerName}/{fundMember_id}");
-				return await ApiResponse.ProcessApiResponse<bool>(response);
+				return BaseResponse<bool>.Success(true);
 			}
 			catch (Exception ex)
 			{
 				_logger.LogError("Exception: {ex}", ex.Message);
 				return BaseResponse<bool>.Error(ex.Message);
-			}
-		}
-
-		public async Task<BaseResponse<List<Fund_Member>>> GetList(int fund_id)
-		{
-			try
-			{
-				var response = await _httpClient.GetAsync($"{ApiControllerName}/{fund_id}");
-				return await ApiResponse.ProcessApiResponse<List<Fund_Member>>(response);
-			}
-			catch (Exception ex)
-			{
-				_logger.LogError("Exception: {ex}", ex.Message);
-				return BaseResponse<List<Fund_Member>>.Error(ex.Message);
 			}
 		}
 	}
