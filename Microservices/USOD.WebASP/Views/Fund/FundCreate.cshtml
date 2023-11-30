@@ -1,0 +1,47 @@
+﻿@model Fund
+
+<div class="d-flex flex-column justify-content-between">
+
+	<div class="d-flex flex-row align-items-center">
+
+		<img style="margin:0 20px" src="https://cdn-icons-png.flaticon.com/512/9097/9097164.png" height="80" width="80" />
+
+		<span style="margin: 0 20px; font-family: Univermag; font-size: 40px; color: #7FF66C ">unified system of donations</span>
+
+		<span class="ms-auto" style="margin: 0 20px; font-size: 24px; color: #fff">| fund creating</span>
+
+	</div>
+
+	<form asp-action="FundCreate" asp-controller="Fund" class="d-flex flex-column">
+
+		<input asp-for="Fund_Poster" value="https://img.freepik.com/free-photo/green-grass-nature-field-closeup-backlit-by-golden-sunlight-with-sun-rays-natural-spring-grass-blurred-bokeh-background_90220-1308.jpg?t=st=1701187413~exp=1701191013~hmac=31c01cd0d64445cc58bd85a472d0a389291e9467a39eac35bc55e18502c7e195&w=826" hidden />
+		<input asp-for="Fund_Logo" value="https://img.freepik.com/free-photo/beautiful-green-heart-shape_23-2150864984.jpg?t=st=1701187288~exp=1701190888~hmac=0f5454b6305b8420ee3fb861c5b1f609e12b6ac218cb5948f960255773fd2bfe&w=740" hidden />
+
+		<div class="card d-flex flex-column justify-content-between" style="width: 100%; height: auto; margin:20px; padding: 60px 160px ;">
+
+			<div class="d-flex justify-content-between align-items-center">
+
+				<i style="font-size: 80px; margin-right: 80px; color: white" class="bi bi-bank"></i>
+
+				<input asp-for="Fund_Name" class="input" placeholder="Enter fund`s name" />
+
+			</div>
+
+			<div class="d-flex justify-content-between align-items-center">
+
+				<i style="font-size: 80px; margin-right: 80px; color: white" class="bi bi-person-fill"></i>
+
+				<select class="form-control selectpicker" data-live-search="true" asp-items="ViewBag.DonorList" asp-for="Fund_Members[0].Donor_ID"></select>
+
+			</div>
+
+		</div>
+
+		<div class="d-flex justify-content-around">
+			<a class="main_link" style="max-width: 360px; width: 100%;" asp-action="FundIndex" asp-controller="Fund"><span>Cancel</span> </a>
+
+			<button type="submit"  class="main_btn" style="max-width: 360px;    width: 100%;"><span>Save</span> </button>
+		</div>
+
+	</form>
+</div>
