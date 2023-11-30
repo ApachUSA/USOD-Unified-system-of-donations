@@ -12,6 +12,8 @@ namespace Project_Library.Entity
 
 		public required string Project_Name { get; set; }
 
+		public string? Project_Poster { get; set; }
+
 		public string? Project_Description { get; set;}
 
 		public double Project_Goal {  get; set;}
