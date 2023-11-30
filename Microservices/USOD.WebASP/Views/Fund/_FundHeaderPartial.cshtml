@@ -1,22 +1,56 @@
 ﻿@model FundVM
 
+@{
+	var edit = ViewBag.Edit;
+}
+<input asp-for="Fund.Fund_ID" hidden />
 <div class="dark_card fund_header d-flex flex-column">
 
-	<div class="head_poster">
+	@if (!edit)
+	{
+		<div class="head_poster">
 
-		<img src="@Model.Fund.Fund_Poster" />
+			<img src="@Model.Fund.Fund_Poster" />
 
-	</div>
+		</div>
+	}
+	else
+	{
+		<div class="head_poster image_edit d-flex justify-content-end align-items-end">
+
+			<input asp-for="Fund.Fund_Poster" id="FundPoster"  hidden/>
+
+			<img src="@Model.Fund.Fund_Poster" id="FundPosterImg"/>
+
+			<a class="icon_tool" style="margin: 10px 20px" data-bs-toggle="modal" data-bs-target="#ChangePosterModal"><i class="bi bi-pencil-square"></i></a>
+
+		</div>
+	}
 
 	<div class="head_under d-flex ">
 
 		<div class="logo_container">
 
-			<div class="under_logo">
+			@if (!edit)
+			{
+				<div class="under_logo">
 
-				<img src="@Model.Fund.Fund_Logo" />
+					<img src="@Model.Fund.Fund_Logo" />
 
-			</div>
+				</div>
+			}
+			else
+			{
+				<div class="under_logo image_edit  d-flex justify-content-center align-items-center">
+
+					<input asp-for="Fund.Fund_Logo" id="FundLogo" hidden/>
+
+					<img src="@Model.Fund.Fund_Logo" id="FundLogoImg" />
+
+					<a class="icon_tool" data-bs-toggle="modal" data-bs-target="#ChangeLogoModal"><i class="bi bi-pencil-square"></i></a>
+
+				</div>
+			}
 
 		</div>
 
@@ -24,17 +58,55 @@
 
 			<div class="under_info_name d-flex justify-content-between align-items-center">
 
-				<span class="fund_name">@Model.Fund.Fund_Name</span>
+				@if (!edit)
+				{
+					<span class="fund_name">@Model.Fund.Fund_Name</span>
 
-				<i class="fund_sub bi bi-heart"></i>
+					<i class="fund_sub bi bi-heart"></i>
+				}
+				else
+				{
+					<input asp-for="Fund.Fund_Name" placeholder="Fund name" class="input" />
+
+					<span asp-validation-for="Fund.Fund_Name" class="text-danger"></span>
+				}
 
 			</div>
 
-			<div class="under_info_stat d-flex flex-column">
+			<div class="d-flex  align-items-center">
 
-				<span style="margin-bottom: 10px">Followed by 1110 users</span>
+				<div class="under_info_stat d-flex flex-column">
 
-				<span>Active projects: 6 | Ended projects: 4</span>
+					<span style="margin-bottom: 10px">Followed by 1110 users</span>
+
+					<span>Active projects: 4 | Ended projects: 4</span>
+
+				</div>
+
+				@if (edit)
+				{
+					<div class="d-flex flex-wrap flex-grow-1 justify-content-end w-100">
+
+						@for (int i = 0; i < Model.Fund.Fund_Medias.Count; i++)
+						{
+							<input asp-for="@Model.Fund.Fund_Medias[i].Fund_Media_ID" hidden />
+							<input asp-for="@Model.Fund.Fund_Medias[i].Fund_ID" hidden />
+							<input asp-for="@Model.Fund.Fund_Medias[i].Media_Type_ID" hidden />
+							<div class="d-flex m-2 justify-content-between align-items-center" style="min-width: 260px">
+
+								<div class="info_logo" style="margin-right: 10px">
+
+									<img src="@Model.Fund.Fund_Medias[i].Media_Type?.Media_Type_Image" />
+
+								</div>
+
+								<input asp-for="@Model.Fund.Fund_Medias[i].Fund_Media_URL" placeholder="url" class="input" style="width: auto" />
+
+							</div>
+						}
+
+					</div>
+				}
 
 			</div>
 
@@ -48,40 +120,66 @@
 
 			<li class="nav-item">
 
-				<a class="nav_link active" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" role="tab" aria-controls="pills-project">Projects</a>
+				@if (!edit)
+				{
+					<a class="nav_link active" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" role="tab" aria-controls="pills-project">Projects</a>
+				}
+				else
+				{
+					<a class="nav_link disabled" id="pills-project-tab" data-bs-toggle="pill" data-bs-target="#pills-project" role="tab" aria-controls="pills-project">Projects</a>
+				}
 
 			</li>
 
 			<li class="nav-item">
 
-				<a class="nav_link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" role="tab" aria-controls="pills-about">About</a>
+				@if (!edit)
+				{
+					<a class="nav_link" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" role="tab" aria-controls="pills-about">About</a>
+				}
+				else
+				{
+					<a class="nav_link active" id="pills-about-tab" data-bs-toggle="pill" data-bs-target="#pills-about" role="tab" aria-controls="pills-about">About</a>
+				}
 
 			</li>
 
 			<li class="nav-item">
 
-				<a class="nav_link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" role="tab" aria-controls="pills-contact"><i class="bi bi-gear-fill"></i></a>
+				@if (!edit)
+				{
+					<a class="nav_link" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID" asp-route-edit="true"><i class="bi bi-gear-fill"></i></a>
+				}
+				else
+				{
+					<a class="nav_link" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID">Exit</a>
+				}
 
 			</li>
 
 		</ul>
 
-		<div class="d-flex justify-content-end">
+		@if (!edit)
+		{
+			<div class="d-flex justify-content-end">
 
-			@foreach (var media in Model.Fund.Fund_Medias)
-			{
-				<a href="@media.Fund_Media_URL" target="_blank">
+				@foreach (var media in Model.Fund.Fund_Medias)
+				{
+					<a href="@media.Fund_Media_URL" target="_blank">
 
-					<div class="info_logo">
+						<div class="info_logo">
 
-						<img src="@media.Media_Type?.Media_Type_Image" />
+							<img src="@media.Media_Type?.Media_Type_Image" />
 
-					</div>
+						</div>
 
-				</a>
-			}
+					</a>
+				}
 
-		</div>
+			</div>
+		}
+
+
 
 	</div>
 

@@ -48,6 +48,25 @@ a {
     src: url(/Univermag-Regular.otf);
 }
 
+.icon_tool {
+    color: #fff;
+    font-size: 25px;
+    position: absolute;
+    visibility: hidden;
+}
+
+.image_edit:hover .icon_tool {
+    visibility: visible;
+}
+
+.image_edit > img {
+    transition: 0.4s ease;
+}
+
+.image_edit:hover > img {
+    filter: brightness(30%);
+}
+
 
 
 .card {
@@ -64,7 +83,7 @@ a {
     border-radius: 20px;
     background: #292929;
     box-shadow: 0px 0px 20px 0px #202020;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .input {
@@ -75,7 +94,7 @@ a {
     border-color: transparent;
     transition: border 0.2s ease-in-out;
     height: 40px;
-   /* margin: 10px;*/
+    /* margin: 10px;*/
     padding: 10px;
 }
 
