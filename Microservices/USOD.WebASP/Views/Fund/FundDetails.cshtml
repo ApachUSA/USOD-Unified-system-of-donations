@@ -6,13 +6,7 @@
 			var edit = ViewBag.Edit;
 		}
 
-		<select class="form-control selectpicker" data-live-search="true">
-			<option>Mustard</option>
-			<option>Ketchup</option>
-			<option>Barbecue</option>
-			<option>Barbecue</option>
 
-		</select>
 
 
 		<partial name="_FundHeaderPartial" />
@@ -93,6 +87,20 @@
 		<div class="modal-content">
 
 			<partial name="_FundImageCreatePartial" model="new Fund_Image() {Fund_ID = Model.Fund.Fund_ID, Image = string.Empty}" />
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="modal fade " id="AddFundMember" tabindex="-1" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered">
+
+		<div class="modal-content">
+
+			<partial name="_FundMemberCreatePartial" model="new Fund_Member() {Fund_ID = Model.Fund.Fund_ID}" />
 
 		</div>
 
