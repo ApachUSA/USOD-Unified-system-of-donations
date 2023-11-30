@@ -1,0 +1,10 @@
+﻿@model Fund_Image
+
+<form asp-action="AddImage" asp-controller="FundImage" style="width:100%" class=" d-flex flex-column justify-content-between align-items-center">
+
+	<input asp-for="Fund_ID" hidden />
+
+	<input asp-for="Image" class="input" placeholder="put image url" />
+
+	<button class="main_btn w-100" type="submit"><span>Save</span> </button>
+</form>
