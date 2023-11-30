@@ -46,6 +46,14 @@ namespace USOD.WebASP.Controllers
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
 			{				
 				ViewData["Edit"] = edit;
+				if (edit)
+				{
+					var donor_list = await _donorService.GetList();
+					if(donor_list.StatusCode == System.Net.HttpStatusCode.OK)
+					{
+						ViewData["DonorList"] = new SelectList(donor_list.Data.OrderBy(x => x.Username), "Donor_ID", "Username");
+					}			
+				}
 				var donors = await _donorService.GetInfo(response.Data.Fund_Members.Select(x => x.Donor_ID).ToArray());
 				return View(new FundVM
 				{
