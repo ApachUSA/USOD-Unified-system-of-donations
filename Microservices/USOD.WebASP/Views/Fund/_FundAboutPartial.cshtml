@@ -56,7 +56,7 @@
 				{
 					<div class="about_logo d-flex justify-content-center align-items-center">
 
-						<a class="main_link" style="font-size: 30px"><i class="bi bi-plus-lg"></i></a>
+						<a class="main_link" data-bs-toggle="modal" data-bs-target="#AddFundMember" style="font-size: 30px"><i class="bi bi-plus-lg"></i></a>
 
 					</div>
 				}
@@ -90,7 +90,7 @@
 
 								<img src="@donor.Logo" />
 
-								<a class="icon_tool"><i class="bi bi-trash3-fill"></i></a>
+								<a class="icon_tool" asp-action="DeleteMember" asp-controller="FundMember" asp-route-fund_Member_id="@item.Fund_Member_ID" asp-route-_fund_id="@Model.Fund.Fund_ID"><i class="bi bi-trash3-fill"></i></a>
 
 							</div>
 
