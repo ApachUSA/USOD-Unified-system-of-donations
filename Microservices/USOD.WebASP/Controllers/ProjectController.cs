@@ -7,10 +7,12 @@ namespace USOD.WebASP.Controllers
 	public class ProjectController : Controller
 	{
 		private readonly IProjectService _projectService;
+		private readonly IPaymentTypeService _paymentTypeService;
 
-		public ProjectController(IProjectService projectService)
+		public ProjectController(IProjectService projectService, IPaymentTypeService paymentTypeService)
 		{
 			_projectService = projectService;
+			_paymentTypeService = paymentTypeService;
 		}
 
 		public async Task<IActionResult> ProjectIndex()
@@ -61,7 +63,13 @@ namespace USOD.WebASP.Controllers
 		public async Task<IActionResult> ProjectCreate()
 		{
 			//await GetDonorListData();
-			return View();
+			var response = await _paymentTypeService.GetList();
+			if(response.StatusCode == System.Net.HttpStatusCode.OK)
+			{
+				ViewData["PaymentType"] = response.Data;
+				return View();
+			}
+			throw new Exception(response.Description);
 		}
 
 		[HttpPost]
