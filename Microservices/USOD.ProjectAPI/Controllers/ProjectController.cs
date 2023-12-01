@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Project_Library.Entity;
+using RabbitMQ.Client;
 using USOD.ProjectAPI.Services.Interfaces;
 
 namespace USOD.ProjectAPI.Controllers
@@ -57,7 +58,7 @@ namespace USOD.ProjectAPI.Controllers
 			{
 				await _projectService.CreateAsync(project);
 
-				_messageProducer.SendMessage($"Fund with id[{project.Fund_ID}] publish new project with name {project.Project_Name}");
+				PublicMessage(project);
 
 				return Ok(project);
 			}
@@ -98,6 +99,18 @@ namespace USOD.ProjectAPI.Controllers
 			{
 				_logger.LogError("Exception: {ex}", ex.Message);
 				return BadRequest(ex.Message);
+			}
+		}
+
+		private void PublicMessage(Project project)
+		{
+			try
+			{
+				 _messageProducer.SendMessage($"Fund with id[{project.Fund_ID}] publish new project with name {project.Project_Name}");
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Exception: {ex}", ex.Message);
 			}
 		}
 	}
