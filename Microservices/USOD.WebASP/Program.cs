@@ -28,6 +28,7 @@ builder.Services.AddScoped<IFundMemberRoleService, FundMemberRoleService>();
 
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IPaymentTypeService, PaymentTypeService>();
+builder.Services.AddScoped<IProjectFundService, ProjectFundService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>
