@@ -1,0 +1,450 @@
+﻿@model ProjectVM
+
+@{
+	var Page = ViewBag.Page;
+}
+
+@if (Page == "Create")
+{
+	<input asp-for="@Model.Project.Project_Status_ID" value="1" hidden />
+	<input asp-for="@Model.Project.Fund_ID" value="@ViewBag.FundId" hidden />
+}
+else if (Page == "Edit")
+{
+	<input asp-for="@Model.Project.Project_ID" hidden />
+	<input asp-for="@Model.Project.Project_Status_ID" hidden />
+	<input asp-for="@Model.Project.Fund_ID" hidden />
+}
+
+
+<div class="dark_card project_header_card d-flex flex-column justify-content-between">
+
+	@if (Page == "Create")
+	{
+		<div class="project_poster image_edit d-flex justify-content-end align-items-end">
+
+			@{
+				var image = Model == null ? "https://img.freepik.com/free-photo/sand-dunes-sahara-desert-morocco-3d-rendering_1142-50545.jpg?t=st=1701187790~exp=1701191390~hmac=160a71f61da29dee22d3975d0c3fe5f4b4aa3fe2754c388e98ba0d998ef35936&w=826" : Model.Project.Project_Poster;
+			}
+
+			<img id="ProjectPosterImg" src="@image" />
+
+			<input asp-for="Project.Project_Poster" value="@image" hidden id="ProjectPoster" />
+
+			<a class="icon_tool" style="margin: 10px 20px" data-bs-toggle="modal" data-bs-target="#ChangePosterModal"><i class="bi bi-pencil-square"></i></a>
+
+
+		</div>
+	}
+	else if (Page == "Edit")
+	{
+		<div class="project_poster image_edit d-flex justify-content-end align-items-end">
+
+			@{
+				var image = Model == null ? "https://img.freepik.com/free-photo/sand-dunes-sahara-desert-morocco-3d-rendering_1142-50545.jpg?t=st=1701187790~exp=1701191390~hmac=160a71f61da29dee22d3975d0c3fe5f4b4aa3fe2754c388e98ba0d998ef35936&w=826" : Model.Project.Project_Poster;
+			}
+
+			<img id="ProjectPosterImg" src="@image" />
+
+			<input asp-for="Project.Project_Poster" value="@image" hidden id="ProjectPoster" />
+
+
+			<a class="icon_tool" style="margin: 10px 20px" data-bs-toggle="modal" data-bs-target="#ChangePosterModal"><i class="bi bi-pencil-square"></i></a>
+
+		</div>
+
+		<div class="project_funds d-flex">
+
+			<div class="owner_logo align-self-center">
+
+				<img src="@Model.FundOwner?.Fund_Logo" />
+
+			</div>
+
+			<i class="bi bi-x" style="font-size: 40px; margin-left: 10px; color: white; margin-top: -30px;"></i>
+
+			<div class="coop_logo d-flex justify-content-center align-items-center">
+
+				<a class="main_link" data-bs-toggle="modal" data-bs-target="#AddProjectCoop" style="font-size: 30px"><i class="bi bi-plus-lg"></i></a>
+
+			</div>
+
+			@if (Model.FundCoop != null)
+			{
+				@foreach (var fund in Model.FundCoop)
+				{
+					<div class="coop_logo image_edit d-flex justify-content-center align-items-center">
+
+						<img src="@fund.Fund_Logo" />
+
+						<a class="icon_tool" asp-action="DeleteCoop" asp-controller="ProjectFund" asp-route-fund_id="@fund.Fund_ID" asp-route-project_id="@Model.Project.Project_ID"><i class="bi bi-trash3-fill"></i></a>
+
+					</div>
+				}
+			}
+
+		</div>
+	}
+	else
+	{
+		<div class="project_poster d-flex justify-content-end align-items-end">
+
+			@{
+				var image = Model == null ? "https://img.freepik.com/free-photo/sand-dunes-sahara-desert-morocco-3d-rendering_1142-50545.jpg?t=st=1701187790~exp=1701191390~hmac=160a71f61da29dee22d3975d0c3fe5f4b4aa3fe2754c388e98ba0d998ef35936&w=826" : Model.Project.Project_Poster;
+			}
+
+			<img id="ProjectPosterImg" src="@image" />
+
+		</div>
+
+		<div class="project_funds d-flex">
+
+			<div class="owner_logo align-self-center">
+
+				<img src="@Model.FundOwner?.Fund_Logo" />
+
+			</div>			
+
+			@if (Model.FundCoop != null)
+			{
+				<i class="bi bi-x" style="font-size: 40px; margin: 0 10px; color: white; margin-top: -30px;"></i>
+
+				@foreach (var fund in Model.FundCoop)
+				{
+					<div class="coop_logo d-flex justify-content-center align-items-center">
+
+						<img src="@fund.Fund_Logo" />
+
+					</div>
+				}
+			}
+
+		</div>
+	}
+
+	<div class="project_info_group d-flex flex-fill justify-content-between">
+
+		@if (Page == "Create" || Page == "Edit")
+		{
+			<div class="d-flex flex-column flex-fill justify-content-between" style="margin-right: 20px">
+
+				<input asp-for="Project.Project_Name" class="input project_name" placeholder="Enter name of the project" />
+
+				<textarea asp-for="Project.Project_Description" class="input project_description" placeholder="Type the information about the project to let people know more about it"></textarea>
+
+			</div>
+		}
+		else
+		{
+			<div class="d-flex flex-column flex-fill justify-content-between" style="margin-right: 80px">
+
+				<span class="project_name">@Model.Project.Project_Name</span>
+
+				<span class="project_description">@Model.Project.Project_Description</span>
+
+			</div>
+		}
+
+		<div class="payment_card d-flex flex-column flex-fill justify-content-between">
+
+			<div class="card d-flex flex-column h-auto" style="padding: 20px;">
+
+				@if (Page == "Edit")
+				{
+					<div class="project_goal d-flex flex-wrap align-items-center justify-content-between">
+
+						<span>Goal:</span>
+
+						<div>
+
+							<span style="margin-right: 10px">$</span>
+
+							<input asp-for="Project.Project_Goal" class="input" placeholder="Enter a goal sum" style="	max-width: 160px;" />
+
+						</div>
+
+					</div>
+
+					@for (int i = 0; i < Model.Project.Project_Payments?.Count; i++)
+					{
+						<input asp-for="@Model.Project.Project_Payments[i].Project_Payment_ID" hidden />
+						<input asp-for="@Model.Project.Project_Payments[i].Payment_Type_ID" hidden />
+						<input asp-for="@Model.Project.Project_Payments[i].Project_ID" hidden />
+						<div class="payment_method d-flex align-items-center">
+
+							<div class="payment_img">
+
+								<img src="@Model.Project.Project_Payments[i]?.Payment_Type?.Payment_Type_Image" />
+
+							</div>
+
+							<input asp-for="@Model.Project.Project_Payments[i].Payment_URL" class="input" placeholder="https//:" />
+
+						</div>
+					}
+				}
+				else if (Page == "Create")
+				{
+					<div class="project_goal d-flex flex-wrap align-items-center justify-content-between">
+
+						<span>Goal:</span>
+
+						<div>
+
+							<span style="margin-right: 10px">$</span>
+
+							<input asp-for="Project.Project_Goal" class="input" placeholder="Enter a goal sum" style="	max-width: 160px;" />
+
+						</div>
+
+					</div>
+
+					List<Payment_Type> paymentTypes = ViewBag.PaymentType;
+
+					@for (int i = 0; i < paymentTypes.Count; i++)
+					{
+						<div class="payment_method d-flex align-items-center">
+
+							<input asp-for="Project.Project_Payments[i].Payment_Type_ID" value="@paymentTypes[i].Payment_Type_ID" hidden />
+
+							<div class="payment_img">
+
+								<img src="@paymentTypes[i].Payment_Type_Image" />
+
+							</div>
+
+							<input asp-for="Project.Project_Payments[i].Payment_URL" class="input" placeholder="https//:" />
+
+						</div>
+					}
+				}
+				else
+				{
+					<div class="project_goal d-flex flex-wrap align-items-center justify-content-between" style="font-size: 14px; font-weight: 400; height: 20px; margin-bottom: 20px;">
+
+						<a style="font-size: 20px" asp-action="ProjectDetails" asp-controller="Project" asp-route-project_id="@Model.Project.Project_ID" asp-route-page="Edit"><i class="bi bi-pencil-square"></i></a>
+
+						<span>@Model.Project.Project_Status?.Project_Status_Name</span>
+
+					</div>
+
+					<div class="project_goal d-flex flex-wrap align-items-center justify-content-between">
+
+						<span>Collected:</span>
+
+						<div>
+
+							<span style="margin-right: 10px">$</span>
+
+							<span placeholder="Enter a goal sum">@Model.Project.Project_Current_Sum</span>
+
+						</div>
+
+					</div>
+
+					<div class="project_goal d-flex flex-wrap align-items-center justify-content-between">
+
+						<span>Goal:</span>
+
+						<div>
+
+							<span style="margin-right: 10px">$</span>
+
+							<span placeholder="Enter a goal sum">@Model.Project.Project_Goal</span>
+
+						</div>
+
+					</div>
+
+					<div class="project_goal d-flex flex-wrap align-items-center justify-content-between">
+
+						<span>Progress:</span>
+
+						<div class="progress goal_progress flex-fill" style="" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+
+							<div class="progress-bar bg-success" style="width: 25%">25%</div>
+
+						</div>
+
+					</div>
+
+					<div class="d-flex justify-content-center align-items-center">
+
+						@for (int i = 0; i < Model.Project.Project_Payments?.Count; i++)
+						{
+							<div class="payment_method d-flex align-items-center">
+
+								<div class="payment_img">
+
+									<img src="@Model.Project.Project_Payments[i]?.Payment_Type?.Payment_Type_Image" />
+
+								</div>
+
+							</div>
+						}
+
+					</div>
+				}
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<div class="modal fade " id="ChangePosterModal" tabindex="-1" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered">
+
+		<div class="modal-content d-flex flex-column justify-content-between align-items-center">
+
+			<input placeholder="Put image url" class="input" id="PosterModalInput" />
+
+			<a class="main_btn" onclick="ChangePoster_Logo('Poster')" style=" width: 100%;" data-bs-dismiss="modal"><span>Save</span> </a>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+
+<script>
+
+	function ChangePoster_Logo(type) {
+
+		var url = document.getElementById('PosterModalInput').value;
+
+		var inputElement = document.getElementById('ProjectPoster');
+
+		var imageElement = document.getElementById('ProjectPosterImg');
+
+		inputElement.setAttribute('value', url);
+
+		imageElement.src = url;
+
+
+	}
+
+</script>
+
+<style>
+
+	.project_header_card {
+		height: auto;
+		width: 100%;
+		margin-bottom: 40px;
+	}
+
+	.project_poster {
+		max-height: 200px;
+		width: 100%;
+		overflow: hidden;
+	}
+
+		.project_poster > img {
+			max-height: 200px;
+			width: 100%;
+			object-fit: cover;
+		}
+
+	.project_funds {
+		z-index: 2;
+	}
+
+	.owner_logo {
+		width: 180px;
+		height: 180px;
+		border-radius: 100000px;
+		overflow: hidden;
+		margin-top: -120px;
+		margin-left: 20px;
+	}
+
+		.owner_logo > img {
+			width: 180px;
+			height: 180px;
+			object-fit: cover;
+		}
+
+	.coop_logo {
+		width: 80px;
+		height: 80px;
+		border-radius: 100000px;
+		overflow: hidden;
+		margin-top: -40px;
+		margin-left: 10px;
+		background: #404040;
+	}
+
+		.coop_logo > img {
+			width: 80px;
+			height: 80px;
+			object-fit: cover;
+		}
+
+	.project_info_group {
+		margin: 10px 20px 20px 20px;
+	}
+
+	.project_name {
+		font-family: Univermag;
+		font-size: 40px;
+		margin-bottom: 20px;
+		color: #7FF66C;
+	}
+
+	.project_description {
+		height: 100%;
+		margin-bottom: 20px;
+		color: white;
+		text-align: justify;
+	}
+
+	.payment_card {
+		margin-left: 20px;
+		min-width: 360px;
+		margin-bottom: 20px;
+	}
+
+	.project_goal {
+		font-family: Montserrat;
+		font-size: 14px;
+		font-weight: 700;
+		color: white;
+		height: 40px;
+		margin-bottom: 10px;
+	}
+
+	.payment_method {
+		margin-top: 10px;
+	}
+
+	.payment_img {
+		width: 30px;
+		height: 30px;
+		border-radius: 5px;
+		margin-right: 10px;
+		overflow: hidden;
+	}
+
+		.payment_img > img {
+			width: 30px;
+			height: 30px;
+			object-fit: cover;
+		}
+
+	.goal_progress {
+		height: 30px;
+		margin-left: 20px;
+		color: white;
+		background: transparent;
+		border-radius: 10px;
+		border: 1px solid #292929;
+	}
+</style>
