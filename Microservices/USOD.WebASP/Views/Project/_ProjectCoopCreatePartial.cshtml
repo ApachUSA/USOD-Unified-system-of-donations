@@ -1,0 +1,11 @@
+﻿@model Project_Fund
+
+<form asp-action="AddCoop" asp-controller="ProjectFund" style="width:100%" class=" d-flex flex-column justify-content-between align-items-center">
+
+	<input asp-for="Project_ID" hidden />
+
+	<select class="form-control selectpicker" data-live-search="true" asp-items="ViewBag.FundList" asp-for="Fund_ID"></select>
+
+	<button class="main_btn w-100" type="submit"><span>Save</span> </button>
+
+</form>
