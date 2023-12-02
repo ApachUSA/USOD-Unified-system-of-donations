@@ -1,0 +1,237 @@
+﻿@model ProjectVM
+
+@{
+	bool index = ViewBag.Index;
+}
+
+<div class="card project_card d-flex flex-column  justify-content-between">
+
+	<div class="d-flex flex-column">
+
+		<div class="text-end" style="color: white">
+
+			<span>@Model.Project.Project_Status?.Project_Status_Name</span>
+
+		</div>
+
+		<div class="project_name text-center">
+
+			<span>@Model.Project.Project_Name</span>
+
+		</div>
+
+		<div class="project_card_poster">
+
+			<img src="@Model.Project.Project_Poster" />
+
+		</div>
+
+		<div class="project_card_tags d-flex align-items-center">
+
+			<span style="margin-left: 10px;">Tags:</span>
+
+			@{
+				var tags = Model.Project.Project_Cards?.Select(x => x.Item_Tag?.Item_Tag_Name).Distinct().ToList();
+			}
+
+
+			@foreach (var tag in tags)
+			{
+				<div class="tag_image">
+
+					<img src="@tag" />
+
+				</div>
+			}
+
+
+
+		</div>
+
+		<div class="project_info d-flex align-items-center justify-content-between">
+
+			<div class="info_text">
+
+				<span>Goal:</span>
+
+			</div>
+
+			<div class="goal_sum">
+
+				<span>@Model.Project.Project_Goal</span>
+
+			</div>
+
+		</div>
+
+		<div class="project_info d-flex align-items-center justify-content-between">
+
+			<div class="info_text">
+
+				<span>Collected:</span>
+
+			</div>
+
+			<div class="goal_sum">
+
+				<span>@Model.Project.Project_Current_Sum ₴</span>
+
+			</div>
+
+		</div>
+
+		@if (index)
+		{
+			<div class="project_info d-flex align-items-center">
+
+				<div class="info_text">
+
+					<span>Cooperation:</span>
+
+				</div>
+
+				<div class="info_avatar">
+
+					<a asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.FundOwner?.Fund_ID" target="_blank"><img src="@Model.FundOwner?.Fund_Logo" /></a>
+
+				</div>
+
+				@if (Model.FundCoop != null)
+				{
+					<div class="d-flex justify-content-center" style="color:white">
+
+						<span style="font-size: 16px">x</span>
+
+					</div>
+
+					@foreach (var fund in Model.FundCoop)
+					{
+						<div class="info_avatar">
+
+							<a asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@fund.Fund_ID" target="_blank"><img src="@fund.Fund_Logo" /></a>
+
+						</div>
+					}
+				}
+
+			</div>
+		}
+		else
+		{
+			@if (Model.FundCoop != null)
+			{
+
+				<div class="project_info d-flex align-items-center">
+
+					<div class="info_text">
+
+						<span>Cooperation:</span>
+
+					</div>
+
+					@foreach (var fund in Model.FundCoop)
+					{
+						<div class="info_avatar">
+
+							<a asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@fund.Fund_ID" target="_blank"><img src="@fund.Fund_Logo" /></a>
+
+						</div>
+					}
+
+				</div>
+			}
+		}
+
+	</div>
+
+
+
+	<a class="main_btn" asp-action="ProjectDetails" asp-controller="Project" asp-route-project_id="@Model.Project.Project_ID" style="width: 100%; margin: 0"><span style="font-size: 14px">View details</span> </a>
+
+</div>
+
+<style>
+	.project_card {
+		height: 450px;
+		max-width: 360px;
+		width: 100%;
+		padding: 10px;
+		margin: 20px;
+	}
+
+	.project_name {
+		color: #7FF66C;
+		font-family: Univermag;
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+
+	.project_card_poster {
+		height: 130px;
+		width: 100%;
+		border-radius: 10px;
+		overflow: hidden;
+		margin-bottom: 10px;
+	}
+
+		.project_card_poster > img {
+			height: 130px;
+			width: 100%;
+			object-fit: cover;
+		}
+
+	.project_card_tags {
+		margin-bottom: 10px;
+		font-size: 14px;
+		font-family: Montserrat;
+		color: white;
+	}
+
+	.tag_image {
+		width: 30px;
+		height: 30px;
+		margin: 0 10px;
+	}
+
+		.tag_image > img {
+			width: 30px;
+			height: 30px;
+		}
+
+	.project_info {
+		height: 40px;
+		width: 100%;
+		padding: 5px 10px;
+		border-radius: 10px;
+		background-color: #404040;
+		margin: 0 0 10px 0;
+	}
+
+	.info_text {
+		font-size: 14px;
+		max-width: 95px;
+		width: 100%;
+		color: #fff;
+		font-family: Montserrat;
+	}
+
+	.goal_sum {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+
+	.info_avatar {
+		width: 30px;
+		height: 30px;
+		margin: 0 10px;
+		border-radius: 10000px;
+		overflow: hidden;
+	}
+
+		.info_avatar > a > img {
+			width: 30px;
+			height: 30px;
+			object-fit: cover;
+		}
+</style>
