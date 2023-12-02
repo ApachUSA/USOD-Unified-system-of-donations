@@ -62,6 +62,20 @@ namespace USOD.WebASP.Services.Implementations
 			}
 		}
 
+		public async Task<BaseResponse<List<Project>>> GetPojectByFund(int fund_id)
+		{
+			try
+			{
+				var response = await _httpClient.GetAsync($"{ApiControllerName}/GetByFund/{fund_id}");
+				return await ApiResponse.ProcessApiResponse<List<Project>>(response);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Exception: {ex}", ex.Message);
+				return BaseResponse<List<Project>>.Error(ex.Message);
+			}
+		}
+
 		public async Task<BaseResponse<Project>> GetPojectByID(int project_id)
 		{
 			try

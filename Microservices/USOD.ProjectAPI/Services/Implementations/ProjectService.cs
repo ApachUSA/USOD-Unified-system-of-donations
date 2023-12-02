@@ -50,22 +50,43 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 		public async Task<List<Project>> Get()
 		{
-			return await _projectRepository.Get().ToListAsync();
+			return await _projectRepository.Get()
+				.Include(x => x.Project_Cards)
+				.ThenInclude(x => x.Item_Tag)
+				.Include(x => x.Project_Status)
+				.ToListAsync();
+		}
+
+		public async Task<List<Project>> GetByFundAsync(int fund_id)
+		{
+			return await _projectRepository.Get()
+				.Include(x => x.Project_Cards)
+				.ThenInclude(x => x.Item_Tag)
+				.Include(x => x.Project_Status)
+				.Where(x => x.Fund_ID == fund_id)
+				.ToListAsync();
 		}
 
 		public async Task<Project?> GetByIdAsync(int project_id)
 		{
 			return await _projectRepository.Get()
 				.Include(x => x.Project_Cards)
+				.ThenInclude(x => x.Card_Images)
 				.Include(x => x.Project_Status)
 				.Include(x => x.Project_Payments)
+				.ThenInclude(x => x.Payment_Type)
 				.Include(x => x.Project_Report)
 				.FirstOrDefaultAsync(x => x.Project_ID == project_id);
 		}
 
 		public async Task<List<Project>> GetByIdAsync(int[] project_ids)
 		{
-			return await _projectRepository.Get().Where(x => project_ids.Contains(x.Project_ID)).ToListAsync();
+			return await _projectRepository.Get()
+				.Include(x => x.Project_Cards)
+				.ThenInclude(x => x.Item_Tag)
+				.Include(x => x.Project_Status)
+				.Where(x => project_ids.Contains(x.Project_ID))
+				.ToListAsync();
 		}
 
 		public async Task<Project> UpdateAsync(Project project)

@@ -51,6 +51,16 @@ namespace USOD.ProjectAPI.Controllers
 			return Ok(project);
 		}
 
+		[HttpGet("GetByFund/{fund_id}")]
+		public async Task<IActionResult> GetByFund(int fund_id)
+		{
+			var project = await _projectService.GetByFundAsync(fund_id);
+
+			if (!project.Any()) return NotFound();
+
+			return Ok(project);
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Project project)
 		{
