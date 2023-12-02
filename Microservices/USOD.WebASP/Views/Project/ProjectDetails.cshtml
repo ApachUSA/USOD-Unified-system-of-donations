@@ -1,0 +1,243 @@
+﻿@model ProjectVM
+
+@{
+	var Page = ViewBag.Page;
+}
+
+<form asp-action="ProjectEdit" asp-controller="Project">
+	<div class="d-flex flex-column align-items-center">
+
+		<partial name="_ProjectHeadPartial" />
+
+		@if (Page == "Edit")
+		{
+			<div class="d-flex justify-content-around align-items-center w-100">
+
+				<a class="main_link" style="max-width: 360px; width: 100%;" asp-action="ProjectDetails" asp-controller="Project" asp-route-project_id="@Model.Project.Project_ID" asp-route-page="Index"><span>Cancel</span> </a>
+
+				<button type="submit" class="main_btn" style="max-width: 360px; width: 100%;"><span>Save</span> </button>
+
+			</div>
+
+		}
+
+		<div class="d-flex justify-content-center">
+
+			<div class="card project_item_card d-flex flex-column align-items-center">
+
+				<div class="card_btn_group d-flex w-100 align-items-center">
+
+					<img class="tag_icon" src="https://cdn-icons-png.flaticon.com/512/2378/2378409.png" style="position: absolute" />
+
+					<ul class="head_nav nav nav-pills mx-auto" id="pills-tab">
+
+						<li class="nav-item">
+
+							<a class="nav_link active" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" role="tab" aria-controls="pills-image">Image </a>
+
+						</li>
+
+						<li class="nav-item">
+
+							<a class="nav_link disabled ms-2 me-2" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" role="tab" aria-controls="pills-image"> | </a>
+
+						</li>
+
+						<li class="nav-item">
+
+							<a class="nav_link" id="pills-video-tab" data-bs-toggle="pill" data-bs-target="#pills-video" role="tab" aria-controls="pills-video"> Video</a>
+
+						</li>
+					</ul>
+
+				</div>
+
+				<div class="card_content d-flex w-100 align-items-center">
+
+					<div class="tab-content" id="pills-tabContent" style="color: white; width: 100%">
+
+						<div class="tab-pane fade show active w-100" id="pills-image" role="tabpanel" aria-labelledby="pills-image-tab" tabindex="0">
+
+							<div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center w-100">
+								<div class="d-flex flex-column align-items-center w-100">
+
+									<div class="d-flex w-100">
+
+										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<div class="gallery_img">
+													<img src="https://financialexpresswpcontent.s3.amazonaws.com/uploads/2021/07/Tata-nexon-Dark-620x413.jpg">
+												</div>
+											</div>
+											<div class="carousel-item ">
+												<div class="gallery_img">
+													<img src="https://financialexpresswpcontent.s3.amazonaws.com/uploads/2021/07/Tata-nexon-Dark-620x413.jpg">
+												</div>
+											</div>
+											<div class="carousel-item ">
+												<div class="gallery_img">
+													<img src="https://financialexpresswpcontent.s3.amazonaws.com/uploads/2021/07/Tata-nexon-Dark-620x413.jpg">
+												</div>
+											</div>
+										</div>
+
+										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+
+									</div>
+
+									<div class="carousel-indicators">
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="tab-pane fade  w-100" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab" tabindex="0">
+
+							<div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center w-100">
+								<div class="d-flex flex-column align-items-center w-100">
+
+									<div class="d-flex w-100">
+
+										<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Previous</span>
+										</button>
+
+										<div class="carousel-inner">
+											<div class="carousel-item active">
+												<div class="gallery_img">
+													<iframe width="240" height="130" src="https://www.youtube.com/embed/OPhN_JehK30?si=WoF_h_rqAXKLH_NF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+												</div>
+											</div>
+											<div class="carousel-item ">
+												<div class="gallery_img">
+													<img src="https://financialexpresswpcontent.s3.amazonaws.com/uploads/2021/07/Tata-nexon-Dark-620x413.jpg">
+												</div>
+											</div>
+											<div class="carousel-item ">
+												<div class="gallery_img">
+													<img src="https://financialexpresswpcontent.s3.amazonaws.com/uploads/2021/07/Tata-nexon-Dark-620x413.jpg">
+												</div>
+											</div>
+										</div>
+
+										<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+											<span class="carousel-control-next-icon" aria-hidden="true"></span>
+											<span class="visually-hidden">Next</span>
+										</button>
+
+									</div>
+
+									<div class="carousel-indicators">
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+										<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+									</div>
+
+								</div>
+
+
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+
+	</div>
+</form>
+
+<div class="modal fade " id="AddProjectCoop" tabindex="-1" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered">
+
+		<div class="modal-content">
+
+			<partial name="_ProjectCoopCreatePartial" model="new Project_Fund() {Project_ID = Model.Project.Project_ID}" />
+
+		</div>
+
+	</div>
+
+</div>
+
+<style>
+	.project_item_card {
+		height: 450px;
+		width: 360px;
+		padding: 10px;
+		margin: 20px;
+	}
+
+	.card_btn_group {
+		margin-bottom: 10px;
+	}
+
+	.tag_icon {
+		width: 40px;
+		height: 40px;
+	}
+
+	.nav_link {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+
+		.nav_link:hover {
+			font-weight: 700;
+			color: #7FF66C !important;
+		}
+
+		.nav_link.active {
+			font-weight: 700;
+			color: #7FF66C !important;
+		}
+
+	.carousel-control-next, .carousel-control-prev {
+		width: 20%;
+		position: relative !important;
+	}
+
+	.gallery_img {
+		width: 100%;
+		height: 130px;
+		border-radius: 10px;
+		overflow: hidden;
+		background-color: #404040;
+	}
+
+		.gallery_img img {
+			width: 100%;
+			height: 130px;
+			object-fit: cover;
+		}
+
+	.carousel-indicators {
+		position: relative;
+	}
+</style>
