@@ -1,2 +1,17 @@
-﻿
+﻿@model List<ProjectVM>
+
+<div class="container d-flex flex-column align-content-center">
+
+	<partial name="_SearchPartial" />
+
+	<div class="d-flex flex-wrap flex-grow-1 justify-content-center">
+
+		@foreach (var item in Model)
+		{
+			<partial name="_ProjectCardPartial" model="@item" />
+		}
+
+	</div>
+
+</div>
 
