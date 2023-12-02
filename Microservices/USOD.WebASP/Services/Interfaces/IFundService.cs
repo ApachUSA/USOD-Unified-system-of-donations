@@ -10,6 +10,8 @@ namespace USOD.WebASP.Services.Interfaces
 
 		Task<BaseResponse<Fund>> GetFundByID(int fund_id);
 
+		Task<BaseResponse<List<Fund>>> GetFundByID(int[] fund_ids);
+
 		Task<BaseResponse<Fund>> CreateFund(Fund fund);
 
 		Task<BaseResponse<Fund>> UpdateFund(Fund fund);

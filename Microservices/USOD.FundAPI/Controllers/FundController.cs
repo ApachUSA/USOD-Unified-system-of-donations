@@ -38,6 +38,16 @@ namespace USOD.FundAPI.Controllers
 			return Ok(fund);
 		}
 
+		[HttpGet("GetByIds")]
+		public async Task<IActionResult> GetByIds([FromQuery] int[] fund_ids)
+		{
+			var fund = await _fundService.GetByIdAsync(fund_ids);
+
+			if (!fund.Any()) return NotFound();
+
+			return Ok(fund);
+		}
+
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Fund fund)
 		{

@@ -60,6 +60,16 @@ namespace USOD.FundAPI.Services.Implementations
 				.FirstOrDefaultAsync(x => x.Fund_ID == fund_id);
 		}
 
+		public async Task<List<Fund>> GetByIdAsync(int[] fund_ids)
+		{
+			return await _fundRepository.Get()
+				.Include(x => x.Fund_Medias)
+				.ThenInclude(x => x.Media_Type)
+				.Include(x => x.Fund_Members)
+				.Where(x => fund_ids.Contains(x.Fund_ID))
+				.ToListAsync();
+		}
+
 		public async Task<Fund> UpdateAsync(Fund fund)
 		{
 			await _fundRepository.Update(fund);

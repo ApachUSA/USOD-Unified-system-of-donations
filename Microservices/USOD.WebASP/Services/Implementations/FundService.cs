@@ -1,4 +1,5 @@
 ﻿using Donor_Library.Entity;
+using Donor_Library.ViewModel;
 using Fund_Library.Entity;
 using USOD.WebASP.Services.Interfaces;
 using WebASP_Library.Response;
@@ -58,6 +59,19 @@ namespace USOD.WebASP.Services.Implementations
 			{
 				_logger.LogError("Exception: {ex}", ex.Message);
 				return BaseResponse<Fund>.Error(ex.Message);
+			}
+		}
+
+		public async Task<BaseResponse<List<Fund>>> GetFundByID(int[] fund_ids)
+		{
+			try
+			{
+				var response = await _httpClient.GetAsync($"{ApiControllerName}/GetByIds?{string.Join("&", fund_ids.Select(id => $"fund_ids={id}"))}");
+				return await ApiResponse.ProcessApiResponse<List<Fund>>(response);
+			}
+			catch (Exception ex)
+			{
+				return BaseResponse<List<Fund>>.Error(ex.Message);
 			}
 		}
 
