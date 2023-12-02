@@ -12,12 +12,16 @@ namespace USOD.WebASP.Controllers
 		private readonly IFundService _fundService;
 		private readonly IDonorService _donorService;
 		private readonly IFundMemberRoleService _memberRoleService;
+		private readonly IProjectService _projectService;
+		private readonly IProjectFundService _projectFundService;
 
-		public FundController(IFundService fundService, IDonorService donorService, IFundMemberRoleService memberRoleService)
+		public FundController(IFundService fundService, IDonorService donorService, IFundMemberRoleService memberRoleService, IProjectService projectService, IProjectFundService projectFundService)
 		{
 			_fundService = fundService;
 			_donorService = donorService;
 			_memberRoleService = memberRoleService;
+			_projectService = projectService;
+			_projectFundService = projectFundService;
 		}
 
 		public async Task<IActionResult> FundIndex()
@@ -47,18 +51,39 @@ namespace USOD.WebASP.Controllers
 		{
 			var response = await _fundService.GetFundByID(fund_id);
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
-			{				
+			{
 				ViewData["Edit"] = edit;
-				if (edit)
-				{
-					await GetDonorListData();		
-				}
+				if (edit) await GetDonorListData();
+
 				var donors = await _donorService.GetInfo(response.Data.Fund_Members.Select(x => x.Donor_ID).ToArray());
-				return View(new FundVM
+				FundVM fundVM = new()
 				{
 					Fund = response.Data,
 					Fund_Members = donors.StatusCode == System.Net.HttpStatusCode.OK ? donors.Data : null
-				});
+				};
+
+				var projects = await _projectService.GetPojectByFund(fund_id);
+				if (projects.StatusCode == System.Net.HttpStatusCode.OK)
+				{
+					
+					var tasks = projects.Data.Select(async project =>
+					{
+						var projectVM = new ProjectVM() {Project = project };
+
+						var fund_coops = await _projectFundService.GetByProjectIdAsync(project.Project_ID);
+						if(fund_coops.StatusCode == System.Net.HttpStatusCode.OK)
+						{
+							var funds = await _fundService.GetFundByID(fund_coops.Data.Select(x => x.Fund_ID).ToArray());
+							projectVM.FundCoop = funds.StatusCode == System.Net.HttpStatusCode.OK ? funds.Data : null;
+						}
+
+						return projectVM;
+					});
+					fundVM.Projects = (await Task.WhenAll(tasks)).ToList();
+
+				}
+				ViewData["Index"] = false;
+				return View(fundVM);
 			}
 			throw new Exception(response.Description);
 		}
@@ -86,7 +111,7 @@ namespace USOD.WebASP.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> FundCreate() 
+		public async Task<IActionResult> FundCreate()
 		{
 			await GetDonorListData();
 			return View();
