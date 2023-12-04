@@ -29,6 +29,12 @@ builder.Services.AddScoped<IFundMemberRoleService, FundMemberRoleService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IPaymentTypeService, PaymentTypeService>();
 builder.Services.AddScoped<IProjectFundService, ProjectFundService>();
+builder.Services.AddScoped<IReportImageService, ReportImageService>();
+
+builder.Services.AddScoped<IProjectCardService, ProjectCardService>();
+builder.Services.AddScoped<ICardImageService, CardImageService>();
+builder.Services.AddScoped<ICardVideoService, CardVideoService>();
+builder.Services.AddScoped<IItemTagService, ItemTagService>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(options =>
