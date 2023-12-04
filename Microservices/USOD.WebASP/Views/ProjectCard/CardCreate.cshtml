@@ -1,0 +1,55 @@
+﻿@model Project_Card
+
+<form asp-action="CardCreate" asp-controller="ProjectCard">
+
+	<div class="d-flex flex-column align-items-center">
+
+		<div class="dark_card d-flex w-100 justify-content-center align-items-center" style="padding: 40px; height: 360px; overflow: visible">
+
+			<input asp-for="Project_ID" value="@ViewBag.ProjectId" hidden />
+
+			<div class="card d-flex flex-row w-100 justify-content-between align-items-center" style="padding: 40px; height: 280px">
+
+				<i class="bi bi-clipboard-data" style="font-size: 120px; margin-right: 40px; color: white"></i>
+
+				<div class="d-flex h-100 w-75 flex-column" style="margin-right: 40px">
+
+					<input asp-for="Project_Card_Title" class="input" placeholder="Enter name of the project`s component" style="margin-bottom: 20px" />
+
+					<textarea asp-for="Project_Card_Description" class="input h-100" placeholder="Enter description about the component"></textarea>
+
+				</div>
+
+				<div class="d-flex h-100 w-25 flex-column">
+
+					<select asp-for="Item_Tag_ID" class="form-control selectpicker" data-live-search="true" asp-items="ViewBag.ItemTags" title="Choose one of the following..." style="margin-bottom: 20px;"></select>
+
+					<textarea asp-for="Project_Card_URL" class="input h-100" placeholder="Enter description about the component"></textarea>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="d-flex justify-content-around align-items-center w-100">
+
+			<a class="main_link" style="max-width: 360px; width: 100%;" asp-action="ProjectDetails" asp-controller="Project" asp-route-project_id="@ViewBag.ProjectId" asp-route-page="Index"><span>Cancel</span> </a>
+
+			<button type="submit" class="main_btn" style="max-width: 360px; width: 100%;"><span>Save</span> </button>
+
+		</div>
+
+	</div>
+
+</form>
+
+<style>
+	.bootstrap-select {
+		margin-bottom: 20px !important;
+	}
+
+		.bootstrap-select.form-control.input-group-btn {
+			z-index: auto;
+		}
+</style>

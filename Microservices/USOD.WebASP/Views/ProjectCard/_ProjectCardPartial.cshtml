@@ -1,0 +1,289 @@
+﻿@model Project_Card
+
+<div class="card project_item_card d-flex flex-column justify-content-between align-items-center">
+
+	<div class="d-flex flex-column w-100 align-items-center">
+
+		<div class="card_btn_group d-flex w-100 justify-content-between align-items-center">
+
+			<img class="tag_icon" src="@Model.Item_Tag?.Item_Tag_URL" />
+
+			<ul class="head_nav nav nav-pills" id="pills-tab">
+
+				<li class="nav-item">
+
+					<a class="nav_link active" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" role="tab" aria-controls="pills-image">Image </a>
+
+				</li>
+
+				<li class="nav-item">
+
+					<a class="nav_link disabled ms-2 me-2" id="pills-image-tab" data-bs-toggle="pill" data-bs-target="#pills-image" role="tab" aria-controls="pills-image"> | </a>
+
+				</li>
+
+				<li class="nav-item">
+
+					<a class="nav_link" id="pills-video-tab" data-bs-toggle="pill" data-bs-target="#pills-video" role="tab" aria-controls="pills-video"> Video</a>
+
+				</li>
+			</ul>
+
+			<div style="visibility: visible">
+
+				<a class="" asp-action="CardEdit" asp-controller="ProjectCard" asp-route-projectCard_id="@Model.Project_Card_ID"><i class="bi bi-pencil-square"></i></a>
+
+				<a asp-action="CardDelete" asp-controller="ProjectCard" asp-route-projectCard_id="@Model.Project_Card_ID" asp-route-project_id="@Model.Project_ID"><i class="bi bi-trash3-fill"></i></a>
+
+			</div>
+
+		</div>
+
+		<div class="card_content d-flex w-100 align-items-center">
+
+			<div class="tab-content" id="pills-tabContent" style="color: white; width: 100%">
+
+				<div class="tab-pane fade show active w-100" id="pills-image" role="tabpanel" aria-labelledby="pills-image-tab" tabindex="0">
+
+					<div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center w-100">
+
+						<div class="d-flex flex-column align-items-center w-100">
+
+							<div class="d-flex w-100">
+
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+
+								<div class="carousel-inner">
+									@if (Model.Card_Images != null)
+									{
+										@for (int i = 0; i < Model.Card_Images.Count; i++)
+										{
+											if (i == 0)
+											{
+												<div class="carousel-item active">
+													<div class="gallery_img">
+														<img src="@Model.Card_Images[i].Card_Image_URL">
+													</div>
+												</div>
+											}
+											else
+											{
+												<div class="carousel-item">
+													<div class="gallery_img">
+														<img src="@Model.Card_Images[i].Card_Image_URL">
+													</div>
+												</div>
+											}
+										}
+									}
+								</div>
+
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+
+							</div>
+
+							<div class="carousel-indicators">
+								@if (Model.Card_Images != null)
+								{
+									@for (int i = 0; i < Model.Card_Images.Count; i++)
+									{
+										if (i == 0)
+										{
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										}
+										else
+										{
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+										}
+									}
+								}
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="tab-pane fade  w-100" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab" tabindex="0">
+
+					<div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center w-100">
+						<div class="d-flex flex-column align-items-center w-100">
+
+							<div class="d-flex w-100">
+
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Previous</span>
+								</button>
+
+								<div class="carousel-inner">
+									@if (Model.Card_Videos != null)
+									{
+										@for (int i = 0; i < Model.Card_Videos.Count; i++)
+										{
+											if (i == 0)
+											{
+												<div class="carousel-item active">
+													<div class="gallery_img">
+														<iframe width="240" height="130" src="@Model.Card_Videos[i].Card_Video_URL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+													</div>
+												</div>
+											}
+											else
+											{
+												<div class="carousel-item">
+													<div class="gallery_img">
+														<iframe width="240" height="130" src="@Model.Card_Videos[i].Card_Video_URL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+													</div>
+												</div>
+											}
+										}
+									}
+								</div>
+
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="visually-hidden">Next</span>
+								</button>
+
+							</div>
+
+							<div class="carousel-indicators">
+								@if (Model.Card_Videos != null)
+								{
+									@for (int i = 0; i < Model.Card_Videos.Count; i++)
+									{
+										if (i == 0)
+										{
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+										}
+										else
+										{
+											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+										}
+									}
+								}
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="card_goal_name d-flex justify-content-center">
+
+			<span>@Model.Project_Card_Title</span>
+
+		</div>
+
+		<div class="card_goal_description d-flex justify-content-center">
+
+			<span>@Model.Project_Card_Description</span>
+
+		</div>
+
+	</div>
+
+	<a class="main_link ms-auto m-0" target="_blank" href="@Model.Project_Card_URL">Read more <i class="bi bi-arrow-right ms-2"></i></a>
+
+
+</div>
+
+<style>
+	.project_item_card {
+		height: 500px;
+		width: 360px;
+		padding: 20px 40px;
+		margin: 20px;
+	}
+
+	.card_btn_group {
+		margin-bottom: 5px;
+	}
+
+	.tag_icon {
+		width: 40px;
+		height: 40px;
+	}
+
+	.nav_link {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+
+		.nav_link:hover {
+			font-weight: 700;
+			color: #7FF66C !important;
+		}
+
+		.nav_link.active {
+			font-weight: 700;
+			color: #7FF66C !important;
+		}
+
+	.carousel-control-next, .carousel-control-prev {
+		width: 5%;
+		position: relative !important;
+	}
+
+	.card_content {
+		margin-bottom: 5px;
+	}
+
+	.gallery_img {
+		width: 100%;
+		height: 130px;
+		border-radius: 10px;
+		overflow: hidden;
+		background-color: #404040;
+	}
+
+		.gallery_img img {
+			width: 100%;
+			height: 130px;
+			object-fit: cover;
+		}
+
+	.carousel-indicators {
+		position: relative;
+		margin-bottom: 0;
+	}
+
+	.card_goal_name {
+		text-align: center;
+		color: #7FF66C;
+		font-family: Univermag;
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+
+		.card_goal_name > span {
+			font-family: Univermag;
+		}
+
+	.card_goal_description {
+		text-align: justify;
+		font-family: Montserrat;
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+
+		.card_goal_description > span {
+			color: white;
+			font-family: Montserrat;
+		}
+
+</style>
