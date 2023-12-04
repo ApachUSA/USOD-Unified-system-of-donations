@@ -1,0 +1,13 @@
+﻿@model Project_Report_Image
+
+<form asp-action="AddReportImage" asp-controller="Project" style="width:100%" class=" d-flex flex-column justify-content-between align-items-center">
+
+	<input asp-for="Project_Report_ID" hidden />
+
+	<input type="hidden" name="_project_id" value="@ViewBag.ProjectId" />
+
+	<input asp-for="Project_Report_Image_URL" class="input" placeholder="put image url" />
+
+	<button class="main_btn w-100" type="submit"><span>Save</span> </button>
+
+</form>

@@ -1,0 +1,214 @@
+﻿@model ProjectVM
+
+@{
+	var Page = ViewBag.Page;
+}
+
+<input asp-for="Project.Project_Report.Project_Report_ID" hidden />
+<input asp-for="Project.Project_ID" hidden />
+
+<div class="dark_card w-100 h-auto d-flex flex-column" style="padding: 40px 120px">
+
+
+		<span class="name">Report</span>
+
+
+
+	@if (Page == "Edit")
+	{
+		<textarea asp-for="Project.Project_Report.Project_Report_Text" class="description input" style="min-height: 250px;"></textarea>
+	}
+	else
+	{
+		<span class="description">@Model.Project.Project_Report.Project_Report_Text</span>
+	}
+
+
+
+
+	<div id="carouselReportImage" class="carousel slide">
+
+		<div class="d-flex flex-column">
+
+			<div class="d-flex justify-content-between">
+
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselReportImage" data-bs-slide="prev">
+
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+					<span class="visually-hidden">Previous</span>
+
+				</button>
+
+				<div class="carousel-inner">
+
+					@{
+						if (Page == "Edit") Model.Project.Project_Report.Images.Insert(0, new Project_Report_Image() { Project_Report_ID = 0, Project_Report_Image_URL = " " });
+
+						var images_group = Enumerable.Range(0, (Model.Project.Project_Report.Images.Count + 3 - 1) / 3)
+						.Select(n => Model.Project.Project_Report.Images.Skip(n * 3).Take(3).ToList())
+						.ToList();
+
+						var edit_card = false;
+					}
+					@for (int i = 0; i < images_group.Count; i++)
+					{
+						if (i == 0)
+						{
+							<div class="carousel-item active" data="@images_group.Count">
+
+								<div class="d-flex justify-content-between flex-wrap flex-grow-1">
+
+									@for (int j = 0; j < images_group[i].Count; j++)
+									{
+										@if (Page != "Edit")
+										{
+											<div class="gallery-report_img">
+
+												<img src="@images_group[i][j].Project_Report_Image_URL">
+
+											</div>
+										}
+										else
+										{
+											if (!edit_card)
+											{
+												<div class="gallery-report_img d-flex justify-content-center align-items-center">
+
+													<a class="main_link" style="font-size: 30px" data-bs-toggle="modal" data-bs-target="#AddReportImage"><i class="bi bi-plus-lg"></i></a>
+
+												</div>
+												edit_card = true;
+
+											}
+											else
+											{
+												<div class="gallery-report_img image_edit d-flex justify-content-center align-items-center">
+
+													<img src="@images_group[i][j].Project_Report_Image_URL">
+
+													<a class="icon_tool" asp-action="DeleteImage" asp-controller="FundImage" asp-route-reportImage_id="@images_group[i][j].Project_Report_Image_ID" asp-route-_project_id="@Model.Project.Project_Report.Project_ID"><i class="bi bi-trash3-fill"></i></a>
+
+												</div>
+											}
+										}
+									}
+
+								</div>
+
+							</div>
+						}
+						else
+						{
+							<div class="carousel-item">
+
+								<div class="d-flex justify-content-between flex-wrap flex-grow-1">
+
+									@for (int j = 0; j < images_group[i].Count; j++)
+									{
+										@if (Page != "Edit")
+										{
+											<div class="gallery-report_img">
+
+												<img src="@images_group[i][j].Project_Report_Image_URL">
+
+											</div>
+										}
+										else
+										{
+											<div class="gallery-report_img image_edit d-flex justify-content-center align-items-center">
+
+												<img src="@images_group[i][j].Project_Report_Image_URL">
+
+												<a class="icon_tool" asp-action="DeleteImage" asp-controller="FundImage" asp-route-reportImage_id="@images_group[i][j].Project_Report_Image_ID" asp-route-_project_id="@Model.Project.Project_ID"><i class="bi bi-trash3-fill"></i></a>
+
+											</div>
+										}
+									}
+
+								</div>
+
+							</div>
+						}
+					}
+					@{
+						if (Page == "Edit") Model.Project.Project_Report.Images.RemoveAt(0);
+					}
+				</div>
+
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselReportImage" data-bs-slide="next">
+
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+					<span class="visually-hidden">Next</span>
+
+				</button>
+
+			</div>
+
+			<div class="carousel-indicators">
+
+				@for (int i = 0; i < images_group.Count; i++)
+				{
+					if (i == 0)
+					{
+						<button type="button" data-bs-target="#carouselReportImage" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					}
+					else
+					{
+						<button type="button" data-bs-target="#carouselReportImage" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+					}
+				}
+
+			</div>
+
+		</div>
+
+	</div>
+	
+
+</div>
+
+<style>
+
+	.name {
+		color: #7FF66C;
+		font-family: Univermag;
+		font-size: 40px;
+		margin-bottom: 20px;
+	}
+
+	.description {
+		color: #FFF;
+		text-align: justify;
+		font-family: Montserrat;
+		font-size: 14px;
+		margin-bottom: 50px;
+	}
+
+	.carousel-control-next, .carousel-control-prev {
+		width: 5%;
+		position: relative !important;
+	}
+
+	.gallery-report_img {
+		width: 30%;
+		height: 180px;
+		border-radius: 10px;
+		margin: 10px;
+		overflow: hidden;
+		background-color: #404040;
+	}
+
+		.gallery-report_img img {
+			width: 100%;
+			height: 180px;
+			object-fit: cover;
+		}
+
+
+	.carousel-indicators {
+		position: relative;
+	}
+
+</style>
