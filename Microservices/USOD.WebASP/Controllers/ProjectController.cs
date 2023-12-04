@@ -12,13 +12,15 @@ namespace USOD.WebASP.Controllers
 		private readonly IFundService _fundService;
 		private readonly IPaymentTypeService _paymentTypeService;
 		private readonly IProjectFundService _projectFundService;
+		private readonly IReportImageService _reportImageService;
 
-		public ProjectController(IProjectService projectService, IPaymentTypeService paymentTypeService, IFundService fundService, IProjectFundService projectFundService)
+		public ProjectController(IProjectService projectService, IPaymentTypeService paymentTypeService, IFundService fundService, IProjectFundService projectFundService, IReportImageService reportImageService)
 		{
 			_projectService = projectService;
 			_paymentTypeService = paymentTypeService;
 			_fundService = fundService;
 			_projectFundService = projectFundService;
+			_reportImageService = reportImageService;
 		}
 
 		public async Task<IActionResult> ProjectIndex()
@@ -59,7 +61,11 @@ namespace USOD.WebASP.Controllers
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
 			{
 				ViewData["Page"] = page;
-				if (page == "Edit") await GetFundListData();
+				if (page == "Edit")
+				{
+					ViewData["ProjectId"] = project_id;
+					await GetFundListData();
+				}
 
 				var projectVM = new ProjectVM() { Project = response.Data };
 
@@ -141,6 +147,28 @@ namespace USOD.WebASP.Controllers
 			if (response.StatusCode == System.Net.HttpStatusCode.OK)
 			{
 				return RedirectToAction(nameof(ProjectIndex));
+			}
+			throw new Exception(response.Description);
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> AddReportImage(Project_Report_Image reportImage, int _project_id)
+		{
+			var response = await _reportImageService.CreateAsync(reportImage);
+			if (response.StatusCode == System.Net.HttpStatusCode.OK)
+			{
+				return RedirectToAction("ProjectDetails", new { project_id = _project_id, Page = "Edit" });
+			}
+			throw new Exception(response.Description);
+		}
+
+		[HttpGet]
+		public async Task<IActionResult> DeleteReportImage(int reportImage_id, int _project_id)
+		{
+			var response = await _reportImageService.Delete(reportImage_id);
+			if (response.StatusCode == System.Net.HttpStatusCode.OK)
+			{
+				return RedirectToAction("ProjectDetails", new { project_id = _project_id, Page = "Edit" });
 			}
 			throw new Exception(response.Description);
 		}
