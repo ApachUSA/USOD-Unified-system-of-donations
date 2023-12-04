@@ -31,9 +31,8 @@
 			<span style="margin-left: 10px;">Tags:</span>
 
 			@{
-				var tags = Model.Project.Project_Cards?.Select(x => x.Item_Tag?.Item_Tag_Name).Distinct().ToList();
+				var tags = Model.Project.Project_Cards?.Select(x => x.Item_Tag?.Item_Tag_URL).Distinct().ToList();
 			}
-
 
 			@foreach (var tag in tags)
 			{
@@ -43,8 +42,6 @@
 
 				</div>
 			}
-
-
 
 		</div>
 
@@ -120,7 +117,6 @@
 		{
 			@if (Model.FundCoop != null)
 			{
-
 				<div class="project_info d-flex align-items-center">
 
 					<div class="info_text">
@@ -143,8 +139,6 @@
 		}
 
 	</div>
-
-
 
 	<a class="main_btn" asp-action="ProjectDetails" asp-controller="Project" asp-route-project_id="@Model.Project.Project_ID" style="width: 100%; margin: 0"><span style="font-size: 14px">View details</span> </a>
 
