@@ -72,10 +72,15 @@ namespace USOD.ProjectAPI.Services.Implementations
 			return await _projectRepository.Get()
 				.Include(x => x.Project_Cards)
 				.ThenInclude(x => x.Card_Images)
+				.Include(x => x.Project_Cards)
+				.ThenInclude(x => x.Card_Videos)
+				.Include(x => x.Project_Cards)
+				.ThenInclude(x => x.Item_Tag)
 				.Include(x => x.Project_Status)
 				.Include(x => x.Project_Payments)
 				.ThenInclude(x => x.Payment_Type)
 				.Include(x => x.Project_Report)
+				.ThenInclude(x => x.Images)
 				.FirstOrDefaultAsync(x => x.Project_ID == project_id);
 		}
 
