@@ -18,9 +18,9 @@
 	{
 		<div class="head_poster image_edit d-flex justify-content-end align-items-end">
 
-			<input asp-for="Fund.Fund_Poster" id="FundPoster"  hidden/>
+			<input asp-for="Fund.Fund_Poster" id="FundPoster" hidden />
 
-			<img src="@Model.Fund.Fund_Poster" id="FundPosterImg"/>
+			<img src="@Model.Fund.Fund_Poster" id="FundPosterImg" />
 
 			<a class="icon_tool" style="margin: 10px 20px" data-bs-toggle="modal" data-bs-target="#ChangePosterModal"><i class="bi bi-pencil-square"></i></a>
 
@@ -43,7 +43,7 @@
 			{
 				<div class="under_logo image_edit  d-flex justify-content-center align-items-center">
 
-					<input asp-for="Fund.Fund_Logo" id="FundLogo" hidden/>
+					<input asp-for="Fund.Fund_Logo" id="FundLogo" hidden />
 
 					<img src="@Model.Fund.Fund_Logo" id="FundLogoImg" />
 
@@ -62,7 +62,16 @@
 				{
 					<span class="fund_name">@Model.Fund.Fund_Name</span>
 
-					<i class="fund_sub bi bi-heart"></i>
+					@if (Model.Subscription == null)
+					{
+						<a class="main_link" onclick="Subscribe(@Model.Fund.Fund_ID)"><i class="fund_sub bi bi-heart"></i></a>
+					}
+					else
+					{
+						<a class="main_link" onclick="UnSubscribe(@Model.Subscription.Subscription_ID)"><i class="fund_sub bi bi-heart-fill"></i></a>
+					}
+
+
 				}
 				else
 				{
@@ -77,9 +86,9 @@
 
 				<div class="under_info_stat d-flex flex-column">
 
-					<span style="margin-bottom: 10px">Followed by 1110 users</span>
+					<span style="margin-bottom: 10px">Followed by @Model.SubscribersCount users</span>
 
-					<span>Active projects: 4 | Ended projects: 4</span>
+					<span>Active projects: @Model.Projects?.Where(x => x.Project.Project_Status?.Project_Status_Name == "Active").Count() | Ended projects: @Model.Projects?.Where(x => x.Project.Project_Status?.Project_Status_Name == "Ended").Count()</span>
 
 				</div>
 
@@ -184,6 +193,46 @@
 	</div>
 
 </div>
+
+<script>
+
+	function Subscribe(fundId) {
+
+		$.ajax({
+			url: "@Url.Action("FundSubscribe", "Fund")",
+			type: "POST",
+			data: {
+				fund_id: fundId
+			},
+			success: function () {
+				location.reload();
+			},
+			error: function (xhr) {
+				console.log(xhr.responseText);
+			}
+		});
+
+	}
+
+	function UnSubscribe(subdId) {
+
+		$.ajax({
+			url: "@Url.Action("FundUnSubscribe", "Fund")",
+			type: "POST",
+			data: {
+				sub_id: subdId
+			},
+			success: function () {
+				location.reload();
+			},
+			error: function (xhr) {
+				console.log(xhr.responseText);
+			}
+		});
+
+	}
+
+</script>
 
 <style>
 	.fund_header {

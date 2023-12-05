@@ -163,6 +163,9 @@
 	&copy; 2023 - USOD.WebASP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
 	</div>
 	</footer> *@
+
+	<div class="toast-container position-fixed top-0 end-0 p-3" id="toast-container" style="margin-top: 130px">
+	</div>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"></script>
@@ -171,7 +174,29 @@
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+<script src="/js/SubscriptionsSignalR.js"></script>
+<script>
+	$(document).ready(function () {
+		ConnectToFund();
+	});
+</script>
+<script>
+	function ConnectToFund() {
 
+		const donorId = @if (User.Identity.IsAuthenticated)
+	{
+		@User.FindFirst("Id").Value
+	};
+
+		if (connectionToFund.state === signalR.HubConnectionState.Connected && donorId != null) {
+			connectionToFund.invoke("ConnectFund", donorId);
+
+		} else {
+			setTimeout(ConnectToFund, 5000);
+		}
+	}
+</script>
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		var menuCard = document.getElementById("menuCard");
@@ -190,6 +215,24 @@
 			}
 		});
 	});
+</script>
+<script>
+	function ToastShow(toastText) {
+		let id = new Date().getTime();
+		let toast = `<div class="toast custom-toast dark_card" role="alert" aria-live="assertive" data-autohide="true" aria-atomic="true" data-delay="5000" id=${id}>
+						<div class="toast-header">
+							<img src="https://cdn-icons-png.flaticon.com/512/6785/6785304.png" width="15" height="15" class="rounded me-2" alt="...">
+							<strong class="me-auto">Сповіщення</strong>
+						</div>
+						<div class="toast-body">
+											<a class="main_link" href="https://localhost:7208/Project/ProjectDetails?project_id=${toastText}">New project!</a>
+						</div>
+					</div>`
+		let toastNode = document.createElement('div');
+		toastNode.innerHTML = toast;
+		document.getElementById('toast-container').appendChild(toastNode);
+		$(`#${id}`).toast('show');
+	}
 </script>
 
 <style>
