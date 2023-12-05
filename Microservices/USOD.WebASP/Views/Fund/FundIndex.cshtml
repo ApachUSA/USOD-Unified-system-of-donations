@@ -9,6 +9,7 @@
 		<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 450px; width: 360px; padding: 10px; margin: 20px">
 			<a class="main_link" asp-action="FundCreate" asp-controller="Fund" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
 		</div>
+
 		@foreach (var item in Model)
 		{
 			<partial name="_FundCardPartial" model="@item" />

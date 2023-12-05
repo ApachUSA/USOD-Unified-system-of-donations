@@ -21,13 +21,17 @@
 						<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 450px; width: 360px; padding: 10px; margin: 20px">
 							<a class="main_link" asp-action="ProjectCreate" asp-controller="Project" asp-route-fund_id="@Model.Fund.Fund_ID" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
 						</div>
-						@foreach (var item in Model.Projects)
+						@if (Model.Projects != null)
 						{
-							<partial name="../Project/_ProjectCardPartial" model="@item"/>
+							@foreach (var item in Model.Projects)
+							{
+								<partial name="../Project/_ProjectCardPartial" model="@item" />
+							}
 						}
 
+
 					</div>
-					
+
 				</div>
 
 				<div class="tab-pane fade" id="pills-about" role="tabpanel" aria-labelledby="pills-about-tab" tabindex="0">
@@ -160,6 +164,6 @@
 </script>
 
 <style>
-	
+
 
 </style>

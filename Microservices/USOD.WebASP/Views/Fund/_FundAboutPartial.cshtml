@@ -155,7 +155,7 @@
 							{
 								<div class="carousel-item active" data="@images_group.Count">
 
-									<div class="d-flex justify-content-between flex-wrap flex-grow-1">
+									<div class="d-flex flex-wrap flex-grow-1">
 
 										@for (int j = 0; j < images_group[i].Count; j++)
 										{
@@ -200,7 +200,7 @@
 							{
 								<div class="carousel-item">
 
-									<div class="d-flex justify-content-between flex-wrap flex-grow-1">
+									<div class="d-flex flex-wrap flex-grow-1">
 
 										@for (int j = 0; j < images_group[i].Count; j++)
 										{
@@ -325,9 +325,10 @@
 	}
 
 	.gallery_img {
-		width: 32%;
+		width: 30%;
 		height: 180px;
 		border-radius: 10px;
+		margin: 10px;
 		overflow: hidden;
 		background-color: #404040;
 	}

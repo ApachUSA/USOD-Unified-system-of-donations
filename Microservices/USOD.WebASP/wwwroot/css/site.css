@@ -67,7 +67,10 @@ a {
     filter: brightness(30%);
 }
 
-
+.custom-toast {
+    max-width: 250px;
+    color: #fff;
+}
 
 .card {
     background: #393939;
