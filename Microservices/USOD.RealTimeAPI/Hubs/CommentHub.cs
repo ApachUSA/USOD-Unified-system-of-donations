@@ -13,7 +13,7 @@ namespace USOD.RealTimeAPI.Hubs
 			
 		public async Task SendMessage(Project_Comment comment)
 		{
-			await Clients.All.ReceiveMessage($"{Context.ConnectionId}: {comment}");
+			await Clients.All.ReceiveComment(comment);
 		}
 	}
 
