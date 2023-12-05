@@ -15,5 +15,7 @@ namespace WebASP_Library.ViewModel
 		public Fund? FundOwner { get; set; }
 
 		public List<Fund>? FundCoop { get; set; }
+
+		public List<ProjectCommentVM>? Project_Comments { get; set; }
 	}
 }
