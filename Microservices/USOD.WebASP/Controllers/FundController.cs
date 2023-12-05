@@ -1,4 +1,5 @@
 ﻿using Fund_Library.Entity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Project_Library.Entity;
@@ -77,11 +78,15 @@ namespace USOD.WebASP.Controllers
 				var subs = await _fundSubscriptionService.GetList(fund_id);
 				fundVM.SubscribersCount = subs.StatusCode == System.Net.HttpStatusCode.OK ? subs.Data.Count : 0;
 
-				if (int.TryParse(HttpContext.User.FindFirst("Id").Value, out int donor_id))
+				if (User.Identity.IsAuthenticated)
 				{
-					var sub = await _fundSubscriptionService.GetByDonor(new Subscription() { Fund_ID = fund_id, Donor_ID = donor_id });
-					fundVM.Subscription = sub.StatusCode == System.Net.HttpStatusCode.OK ? sub.Data : null;
+					if (int.TryParse(HttpContext.User.FindFirst("Id").Value, out int donor_id))
+					{
+						var sub = await _fundSubscriptionService.GetByDonor(new Subscription() { Fund_ID = fund_id, Donor_ID = donor_id });
+						fundVM.Subscription = sub.StatusCode == System.Net.HttpStatusCode.OK ? sub.Data : null;
+					}
 				}
+
 
 				var projects = await _projectService.GetPojectByFund(fund_id);
 				if (projects.StatusCode == System.Net.HttpStatusCode.OK)
@@ -191,6 +196,26 @@ namespace USOD.WebASP.Controllers
 				return Ok();
 			}
 			return BadRequest(response.Description);
+		}
+
+		[HttpGet]
+		[Authorize]
+		public async Task<IActionResult> GetDonorSubscription()
+		{
+			if (int.TryParse(HttpContext.User.FindFirst("Id").Value, out int donor_id))
+			{
+				var response = await _fundSubscriptionService.GetListByDonor(donor_id);
+				if (response.StatusCode == System.Net.HttpStatusCode.OK)
+				{
+					var funds = await _fundService.GetFundByID(response.Data.Select(x => x.Fund_ID).ToArray());
+					if (funds.StatusCode == System.Net.HttpStatusCode.OK)
+					{
+						return PartialView("_SubscriptionsPartial", funds.Data);
+					}
+					return BadRequest(response.Description);
+				}
+			}
+			return BadRequest("Cant find id");
 		}
 
 		private async Task GetDonorListData()

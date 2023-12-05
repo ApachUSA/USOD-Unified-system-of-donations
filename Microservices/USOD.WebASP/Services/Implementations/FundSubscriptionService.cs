@@ -49,6 +49,20 @@ namespace USOD.WebASP.Services.Implementations
 			}
 		}
 
+		public async Task<BaseResponse<List<Subscription>>> GetListByDonor(int donor_id)
+		{
+			try
+			{
+				var response = await _httpClient.GetAsync($"{ApiControllerName}/{donor_id}");
+				return await ApiResponse.ProcessApiResponse<List<Subscription>>(response);
+			}
+			catch (Exception ex)
+			{
+				_logger.LogError("Exception: {ex}", ex.Message);
+				return BaseResponse<List<Subscription>>.Error(ex.Message);
+			}
+		}
+
 		public async Task<BaseResponse<bool>> Subscribe(Subscription sub)
 		{
 			try
