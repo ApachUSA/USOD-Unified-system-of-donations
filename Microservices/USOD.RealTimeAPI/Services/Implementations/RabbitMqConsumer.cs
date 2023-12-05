@@ -18,34 +18,34 @@ namespace USOD.RealTimeAPI.Services.Implementations
 
 		protected async override Task ExecuteAsync(CancellationToken stoppingToken)
 		{
-			var factory = new ConnectionFactory()
-			{
-				HostName = "RabbitMQ",
-				Port = 5672,
-				UserName = "admin",
-				Password = "admin"
-			};
+			//var factory = new ConnectionFactory()
+			//{
+			//	HostName = "RabbitMQ",
+			//	Port = 5672,
+			//	UserName = "admin",
+			//	Password = "admin"
+			//};
 
 
-			using var connection = factory.CreateConnection();
-			using var channel = connection.CreateModel();
+			//using var connection = factory.CreateConnection();
+			//using var channel = connection.CreateModel();
 
-			channel.QueueDeclare(
-				queue: "ProjectNotification",
-				durable: true,
-				exclusive: false,
-				autoDelete: false,
-				arguments: null);
+			//channel.QueueDeclare(
+			//	queue: "ProjectNotification",
+			//	durable: true,
+			//	exclusive: false,
+			//	autoDelete: false,
+			//	arguments: null);
 
-			var consumer = new EventingBasicConsumer(channel);
-			consumer.Received += async (model, ea) =>
-			{
-				await SendMessage(ea.Body.ToArray());
-			};
+			//var consumer = new EventingBasicConsumer(channel);
+			//consumer.Received += async (model, ea) =>
+			//{
+			//	await SendMessage(ea.Body.ToArray());
+			//};
 
-			channel.BasicConsume(queue: "ProjectNotification",
-								 autoAck: true,
-								 consumer: consumer);
+			//channel.BasicConsume(queue: "ProjectNotification",
+			//					 autoAck: true,
+			//					 consumer: consumer);
 
 			await Task.Delay(Timeout.Infinite, stoppingToken);
 		}
@@ -54,11 +54,7 @@ namespace USOD.RealTimeAPI.Services.Implementations
 		{
 			var message = Encoding.UTF8.GetString(array);
 
-			var index_id = message.IndexOf(']') - 1;
-
-			var fund_id = message.Substring(index_id, 1);
-
-			await _hubContext.Clients.Group(fund_id).ReceiveMessage(message);
+			await _hubContext.Clients.Group(message).ReceiveMessage(message);
 
 		}
 	}
