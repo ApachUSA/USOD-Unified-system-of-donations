@@ -29,7 +29,7 @@ builder.Host.UseSerilog((context, configuration) =>
 );
 
 builder.Services.AddControllers().AddJsonOptions(x =>
-				x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+				x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles).AddJsonOptions(x => x.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -41,7 +41,24 @@ builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<IProjectCommentService, ProjectCommentService>();
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 
-builder.Services.AddSignalR();
+builder.Services.AddSignalR().AddJsonProtocol(options =>
+{
+	options.PayloadSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+	options.PayloadSerializerOptions.PropertyNamingPolicy = null;
+});
+
+builder.Services.AddCors(options =>
+{
+	options.AddDefaultPolicy(
+		builder =>
+		{
+			builder
+				.WithOrigins("https://localhost:7208")  // Add the actual origin of your client application
+				.AllowAnyHeader()
+				.AllowAnyMethod()
+				.AllowCredentials();
+		});
+});
 
 var app = builder.Build();
 app.UseWebSockets();
@@ -53,6 +70,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+app.UseCors();
 
 app.MapHub<CommentHub>("comment-hub");
 app.MapHub<SubscriptionHub>("subscription-hub");
