@@ -4,9 +4,11 @@
 	var Page = ViewBag.Page;
 }
 
-<form asp-action="ProjectEdit" asp-controller="Project">
 
-	<div class="d-flex flex-column align-items-center">
+
+<div class="d-flex flex-column align-items-center">
+
+	<form asp-action="ProjectEdit" asp-controller="Project" class="d-flex flex-column align-items-center w-100">
 
 		<partial name="_ProjectHeadPartial" />
 
@@ -24,29 +26,59 @@
 
 		}
 
+	</form>
 
+	<div class="d-flex flex-wrap flex-grow-1 justify-content-center">
 
-		<div class="d-flex flex-wrap flex-grow-1 justify-content-center">
+		<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 500px; width: 360px; padding: 10px; margin: 20px">
 
-			<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 500px; width: 360px; padding: 10px; margin: 20px">
+			<a class="main_link" asp-action="CardCreate" asp-controller="ProjectCard" asp-route-project_id="@Model.Project.Project_ID" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
 
-				<a class="main_link" asp-action="CardCreate" asp-controller="ProjectCard" asp-route-project_id="@Model.Project.Project_ID" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
+		</div>
+
+		@if (Model.Project.Project_Cards != null)
+		{
+			@foreach (var card in Model.Project.Project_Cards)
+			{
+				<partial name="../ProjectCard/_ProjectCardPartial" model="card" />
+			}
+		}
+
+	</div>
+
+	<div class="dark_card w-100 d-flex flex-column" style="padding: 40px 120px; margin-bottom: 40px">
+
+		<span style="color: #7FF66C; font-family: Univermag; font-size: 40px; margin-bottom: 40px">Comments</span>
+
+		<div class="d-flex h-auto flex-column">
+
+			<div class="d-flex align-items-center" style=" margin-bottom: 50px">
+
+				<textarea class="input" style="height:auto; min-height: 40px" rows="2" id="CommentText"></textarea>
+
+				<a class="main_link" onclick="SendComment()" style="font-size: 30px; margin-left: 20px;"><i class="bi bi-send"></i></a>
 
 			</div>
 
-			@if (Model.Project.Project_Cards != null)
-			{
-				@foreach (var card in Model.Project.Project_Cards)
+			<div class="d-flex h-auto flex-column commentContainer">
+
+				@if (Model.Project_Comments != null)
 				{
-					<partial name="../ProjectCard/_ProjectCardPartial" model="card" />
+					@foreach (var comment in Model.Project_Comments)
+					{
+						<partial name="_ProjectCommentPartial" model="@comment" />
+					}
 				}
-			}
+
+			</div>
 
 		</div>
 
 	</div>
 
-</form>
+
+</div>
+
 
 <div class="modal fade " id="AddProjectCoop" tabindex="-1" aria-hidden="true">
 
@@ -75,3 +107,68 @@
 	</div>
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+<script src="/js/CommentsSignalR.js"></script>
+<script>
+	$(document).ready(function () {
+		$('[data-bs-toggle="popover"]').popover();
+		SendToHub();
+	});
+</script>
+<script>
+	function SendToHub() {
+		const projectID = document.getElementById("Project_Project_ID").value;
+
+		if (connection.state === signalR.HubConnectionState.Connected) {
+			connection.invoke("JoinProject", projectID);
+
+		} else {
+			setTimeout(SendToHub, 5000);
+		}
+	}
+
+	function SendComment() {
+		if (connection.state === signalR.HubConnectionState.Connected) {
+			console.log('send');
+			var Comment = {
+				Comment_Message: $("#CommentText").val(),
+				Project_ID: @Model.Project.Project_ID,
+				Donor_ID: 0,
+				Comment_Date: "",
+			};
+
+			$.ajax({
+				url: "@Url.Action("PostComment", "Project")",
+				type: "POST",
+				data: {
+					comment: Comment
+				},
+				success: function () {
+					$("#CommentText").val("");
+				},
+				error: function (xhr) {
+					console.log(xhr.responseText);
+				}
+			});
+		}
+
+	}
+
+	function ReceiveComment(Comment) {
+		$.ajax({
+			url: "@Url.Action("GetProjectComment", "Project")",
+			type: "Post",
+			data: {
+				comment: Comment
+			},
+			success: function (data) {
+				$(".commentContainer").prepend(data);
+				$('[data-bs-toggle="popover"]').popover();
+			},
+			error: function (xhr) {
+				console.log(xhr.responseText);
+			}
+		});
+	}
+</script>

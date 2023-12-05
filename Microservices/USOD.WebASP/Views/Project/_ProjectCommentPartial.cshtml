@@ -1,0 +1,72 @@
+﻿@model ProjectCommentVM
+
+<div class="dark_card w-100 d-flex" style="padding: 40px; margin-bottom: 20px">
+
+	<a tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-content='@{
+		await Html.RenderPartialAsync("../Donor/_DonorInfoPartial", Model.Donor);
+	}'>
+
+		<div class="user_Logo">
+
+			<img src="@Model.Donor?.Logo" />
+
+		</div>
+
+	</a>
+
+
+
+	<div class="d-flex flex-column">
+
+		<div class="d-flex align-items-center" style="margin-bottom: 20px">
+
+			<span class="user_name">@@@Model.Donor?.Username</span>
+
+			<span class="comment_date">@Model.Project_Comment.Comment_Date</span>
+
+		</div>
+
+		<span class="comment_text">@Model.Project_Comment.Comment_Message</span>
+
+	</div>
+
+</div>
+
+
+<style>
+	.user_Logo {
+		width: 100px;
+		min-width: 100px;
+		height: 100px;
+		border-radius: 10000px;
+		margin-right: 20px;
+		overflow: hidden;
+	}
+
+		.user_Logo img {
+			width: 100px;
+			height: 100px;
+			object-fit: cover;
+		}
+
+	.user_name {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 24px;
+		font-weight: 700;
+		margin-right: 20px;
+	}
+
+	.comment_date {
+		color: #FFF;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+
+	.comment_text {
+		color: #FFF;
+		text-align: justify;
+		font-family: Montserrat;
+		font-size: 14px;
+	}
+</style>
