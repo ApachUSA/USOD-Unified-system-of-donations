@@ -71,13 +71,17 @@
 						</div>
 					</div>
 				</a>
-				<div class="menu_btn">
-					<div class="menu_btn_icon">
-						<i class="bi bi-bookmark-heart auto"></i>
+				<a role="button" data-bs-toggle="collapse" data-bs-target="#collapseSubs" aria-expanded="false" aria-controls="collapseSubs">
+					<div class="menu_btn">
+						<div class="menu_btn_icon">
+							<i class="bi bi-bookmark-heart auto"></i>
+						</div>
+						<div class="menu_btn_text">
+							<span>Subscriptions</span>
+						</div>
 					</div>
-					<div class="menu_btn_text">
-						<span>Subscriptions</span>
-					</div>
+				</a>
+				<div class="collapse collapseSubs" id="collapseSubs" style="background-color: #404040; margin: 5px; border-radius: 5px">
 				</div>
 			</div>
 
@@ -95,6 +99,19 @@
 				}
 				else
 				{
+					@if (User.IsInRole("Owner"))
+					{
+						<a asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@User.FindFirst("FundID").Value">
+							<div class="menu_btn">
+								<div class="menu_btn_icon">
+									<i class="bi bi-bank2 auto"></i>
+								</div>
+								<div class="menu_btn_text">
+									<span>Profile</span>
+								</div>
+							</div>
+						</a>
+					}
 					<a asp-action="Profile" asp-controller="Donor">
 						<div class="menu_btn">
 							<div class="menu_btn_icon">
@@ -116,34 +133,6 @@
 						</div>
 					</a>
 				}
-			</div>
-		</div>
-		<div id="partialViewContent" style="display: none;">
-			<!-- Your partial view content goes here -->
-			<div class="donor_info_card d-flex">
-
-				<div class="donor_info_logo">
-
-					<img src="https://img1.hochu.ua/uploads/37/3a/64/373a64b8-00fb-446c-b16d-7c5de0998106_360x300_fit.jpg" />
-
-				</div>
-
-				<div class="donor_info d-flex flex-column ">
-
-					<span style="font-size: 14px; font-weight: 700; color: white">Damnyckyi Artem</span>
-
-					<span style="font-size: 10px;  margin-bottom: 5px; color: white">@@damnickyi</span>
-
-					<div class="d-flex align-items-center">
-						<div class="info_logo">
-							<img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" />
-						</div>
-						<div class="info_logo">
-							<img src="https://cdn-icons-png.flaticon.com/512/5968/5968804.png" />
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
 		<div class="container">
@@ -176,27 +165,29 @@
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
 <script src="/js/SubscriptionsSignalR.js"></script>
-<script>
-	$(document).ready(function () {
-		ConnectToFund();
-	});
-</script>
-<script>
-	function ConnectToFund() {
 
-		const donorId = @if (User.Identity.IsAuthenticated)
-	{
-		@User.FindFirst("Id").Value
-	};
+@if (User.Identity.IsAuthenticated)
+{
+	<script>
+		$(document).ready(function () {
+			ConnectToFund();
+			FillSubs();
+		});
+	</script>
+	<script>
+		function ConnectToFund() {
 
-		if (connectionToFund.state === signalR.HubConnectionState.Connected && donorId != null) {
-			connectionToFund.invoke("ConnectFund", donorId);
+			const donorId = @User.FindFirst("Id").Value;
 
-		} else {
-			setTimeout(ConnectToFund, 5000);
+			if (connectionToFund.state === signalR.HubConnectionState.Connected && donorId != null) {
+				connectionToFund.invoke("ConnectFund", donorId);
+
+			} else {
+				setTimeout(ConnectToFund, 5000);
+			}
 		}
-	}
-</script>
+	</script>
+}
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
 		var menuCard = document.getElementById("menuCard");
@@ -220,18 +211,33 @@
 	function ToastShow(toastText) {
 		let id = new Date().getTime();
 		let toast = `<div class="toast custom-toast dark_card" role="alert" aria-live="assertive" data-autohide="true" aria-atomic="true" data-delay="5000" id=${id}>
-						<div class="toast-header">
-							<img src="https://cdn-icons-png.flaticon.com/512/6785/6785304.png" width="15" height="15" class="rounded me-2" alt="...">
-							<strong class="me-auto">Сповіщення</strong>
-						</div>
-						<div class="toast-body">
-											<a class="main_link" href="https://localhost:7208/Project/ProjectDetails?project_id=${toastText}">New project!</a>
-						</div>
-					</div>`
+									<div class="toast-header">
+										<img src="https://cdn-icons-png.flaticon.com/512/6785/6785304.png" width="15" height="15" class="rounded me-2" alt="...">
+										<strong class="me-auto">Сповіщення</strong>
+									</div>
+									<div class="toast-body">
+														<a class="main_link" href="https://localhost:7208/Project/ProjectDetails?project_id=${toastText}">New project!</a>
+									</div>
+								</div>`
 		let toastNode = document.createElement('div');
 		toastNode.innerHTML = toast;
 		document.getElementById('toast-container').appendChild(toastNode);
 		$(`#${id}`).toast('show');
+	}
+
+	function FillSubs() {
+
+		$.ajax({
+			url: "@Url.Action("GetDonorSubscription", "Fund")",
+			type: "Get",
+			success: function (data) {
+				$(".collapseSubs").html(data);
+			},
+			error: function (xhr) {
+				console.log(xhr.responseText);
+			}
+		});
+
 	}
 </script>
 
@@ -243,7 +249,7 @@
 	}
 
 	.menuCard_open {
-		width: 170px;
+		width: 180px;
 	}
 
 	.menu_btn {
