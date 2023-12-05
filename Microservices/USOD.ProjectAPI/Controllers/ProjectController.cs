@@ -116,7 +116,7 @@ namespace USOD.ProjectAPI.Controllers
 		{
 			try
 			{
-				 _messageProducer.SendMessage($"Fund with id[{project.Fund_ID}] publish new project with name {project.Project_Name}");
+				 _messageProducer.SendMessage($"{project.Fund_ID}");
 			}
 			catch (Exception ex)
 			{
