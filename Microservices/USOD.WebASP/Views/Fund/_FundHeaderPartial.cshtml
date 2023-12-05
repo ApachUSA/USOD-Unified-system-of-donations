@@ -153,18 +153,21 @@
 
 			</li>
 
-			<li class="nav-item">
+			@if (User.IsInRole("Admin") || (User.IsInRole("Owner") && User.HasClaim("FundID", Model.Fund.Fund_ID.ToString())))
+			{
+				<li class="nav-item">
 
-				@if (!edit)
-				{
-					<a class="nav_link" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID" asp-route-edit="true"><i class="bi bi-gear-fill"></i></a>
-				}
-				else
-				{
-					<a class="nav_link" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID">Exit</a>
-				}
+					@if (!edit)
+					{
+						<a class="nav_link" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID" asp-route-edit="true"><i class="bi bi-gear-fill"></i></a>
+					}
+					else
+					{
+						<a class="nav_link" asp-action="FundDetails" asp-controller="Fund" asp-route-fund_id="@Model.Fund.Fund_ID">Exit</a>
+					}
 
 			</li>
+			}
 
 		</ul>
 

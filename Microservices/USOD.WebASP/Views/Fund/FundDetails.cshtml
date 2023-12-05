@@ -6,9 +6,6 @@
 			var edit = ViewBag.Edit;
 		}
 
-
-
-
 		<partial name="_FundHeaderPartial" />
 
 		<div class="tab-content" id="pills-tabContent" style="color: white; width: 100%">
@@ -16,11 +13,18 @@
 			@if (!edit)
 			{
 				<div class="tab-pane fade   show active" id="pills-project" role="tabpanel" aria-labelledby="pills-project-tab" tabindex="0">
+
 					<div class="d-flex flex-wrap flex-grow-1 justify-content-center">
 
-						<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 450px; width: 360px; padding: 10px; margin: 20px">
-							<a class="main_link" asp-action="ProjectCreate" asp-controller="Project" asp-route-fund_id="@Model.Fund.Fund_ID" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
-						</div>
+						@if (User.IsInRole("Admin") || (User.IsInRole("Owner") && User.HasClaim("FundID", Model.Fund.Fund_ID.ToString())))
+						{
+							<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 450px; width: 360px; padding: 10px; margin: 20px">
+
+								<a class="main_link" asp-action="ProjectCreate" asp-controller="Project" asp-route-fund_id="@Model.Fund.Fund_ID" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
+
+							</div>
+						}
+
 						@if (Model.Projects != null)
 						{
 							@foreach (var item in Model.Projects)

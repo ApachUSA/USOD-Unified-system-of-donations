@@ -12,7 +12,10 @@
 
 		<partial name="_ProjectHeadPartial" />
 
-		<partial name="_ProjectReportPartial" />
+		@if (Model.Project.Project_Status?.Project_Status_Name == "Ended" || Page == "Edit")
+		{
+			<partial name="_ProjectReportPartial" />
+		}
 
 		@if (Page == "Edit")
 		{
@@ -30,11 +33,16 @@
 
 	<div class="d-flex flex-wrap flex-grow-1 justify-content-center">
 
+		@if (User.IsInRole("Admin") || (User.IsInRole("Owner") && User.HasClaim("FundID", Model.Project.Fund_ID.ToString())))
+		{
 		<div class="card d-flex flex-column justify-content-center align-items-center" style="height: 500px; width: 360px; padding: 10px; margin: 20px">
 
 			<a class="main_link" asp-action="CardCreate" asp-controller="ProjectCard" asp-route-project_id="@Model.Project.Project_ID" style="font-size: 70px"><i class="bi bi-plus-lg"></i></a>
 
-		</div>
+		</div>			
+		}
+
+
 
 		@if (Model.Project.Project_Cards != null)
 		{
@@ -54,9 +62,16 @@
 
 			<div class="d-flex align-items-center" style=" margin-bottom: 50px">
 
-				<textarea class="input" style="height:auto; min-height: 40px" rows="2" id="CommentText"></textarea>
+				@if (User.Identity.IsAuthenticated)
+				{
+					<textarea class="input" style="height:auto; min-height: 40px" rows="2" id="CommentText"></textarea>
 
-				<a class="main_link" onclick="SendComment()" style="font-size: 30px; margin-left: 20px;"><i class="bi bi-send"></i></a>
+					<a class="main_link" onclick="SendComment()" style="font-size: 30px; margin-left: 20px;"><i class="bi bi-send"></i></a>
+				}
+				else
+				{
+					<a class="main_link" asp-action="Login" asp-controller="Donor" style="font-size: 20px; margin-left: 20px;">To be able to leave a comment you must log in.</a>
+				}
 
 			</div>
 
@@ -118,7 +133,7 @@
 </script>
 <script>
 	function SendToHub() {
-		const projectID = document.getElementById("Project_Project_ID").value;
+		const projectID = "@Model.Project.Project_ID";
 
 		if (connection.state === signalR.HubConnectionState.Connected) {
 			connection.invoke("JoinProject", projectID);
