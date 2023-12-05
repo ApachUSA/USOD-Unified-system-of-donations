@@ -20,39 +20,18 @@ namespace USOD.RealTimeAPI.Hubs
 			var subs = await _subscriptionService.GetAsync(donor_id);
 			foreach (var subscription in subs)
 			{
-				await Groups.AddToGroupAsync(Context.ConnectionId, subscription.Fund_ID.ToString());	
-			}	
-		}
-
-		public async Task Subscribe(Subscription subscription)
-		{
-			try
-			{
-				await _subscriptionService.SubscribeAsync(subscription);
 				await Groups.AddToGroupAsync(Context.ConnectionId, subscription.Fund_ID.ToString());
 			}
-			catch (Exception ex)
-			{
-				_logger.LogError("Exception: {ex}", ex.Message);
-			}
-			
 		}
 
-		public async Task Unsubscribe(int sub_id)
+		public async Task Subscribe(int fund_id)
 		{
-			var sub = await _subscriptionService.GetByIdAsync(sub_id);
-			if(sub != null)
-			{
-				try
-				{
-					await _subscriptionService.UnsubscribeAsync(sub);
-					await Groups.RemoveFromGroupAsync(Context.ConnectionId, sub.Fund_ID.ToString());
-				}
-				catch (Exception ex)
-				{
-					_logger.LogError("Exception: {ex}", ex.Message);
-				}
-			}
+			await Groups.AddToGroupAsync(Context.ConnectionId, fund_id.ToString());
+		}
+
+		public async Task Unsubscribe(int fund_id)
+		{
+			await Groups.RemoveFromGroupAsync(Context.ConnectionId, fund_id.ToString());
 		}
 	}
 
