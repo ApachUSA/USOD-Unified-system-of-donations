@@ -41,6 +41,26 @@ namespace USOD.RealTimeAPI.Controllers
 
 			return Ok(sub);
 		}
+		
+		[HttpPost("GetByDonor")]
+		public async Task<IActionResult> GetByDonor(Subscription sub)
+		{
+			var subscription = await _subscriptionService.GetByDonorAsync(sub);
+
+			if (subscription == null) return NotFound();
+
+			return Ok(subscription);
+		}
+
+		[HttpGet("GetByFundId/{fund_id}")]
+		public async Task<IActionResult> GetByFund(int fund_id)
+		{
+			var sub = await _subscriptionService.GetByFundAsync(fund_id);
+
+			if (!sub.Any()) return NotFound();
+
+			return Ok(sub);
+		}
 
 		[HttpPost]
 		public async Task<IActionResult> Post([FromBody] Subscription sub)
@@ -48,7 +68,7 @@ namespace USOD.RealTimeAPI.Controllers
 			try
 			{
 				await _subscriptionService.SubscribeAsync(sub);
-				await _hubContext.Clients.Group(sub.Fund_ID.ToString()).ReceiveMessage("Add new project");
+				await _hubContext.Clients.Group(sub.Fund_ID.ToString()).ReceiveMessage("3");
 				return Ok();
 			}
 			catch (Exception ex)
