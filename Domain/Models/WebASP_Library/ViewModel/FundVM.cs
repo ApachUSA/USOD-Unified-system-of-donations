@@ -2,6 +2,7 @@
 using Donor_Library.ViewModel;
 using Fund_Library.Entity;
 using Project_Library.Entity;
+using RealTime_Library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,11 @@ namespace WebASP_Library.ViewModel
 		public required Fund Fund { get; set; }
 
 		public List<ProjectVM>? Projects { get; set; }
+
+		public Subscription? Subscription { get; set; }
+
+		public int ProjectCount { get; set; }
+
+		public int SubscribersCount { get; set; }
 	}
 }
