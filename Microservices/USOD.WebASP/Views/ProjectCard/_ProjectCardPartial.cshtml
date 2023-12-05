@@ -29,6 +29,8 @@
 				</li>
 			</ul>
 
+			@if (User.IsInRole("Admin") || User.IsInRole("Owner"))
+			{
 			<div style="visibility: visible">
 
 				<a class="" asp-action="CardEdit" asp-controller="ProjectCard" asp-route-projectCard_id="@Model.Project_Card_ID"><i class="bi bi-pencil-square"></i></a>
@@ -36,6 +38,18 @@
 				<a asp-action="CardDelete" asp-controller="ProjectCard" asp-route-projectCard_id="@Model.Project_Card_ID" asp-route-project_id="@Model.Project_ID"><i class="bi bi-trash3-fill"></i></a>
 
 			</div>
+			}
+			else
+			{
+				<div style="visibility: hidden">
+
+					<a class="" asp-action="CardEdit" asp-controller="ProjectCard" asp-route-projectCard_id="@Model.Project_Card_ID"><i class="bi bi-pencil-square"></i></a>
+
+					<a asp-action="CardDelete" asp-controller="ProjectCard" asp-route-projectCard_id="@Model.Project_Card_ID" asp-route-project_id="@Model.Project_ID"><i class="bi bi-trash3-fill"></i></a>
+
+				</div>
+			}
+
 
 		</div>
 
@@ -113,12 +127,12 @@
 
 				<div class="tab-pane fade  w-100" id="pills-video" role="tabpanel" aria-labelledby="pills-video-tab" tabindex="0">
 
-					<div id="carouselExampleIndicators" class="carousel slide d-flex justify-content-center w-100">
+					<div id="carouselVideoIndicators" class="carousel slide d-flex justify-content-center w-100">
 						<div class="d-flex flex-column align-items-center w-100">
 
 							<div class="d-flex w-100">
 
-								<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+								<button class="carousel-control-prev" type="button" data-bs-target="#carouselVideoIndicators" data-bs-slide="prev">
 									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 									<span class="visually-hidden">Previous</span>
 								</button>
@@ -132,7 +146,7 @@
 											{
 												<div class="carousel-item active">
 													<div class="gallery_img">
-														<iframe width="240" height="130" src="@Model.Card_Videos[i].Card_Video_URL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+														<iframe src="@Model.Card_Videos[i].Card_Video_URL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 													</div>
 												</div>
 											}
@@ -140,7 +154,7 @@
 											{
 												<div class="carousel-item">
 													<div class="gallery_img">
-														<iframe width="240" height="130" src="@Model.Card_Videos[i].Card_Video_URL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+														<iframe src="@Model.Card_Videos[i].Card_Video_URL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 													</div>
 												</div>
 											}
@@ -148,7 +162,7 @@
 									}
 								</div>
 
-								<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+								<button class="carousel-control-next" type="button" data-bs-target="#carouselVideoIndicators" data-bs-slide="next">
 									<span class="carousel-control-next-icon" aria-hidden="true"></span>
 									<span class="visually-hidden">Next</span>
 								</button>
@@ -162,11 +176,11 @@
 									{
 										if (i == 0)
 										{
-											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+											<button type="button" data-bs-target="#carouselVideoIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 										}
 										else
 										{
-											<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
+											<button type="button" data-bs-target="#carouselVideoIndicators" data-bs-slide-to="@i" aria-label="Slide @i"></button>
 										}
 									}
 								}
@@ -252,6 +266,12 @@
 	}
 
 		.gallery_img img {
+			width: 100%;
+			height: 130px;
+			object-fit: cover;
+		}
+
+		.gallery_img iframe {
 			width: 100%;
 			height: 130px;
 			object-fit: cover;
