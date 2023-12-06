@@ -10,20 +10,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 builder.Services.AddHttpClient("Donor", client =>{
-	client.BaseAddress = new Uri("http://localhost:5116/DonorApi/");
-}).AddHttpMessageHandler<HttpHandler>(); ;
+	client.BaseAddress = new Uri("http://localhost:7051/DonorApi/");
+}).AddHttpMessageHandler<HttpHandler>();
 
 builder.Services.AddHttpClient("Fund", client => {
-	client.BaseAddress = new Uri("http://localhost:5103/FundApi/");
-});
+	client.BaseAddress = new Uri("http://localhost:7051/FundApi/");
+}).AddHttpMessageHandler<HttpHandler>();
 
 builder.Services.AddHttpClient("Project", client => {
-	client.BaseAddress = new Uri("http://localhost:5096/ProjectApi/");
-});
+	client.BaseAddress = new Uri("http://localhost:7051/ProjectApi/");
+}).AddHttpMessageHandler<HttpHandler>();
 
 builder.Services.AddHttpClient("RealTime", client => {
-	client.BaseAddress = new Uri("http://localhost:5261/RealTimeApi/");
-});
+	client.BaseAddress = new Uri("http://localhost:7051/RealTimeApi/");
+}).AddHttpMessageHandler<HttpHandler>();
 
 builder.Services.AddTransient<HttpHandler>();
 builder.Services.AddMemoryCache();
