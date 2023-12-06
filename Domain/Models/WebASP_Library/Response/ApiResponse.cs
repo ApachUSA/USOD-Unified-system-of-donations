@@ -18,7 +18,7 @@ namespace WebASP_Library.Response
 			}
 			else
 			{
-				return BaseResponse<T>.Fail(response.StatusCode, await response.Content.ReadAsStringAsync());
+				return BaseResponse<T>.Fail(response.StatusCode, response.StatusCode.ToString());
 			}
 		}
 	}
