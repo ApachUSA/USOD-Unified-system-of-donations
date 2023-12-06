@@ -39,8 +39,7 @@ namespace USOD.DonorAPI.Services.Implementations
 			{
 				try
 				{
-					//var response = await client.GetAsync($"http://172.19.0.6:80/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
-					var response = await client.GetAsync($"http://localhost:5103/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
+					var response = await client.GetAsync($"http://172.19.0.6:80/FundApi/FundMember/GetByDonor/{donor.Donor_ID}");
 
 					if (response.StatusCode == System.Net.HttpStatusCode.OK)
 					{
