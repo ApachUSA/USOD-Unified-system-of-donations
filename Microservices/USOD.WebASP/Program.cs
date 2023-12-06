@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Net;
 using USOD.WebASP.Services.Implementations;
 using USOD.WebASP.Services.Interfaces;
 
@@ -7,9 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews().AddJsonOptions(x => x.JsonSerializerOptions.PropertyNamingPolicy = null);
 
-builder.Services.AddHttpClient("Donor", client => {
-	client.BaseAddress = new Uri("http://localhost:5133/DonorApi/");
-});
+builder.Services.AddHttpClient("Donor", client =>{
+	client.BaseAddress = new Uri("http://localhost:5116/DonorApi/");
+}).AddHttpMessageHandler<HttpHandler>(); ;
+
 builder.Services.AddHttpClient("Fund", client => {
 	client.BaseAddress = new Uri("http://localhost:5103/FundApi/");
 });
@@ -22,6 +25,8 @@ builder.Services.AddHttpClient("RealTime", client => {
 	client.BaseAddress = new Uri("http://localhost:5261/RealTimeApi/");
 });
 
+builder.Services.AddTransient<HttpHandler>();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddScoped<IDonorService, DonorService>();
 

@@ -3,6 +3,7 @@ using Donor_Library.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Data;
 using System.Drawing;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,10 +16,12 @@ namespace USOD.WebASP.Controllers
 	public class DonorController : Controller
 	{
 		private readonly IDonorService _donorService;
+		private readonly IMemoryCache _memoryCache;
 
-		public DonorController(IDonorService donorService)
+		public DonorController(IDonorService donorService, IMemoryCache memoryCache)
 		{
 			_donorService = donorService;
+			_memoryCache = memoryCache;
 		}
 
 		[HttpGet]
@@ -59,7 +62,8 @@ namespace USOD.WebASP.Controllers
 						new(new ClaimsIdentity(jsonToken?.Claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType))
 						);
 
-					Response.Cookies.Append("Authorization", response.Data, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
+					_memoryCache.Set("Authorization", response.Data, TimeSpan.FromDays(1));
+					//Response.Cookies.Append("Authorization", response.Data, new CookieOptions() { HttpOnly = true, SameSite = SameSiteMode.Strict });
 					return RedirectToAction("Index", "Home");
 				}
 				ModelState.AddModelError("", response.Description);
@@ -134,6 +138,7 @@ namespace USOD.WebASP.Controllers
 		[HttpGet]
 		public async Task<IActionResult> LogOut()
 		{
+			_memoryCache.Remove("Authorization");
 			await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 			return RedirectToAction("Index", "Home");
 		}
