@@ -3,16 +3,18 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
 using Serilog.Sinks.RabbitMQ.Sinks.RabbitMQ;
+using System.Text.Json.Serialization;
 using USOD.DonorAPI.Repositories;
 using USOD.DonorAPI.Repositories.Interfaces;
 using USOD.DonorAPI.Services.Implementations;
 using USOD.DonorAPI.Services.Interfaces;
+using USOD.DonorAPI.Services.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.PropertyNamingPolicy = null).AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddDbContext<Donor_DB_Context>(options =>
 						options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -32,7 +34,11 @@ builder.Host.UseSerilog((context, configuration) =>
 builder.Services.AddEndpointsApiExplorer();
 //builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(Repository<>));
+builder.Services.AddScoped<IDonorMediaTypeService, DonorMediaTypeService>();
+builder.Services.AddScoped<IDonorMediaService, DonorMediaService>();
 builder.Services.AddScoped<IDonorService, DonorService>();
 builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<IDonorRoleService, DonorRoleService>();
