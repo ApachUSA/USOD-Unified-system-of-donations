@@ -1104,6 +1104,18 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
+      "DownstreamPathTemplate": "/ProjectApi/Project/GetByFund/{}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.7",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/ProjectApi/Project/GetByFund/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/ProjectApi/Project",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
