@@ -43,7 +43,7 @@
       }
     },
     {
-      "DownstreamPathTemplate": "/DonorApi/Donor/{id}",
+      "DownstreamPathTemplate": "/DonorApi/Donor/GetProfileById/{id}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -51,11 +51,35 @@
           "Port": 80
         }
       ],
-      "UpstreamPathTemplate": "/DonorApi/Donor/{id}",
+      "UpstreamPathTemplate": "/DonorApi/Donor/GetProfileById/{id}",
       "UpstreamHttpMethod": [ "Get" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
       }
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/Donor/GetByIds",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/Donor/GetByIds",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/DonorApi/Donor/GetById/{id}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.5",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/DonorApi/Donor/GetById/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
     },
     {
       "DownstreamPathTemplate": "/DonorApi/Donor/{id}",
@@ -292,6 +316,18 @@
         }
       ],
       "UpstreamPathTemplate": "/FundApi/Fund/{id}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/FundApi/Fund/GetByIds",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.6",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/FundApi/Fund/GetByIds",
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
@@ -1614,6 +1650,18 @@
       "UpstreamHttpMethod": [ "Get" ]
     },
     {
+      "DownstreamPathTemplate": "/RealTimeApi/Subscription/GetByFundId/{}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.8",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/RealTimeApi/Subscription/GetByFundId/{}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
       "DownstreamPathTemplate": "/RealTimeApi/Subscription",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
@@ -1623,6 +1671,21 @@
         }
       ],
       "UpstreamPathTemplate": "/RealTimeApi/Subscription",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/RealTimeApi/Subscription/GetByDonor",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "172.19.0.8",
+          "Port": 80
+        }
+      ],
+      "UpstreamPathTemplate": "/RealTimeApi/Subscription/GetByDonor",
       "UpstreamHttpMethod": [ "Post" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer"
