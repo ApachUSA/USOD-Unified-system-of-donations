@@ -18,34 +18,34 @@ namespace USOD.RealTimeAPI.Services.Implementations
 
 		protected async override Task ExecuteAsync(CancellationToken stoppingToken)
 		{
-			//var factory = new ConnectionFactory()
-			//{
-			//	HostName = "RabbitMQ",
-			//	Port = 5672,
-			//	UserName = "admin",
-			//	Password = "admin"
-			//};
+			var factory = new ConnectionFactory()
+			{
+				HostName = "RabbitMQ",
+				Port = 5672,
+				UserName = "admin",
+				Password = "admin"
+			};
 
 
-			//using var connection = factory.CreateConnection();
-			//using var channel = connection.CreateModel();
+			using var connection = factory.CreateConnection();
+			using var channel = connection.CreateModel();
 
-			//channel.QueueDeclare(
-			//	queue: "ProjectNotification",
-			//	durable: true,
-			//	exclusive: false,
-			//	autoDelete: false,
-			//	arguments: null);
+			channel.QueueDeclare(
+				queue: "ProjectNotification",
+				durable: true,
+				exclusive: false,
+				autoDelete: false,
+				arguments: null);
 
-			//var consumer = new EventingBasicConsumer(channel);
-			//consumer.Received += async (model, ea) =>
-			//{
-			//	await SendMessage(ea.Body.ToArray());
-			//};
+			var consumer = new EventingBasicConsumer(channel);
+			consumer.Received += async (model, ea) =>
+			{
+				await SendMessage(ea.Body.ToArray());
+			};
 
-			//channel.BasicConsume(queue: "ProjectNotification",
-			//					 autoAck: true,
-			//					 consumer: consumer);
+			channel.BasicConsume(queue: "ProjectNotification",
+								 autoAck: true,
+								 consumer: consumer);
 
 			await Task.Delay(Timeout.Infinite, stoppingToken);
 		}
