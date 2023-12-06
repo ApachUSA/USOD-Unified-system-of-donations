@@ -1,6 +1,6 @@
 
 const connection = new signalR.HubConnectionBuilder()
-	.withUrl("http://localhost:5261/comment-hub")
+	.withUrl("http://localhost:7051/comment-hub")
 	.configureLogging(signalR.LogLevel.Information)
 	.build();
 

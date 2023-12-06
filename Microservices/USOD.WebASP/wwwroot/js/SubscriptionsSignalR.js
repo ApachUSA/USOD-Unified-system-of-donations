@@ -1,5 +1,5 @@
 const connectionToFund = new signalR.HubConnectionBuilder()
-	.withUrl("http://localhost:5261/subscription-hub")
+	.withUrl("http://localhost:7051/subscription-hub")
 	.configureLogging(signalR.LogLevel.Information)
 	.build();
 
