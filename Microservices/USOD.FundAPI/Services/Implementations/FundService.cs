@@ -41,12 +41,16 @@ namespace USOD.FundAPI.Services.Implementations
 
 		public async Task<List<Fund>> GetAsync()
 		{
-			return await _fundRepository.Get()
+			var funds = await _fundRepository.Get()
 				.Include(x => x.Fund_Medias)
 				.ThenInclude(x => x.Media_Type)
 				.Include(x => x.Fund_Members)
 				.ThenInclude(x => x.Member_Role)
 				.ToListAsync();
+
+			ClearAutoIncludes(funds);
+			return funds;
+
 		}
 
 		public async Task<Fund?> GetByIdAsync(int fund_id)
@@ -62,18 +66,31 @@ namespace USOD.FundAPI.Services.Implementations
 
 		public async Task<List<Fund>> GetByIdAsync(int[] fund_ids)
 		{
-			return await _fundRepository.Get()
+			var funds = await _fundRepository.Get()
 				.Include(x => x.Fund_Medias)
 				.ThenInclude(x => x.Media_Type)
 				.Include(x => x.Fund_Members)
 				.Where(x => fund_ids.Contains(x.Fund_ID))
 				.ToListAsync();
+
+			ClearAutoIncludes(funds);
+			return funds;
 		}
 
 		public async Task<Fund> UpdateAsync(Fund fund)
 		{
 			await _fundRepository.Update(fund);
 			return fund;
+		}
+
+
+		private void ClearAutoIncludes(List<Fund> funds)
+		{
+			foreach (var fund in funds)
+			{
+				fund.Fund_Medias?.ForEach(x => x.Media_Type.Fund_Medias = null);
+				fund.Fund_Members?.ForEach(x => { if (x.Member_Role != null) x.Member_Role.Fund_Members = null; });
+			}
 		}
 	}
 }

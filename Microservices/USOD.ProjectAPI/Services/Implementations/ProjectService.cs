@@ -50,21 +50,27 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 		public async Task<List<Project>> Get()
 		{
-			return await _projectRepository.Get()
+			var projects =  await _projectRepository.Get()
 				.Include(x => x.Project_Cards)
 				.ThenInclude(x => x.Item_Tag)
 				.Include(x => x.Project_Status)
 				.ToListAsync();
+
+			ClearAutoIncludes(projects); 
+			return projects;
 		}
 
 		public async Task<List<Project>> GetByFundAsync(int fund_id)
 		{
-			return await _projectRepository.Get()
+			var projects =  await _projectRepository.Get()
 				.Include(x => x.Project_Cards)
 				.ThenInclude(x => x.Item_Tag)
 				.Include(x => x.Project_Status)
 				.Where(x => x.Fund_ID == fund_id)
 				.ToListAsync();
+
+			ClearAutoIncludes(projects);
+			return projects;
 		}
 
 		public async Task<Project?> GetByIdAsync(int project_id)
@@ -86,18 +92,32 @@ namespace USOD.ProjectAPI.Services.Implementations
 
 		public async Task<List<Project>> GetByIdAsync(int[] project_ids)
 		{
-			return await _projectRepository.Get()
+			var projects = await _projectRepository.Get()
 				.Include(x => x.Project_Cards)
 				.ThenInclude(x => x.Item_Tag)
 				.Include(x => x.Project_Status)
 				.Where(x => project_ids.Contains(x.Project_ID))
 				.ToListAsync();
+
+			ClearAutoIncludes(projects);
+			return projects;
 		}
 
 		public async Task<Project> UpdateAsync(Project project)
 		{
 			await _projectRepository.Update(project);
 			return project;
+		}
+
+		private void ClearAutoIncludes(List<Project> projects)
+		{
+			foreach (var project in projects)
+			{
+				project.Project_Cards?.ForEach(x => { if (x.Item_Tag != null) x.Item_Tag.Cards = null; });
+				project.Project_Payments?.ForEach(x => { if (x.Payment_Type != null) x.Payment_Type.Project_Payments = null; });
+				if (project.Project_Status != null) project.Project_Status.Projects = null;
+				
+			}
 		}
 	}
 }
