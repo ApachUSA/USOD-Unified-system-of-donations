@@ -160,6 +160,7 @@ else if (Page == "Edit")
 							<span style="margin-right: 10px">$</span>
 
 							<input asp-for="Project.Project_Goal" class="input" placeholder="Enter a goal sum" style="	max-width: 160px;" />
+							<input asp-for="Project.Project_Current_Sum" hidden/>
 
 						</div>
 
@@ -229,6 +230,10 @@ else if (Page == "Edit")
 								<a class="ms-2" style="font-size: 20px" asp-action="ProjectDelete" asp-controller="Project" asp-route-project_id="@Model.Project.Project_ID"><i class="bi bi-trash3-fill"></i></a>
 							</div>
 
+						}
+						else
+						{
+							<div></div>
 						}
 
 						<span>@Model.Project.Project_Status?.Project_Status_Name</span>
