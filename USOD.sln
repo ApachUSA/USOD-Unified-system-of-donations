@@ -36,6 +36,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{34671FF2-430A-4769-9FC2-85D0D94BA949}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\Downloads\Telegram Desktop\image_2024-01-04_13-41-58.png = ..\..\..\Downloads\Telegram Desktop\image_2024-01-04_13-41-58.png
+		screenshot.txt = screenshot.txt
 	EndProjectSection
 EndProject
 Global
