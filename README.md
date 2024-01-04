@@ -25,7 +25,7 @@ Problems of the chosen subject area:
 - RealTime microservice uses **SignalR** to send notifications and comments in real time.
 - **Postman** was used for convenient storage and calling the api
 
-## Screen Shots
+## Screenshots
 <div align="center" >
   <img width="650" src="/Domain/Screenshots/Login.png"/>
   <p>Login</p>
