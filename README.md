@@ -1,5 +1,5 @@
 # Unified system of donations
-
+#### P.S. This is my first attempt at implementing a microservice architecture, so some decisions may be wrong. 🫶
 ## Introduction
 The purpose of this master's thesis is to develop a unified collection system aimed at supporting various charitable initiatives, including donations for the military, IDPs, children, animals, etc.
 Problems of the chosen subject area:
