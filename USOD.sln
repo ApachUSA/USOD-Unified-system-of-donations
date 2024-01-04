@@ -29,9 +29,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.RealTimeAPI", "Microse
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealTime_Library", "Domain\Models\RealTime_Library\RealTime_Library.csproj", "{79DD91DF-42AD-4970-9EED-1154968D504F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USOD.WebASP", "Microservices\USOD.WebASP\USOD.WebASP.csproj", "{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "USOD.WebASP", "Microservices\USOD.WebASP\USOD.WebASP.csproj", "{7AEC806E-8547-4D38-A4C4-0DCA32107ABB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebASP_Library", "Domain\Models\WebASP_Library\WebASP_Library.csproj", "{36BBD55B-6B5C-408F-A52E-253D5EA7B824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebASP_Library", "Domain\Models\WebASP_Library\WebASP_Library.csproj", "{36BBD55B-6B5C-408F-A52E-253D5EA7B824}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Screenshots", "Screenshots", "{34671FF2-430A-4769-9FC2-85D0D94BA949}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Downloads\Telegram Desktop\image_2024-01-04_13-41-58.png = ..\..\..\Downloads\Telegram Desktop\image_2024-01-04_13-41-58.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -100,6 +105,7 @@ Global
 		{79DD91DF-42AD-4970-9EED-1154968D504F} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
 		{7AEC806E-8547-4D38-A4C4-0DCA32107ABB} = {699211EC-FC39-4813-8465-ECA2F6C66F1C}
 		{36BBD55B-6B5C-408F-A52E-253D5EA7B824} = {D902D072-B1EE-47C5-A519-A33E06B9F39E}
+		{34671FF2-430A-4769-9FC2-85D0D94BA949} = {69AD44EE-837B-4884-8606-9549C28BF1AC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5CA0E614-D90F-4C97-AFCE-7E49F895A96E}
