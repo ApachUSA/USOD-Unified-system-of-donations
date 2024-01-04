@@ -8,6 +8,18 @@ Problems of the chosen subject area:
 - Lack of transparency.
 
 ## Technologies
+![Static Badge](https://img.shields.io/badge/ASP.NET-badge?style=for-the-badge&logo=.net&color=%23292929)
+![Static Badge](https://img.shields.io/badge/EF.Core-badge?style=for-the-badge&logo=db&color=%23292929)
+![Static Badge](https://img.shields.io/badge/SQL-badge?style=for-the-badge&logo=sql%20server&color=%23292929)
+![Static Badge](https://img.shields.io/badge/RESTful%20API-badge?style=for-the-badge&logo=api&color=%23292929)
+![Static Badge](https://img.shields.io/badge/SignalR-badge?style=for-the-badge&logo=SignalR&color=%23292929)
+![Static Badge](https://img.shields.io/badge/Docker-badge?style=for-the-badge&logo=docker&color=%23292929)
+![Static Badge](https://img.shields.io/badge/RabbitMq-badge?style=for-the-badge&logo=rabbitmq&color=%23292929)
+![Static Badge](https://img.shields.io/badge/Ocelot-badge?style=for-the-badge&logo=ocelot&color=%23292929)
+![Static Badge](https://img.shields.io/badge/Seq-badge?style=for-the-badge&logo=seq%20logging&color=%23292929)
+![Static Badge](https://img.shields.io/badge/Postman-badge?style=for-the-badge&logo=Postman&color=%23292929)
+
+
 
 <div align="center">
   <img src="/Domain/Screenshots/Architecture.png"/>
