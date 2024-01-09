@@ -36,6 +36,27 @@ Problems of the chosen subject area:
 - Each microservice sends its logs to **Seq** using **RabbitMq**
 - RealTime microservice uses **SignalR** to send notifications and comments in real time.
 - **Postman** was used for convenient storage and calling the api
+## Functions
+The system is divided into three roles (sponsor, fund owner, administrator).
+
+### Sponsor:
+- Registration and authorization
+- View Funds
+- View projects and goals
+- Subscribe to a fund to receive notifications (if authorized)
+- Commenting on projects (if authorized)
+
+### Fund Owner:
+- Includes sponsor features
+- Editing a fund (about the fund, media, members)
+- Create/edit/delete projects
+- Create/edit/delete collection targets
+- Edit report (if fundraising is over)
+
+### Admin:
+- Includes sponsor and fund owner functions, but has access to all funds
+- Creating/deleting a fund and assigning an owner
+- Has access to api which includes all functions from the web version + ability to create/edit/delete data from auxiliary database tables (payment type, media type, etc)
 
 ## Screenshots
 <div align="center" >
